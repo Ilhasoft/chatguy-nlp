@@ -2559,3 +2559,43 @@
 2022-05-19 16:52:44,150 - uvicorn.error - INFO - Started server process [44388]
 2022-05-19 16:52:44,151 - uvicorn.error - INFO - Waiting for application startup.
 2022-05-19 16:52:44,152 - uvicorn.error - INFO - Application startup complete.
+2022-05-20 15:02:44,147 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:45,188 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-pt-en-t5/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2022-05-20 15:02:45,192 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:45,884 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-pt-en-t5/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2022-05-20 15:02:45,891 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:46,583 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-pt-en-t5/resolve/main/spiece.model HTTP/1.1" 302 0
+2022-05-20 15:02:46,591 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:47,310 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-pt-en-t5/resolve/main/tokenizer.json HTTP/1.1" 200 0
+2022-05-20 15:02:47,317 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:48,007 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-pt-en-t5/resolve/main/added_tokens.json HTTP/1.1" 404 0
+2022-05-20 15:02:48,014 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:48,712 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-pt-en-t5/resolve/main/special_tokens_map.json HTTP/1.1" 200 0
+2022-05-20 15:02:48,717 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:49,474 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-pt-en-t5/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2022-05-20 15:02:49,530 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:50,234 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-pt-en-t5/resolve/main/config.json HTTP/1.1" 200 0
+2022-05-20 15:02:50,258 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:50,991 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-pt-en-t5/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2022-05-20 15:02:52,855 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:53,601 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-en-pt-t5/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2022-05-20 15:02:53,609 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:54,293 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-en-pt-t5/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2022-05-20 15:02:54,299 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:54,983 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-en-pt-t5/resolve/main/spiece.model HTTP/1.1" 302 0
+2022-05-20 15:02:54,988 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:55,738 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-en-pt-t5/resolve/main/tokenizer.json HTTP/1.1" 200 0
+2022-05-20 15:02:55,745 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:56,460 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-en-pt-t5/resolve/main/added_tokens.json HTTP/1.1" 404 0
+2022-05-20 15:02:56,467 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:57,159 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-en-pt-t5/resolve/main/special_tokens_map.json HTTP/1.1" 200 0
+2022-05-20 15:02:57,166 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:57,902 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-en-pt-t5/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2022-05-20 15:02:57,946 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:58,670 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-en-pt-t5/resolve/main/config.json HTTP/1.1" 200 0
+2022-05-20 15:02:58,677 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2022-05-20 15:02:59,408 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-en-pt-t5/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2022-05-20 15:03:01,293 - uvicorn.error - INFO - Started server process [45636]
+2022-05-20 15:03:01,297 - uvicorn.error - INFO - Waiting for application startup.
+2022-05-20 15:03:01,299 - uvicorn.error - INFO - Application startup complete.
+2022-05-23 11:45:44,625 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443

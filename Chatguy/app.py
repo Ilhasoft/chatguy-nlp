@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from models.models import InputModel
 import csv
 from handlers import classifier
@@ -12,6 +13,16 @@ logging.basicConfig(
 logger = logging.getLogger()
 
 router = FastAPI()
+
+origins = ["*"]
+
+router.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 pten_pipeline, enpt_pipeline = classifier.create_model()
 
