@@ -37,5 +37,15 @@ def phrase_aug(suggest_list, pten_pipeline, enpt_pipeline):
   return aug_list
 
 def get_synonyms(word):
-  word = Search(word)
-  return word.synonyms()
+  suggested = Search(word)
+  suggested = suggested.synonyms()
+
+  if suggested == 404:
+    suggested = [word]
+  else:
+    try:
+      suggested.insert(0, word)
+    except Exception as e:
+      return [word]
+
+  return suggested

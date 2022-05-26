@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from models.models import InputModel
+from models.models import InputSentences, InputWords
 import csv
 from handlers import classifier
 import logging
@@ -28,15 +28,17 @@ pten_pipeline, enpt_pipeline = classifier.create_model()
 
 
 @router.post(r'/suggest_words/')
-async def classify_myth(userInput: InputModel):
+async def suggest_words(userInput: InputWords):
     try:
         if userInput:
             keys = userInput.texts
             for i in range(len(keys)):
                 if keys[i]['generate']:
                     keys[i]['suggestions'] = classifier.get_synonyms(keys[i]['word'])
-                else:
+                elif isinstance(keys[i]['word'], list):
                     keys[i]['suggestions'] = keys[i]['word']
+                else:
+                    keys[i]['suggestions'] = [keys[i]['word']]
             return keys
 
     except Exception as e:
@@ -44,7 +46,7 @@ async def classify_myth(userInput: InputModel):
 
 
 @router.post(r'/suggest_sentences/')
-async def classify_myth(userInput: InputModel):
+async def suggest_sentences(userInput: InputSentences):
     try:
         if userInput.texts:
             key = userInput.texts
