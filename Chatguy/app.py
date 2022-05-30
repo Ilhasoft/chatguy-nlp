@@ -52,11 +52,14 @@ async def suggest_sentences(userInput: InputSentences):
             key = userInput.texts
             lista = []
             for i in range(len(key)):
-                if key[i]['entity']:
+                if not key[i]['entity']:
+                    entity = ['nada']    
+                else:
                     entity = key[i]['entity']
-                    lista.append(key[i]['suggestions'])
-
+                lista.append(key[i]['suggestions'])
             flat_list = [item for sublist in lista for item in sublist]
+            if not flat_list:
+                flat_list = ['aaa']
             suggest_list = classifier.list_suggesting(key)
             result = classifier.phrase_aug(suggest_list, pten_pipeline, enpt_pipeline)
             list_words = flat_list
@@ -84,10 +87,10 @@ async def suggest_sentences(userInput: InputSentences):
                             break
                     except:
                         pass
-
             json_file = {"rasa_nlu_data":{"regex_features":[],"entity_synonyms":[],"common_examples": []}}
             json_file['rasa_nlu_data']['common_examples'] = obj_dict
 
             return json_file
     except Exception as e:
+        print(str(e.__class__))
         logger.error("-" + str(e.__class__) + "occurred while running /suggest_sentences/.")
