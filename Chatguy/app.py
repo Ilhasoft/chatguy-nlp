@@ -5,6 +5,8 @@ import csv
 from handlers import classifier
 import logging
 
+import os
+import urllib.request
 
 logging.basicConfig(
     filename = 'logfile.log',
@@ -23,8 +25,39 @@ router.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+ 
 
-pten_pipeline, enpt_pipeline = classifier.create_model()
+url = 'https://weni-prod-ai-chatguy.s3.sa-east-1.amazonaws.com/'
+files_json = ['config', 'special_tokens_map', 'tokenizer', 'tokenizer_config']
+files_model = ['spiece']
+files_bin = ['pytorch_model']
+
+model_path = 'model'
+
+for file in files_json:
+    file_name = file + '.json'
+    file_save_path = os.path.join(model_path, file_name) 
+    file_path = os.path.join(url, file_name)
+    if not os.path.exists(file_save_path):
+        urllib.request.urlretrieve(file_path, file_save_path)
+
+for file in files_model:
+    file_name = file + '.model'
+    file_save_path = os.path.join(model_path, file_name) 
+    file_path = os.path.join(url, file_name)
+    if not os.path.exists(file_save_path):
+        urllib.request.urlretrieve(file_path, file_save_path)
+
+for file in files_bin:
+    file_name = file + '.bin'
+    file_save_path = os.path.join(model_path, file_name) 
+    file_path = os.path.join(url, file_name)
+    if not os.path.exists(file_save_path):
+        urllib.request.urlretrieve(file_path, file_save_path)
+
+
+# pten_pipeline, enpt_pipeline = classifier.create_model()
+model = classifier.create_model_gec()
 
 
 @router.post(r'/suggest_words/')
@@ -53,15 +86,19 @@ async def suggest_sentences(userInput: InputSentences):
             lista = []
             for i in range(len(key)):
                 if not key[i]['entity']:
-                    entity = ['nada']    
+                    entity = ['empty']    
                 else:
                     entity = key[i]['entity']
                 lista.append(key[i]['suggestions'])
             flat_list = [item for sublist in lista for item in sublist]
+            print(flat_list)
             if not flat_list:
-                flat_list = ['aaa']
+                flat_list = ['empty']
             suggest_list = classifier.list_suggesting(key)
-            result = classifier.phrase_aug(suggest_list, pten_pipeline, enpt_pipeline)
+            print('suggest_list', suggest_list)
+            result = classifier.phrase_gec(suggest_list, model)
+
+            # result = classifier.phrase_aug(suggest_list, pten_pipeline, enpt_pipeline)
             list_words = flat_list
             obj_dict = []
             entity_keys = ['start','end','value','entity']

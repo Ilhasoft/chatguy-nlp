@@ -6,6 +6,12 @@ from simplet5 import SimpleT5
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
 ## CÓDIGO PARA ESTAR NO INIT
+
+def create_model_gec():  
+  model = SimpleT5()
+  model.load_model("t5",'./model', use_gpu=False)
+  return model
+
 def create_model():
     tokenizer_pten = AutoTokenizer.from_pretrained("unicamp-dl/translation-pt-en-t5")
     model_pten = AutoModelForSeq2SeqLM.from_pretrained("unicamp-dl/translation-pt-en-t5")
@@ -25,6 +31,17 @@ def list_suggesting(key):
   arr_new = list(itertools.product(*new_arr))
   result = map(join_tuple_string, list(arr_new))
   return list(result)
+
+def phrase_gec(list_phrases, model):
+  list_gec = []
+  print('list', list_phrases)
+  for phrase in list_phrases:
+    print('phrase',phrase)
+    phrase_gec = model.predict(phrase)
+    print(phrase_gec)
+    list_gec.append(phrase_gec[0])
+  print(list_gec)
+  return list_gec
 
 def phrase_aug(suggest_list, pten_pipeline, enpt_pipeline):
   aug_list = []
