@@ -2,12 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy import Column, String, Integer, Table, MetaData, ForeignKey, join
 from sqlalchemy.ext.declarative import declarative_base
-import config
 
 Base = declarative_base()
-
-DATABASE_URL = f'{config.adapter}://{config.user}:{config.password}@{config.host}:{config.port}'
-
 
 def create_db(DATABASE_URL):
     engine = create_engine(DATABASE_URL)
