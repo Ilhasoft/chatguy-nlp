@@ -5,7 +5,8 @@ WORKDIR /home/
 COPY Chatguy /home/Chatguy
 COPY requirements.txt /home
 
-RUN sudo apt-get install -y libpq-dev
+RUN apt update
+RUN apt-get install -y libpq-dev
 RUN pip install -r requirements.txt --no-cache-dir
 
 WORKDIR /home/Chatguy
