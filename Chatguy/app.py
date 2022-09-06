@@ -67,9 +67,9 @@ model_path = 'model'
 
 
 # pten_pipeline, enpt_pipeline = classifier.create_model()
-model = classifier.create_model_gec()
+# model = classifier.create_model_gec()
 
-DATABASE_URL = f'{config.adapter}://{user}:{password}@{host}:{port}'
+DATABASE_URL = f'postgresql://{user}:{password}@{host}:{port}'
 session = db.create_db(DATABASE_URL)
 
 @router.post(r'/suggest_words/')
@@ -77,21 +77,15 @@ def suggest_words(userInput: InputWords):
     try:
         if userInput:
             keys = userInput.texts
-            print(len(keys))
             for i in range(len(keys)):
-                print('aaaaa')
                 if keys[i]['generate']:
                     idx = db.get_word_index(session, keys[i]['word'])
-                    print('idx', idx)
                     if idx:
-                        print('hi')
                         synonyms = db.get_suggest_words(session, idx[0][0])
-                        print('synonyms0', synonyms)
                         keys[i]['suggestions'] = [i[0] for i in synonyms]
                     else:
                         synonyms = classifier.get_synonyms(keys[i]['word'])
                         keys[i]['suggestions'] = synonyms
-                        print('synonyms1', synonyms)
                         db.create_word(session, keys[i]['word'])
                         idx = db.get_word_index(session, keys[i]['word'])
                         db.create_suggestion(session, idx[0][0], synonyms)
@@ -100,7 +94,6 @@ def suggest_words(userInput: InputWords):
                     keys[i]['suggestions'] = keys[i]['word']
                 else:
                     keys[i]['suggestions'] = [keys[i]['word']]
-            print(keys)
             return keys
 
     except Exception as e:
