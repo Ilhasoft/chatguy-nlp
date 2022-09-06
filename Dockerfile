@@ -5,10 +5,10 @@ WORKDIR /home/
 COPY Chatguy /home/Chatguy
 COPY requirements.txt /home
 
-
+RUN apt-get install libpq-dev
 RUN pip install -r requirements.txt --no-cache-dir
 
 WORKDIR /home/Chatguy
 RUN mkdir -p /home/Chatguy/model
-#CMD ["uvicorn","app:router","host=0.0.0.0","port=8000", "--reload"]
+
 CMD ["uvicorn", "app:router", "--host", "0.0.0.0", "--port", "8000","--reload" ]

@@ -18,3 +18,5 @@ torchmetrics==0.8.2
 tqdm==4.64.0
 transformers==4.16.2
 uvicorn==0.16.0
+psycopg2-binary==2.9.3
+sqlalchemy==1.4.39

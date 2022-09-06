@@ -1,2 +1,5 @@
 __pycache__/
 *.log
+*.json
+*.bin
+*.model

@@ -8,5 +8,7 @@ class InputSentences(BaseModel):
 class InputWords(BaseModel):
     texts: list
 
+class InputCorrections(BaseModel):
+    texts: list
 
     

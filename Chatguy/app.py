@@ -1,12 +1,17 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from models.models import InputSentences, InputWords
+from models.models import InputCorrections, InputSentences, InputWords
 import csv
-from handlers import classifier
+from handlers import classifier, db
 import logging
-
+import sqlalchemy
 import os
 import urllib.request
+from sqlalchemy import Column, Integer, MetaData, String, ForeignKey, Boolean, DateTime, Float
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.dialects.postgresql import UUID
+from uuid import uuid4
+from sqlalchemy.orm import sessionmaker
 
 logging.basicConfig(
     filename = 'logfile.log',
@@ -26,52 +31,76 @@ router.add_middleware(
     allow_headers=["*"],
 )
  
+user = os.environ['POSTGRES_USER']
+password = os.environ['POSTGRES_PASSWORD']
+host = os.environ['POSTGRES_HOST']
+port = os.environ['POSTGRES_PORT']
 
-url = 'https://weni-prod-ai-chatguy.s3.sa-east-1.amazonaws.com/'
+
+url = 'https://'
 files_json = ['config', 'special_tokens_map', 'tokenizer', 'tokenizer_config']
 files_model = ['spiece']
 files_bin = ['pytorch_model']
 
 model_path = 'model'
 
-for file in files_json:
-    file_name = file + '.json'
-    file_save_path = os.path.join(model_path, file_name) 
-    file_path = os.path.join(url, file_name)
-    if not os.path.exists(file_save_path):
-        urllib.request.urlretrieve(file_path, file_save_path)
+#for file in files_json:
+#    file_name = file + '.json'
+#    file_save_path = os.path.join(model_path, file_name) 
+#    file_path = os.path.join(url, file_name)
+#    if not os.path.exists(file_save_path):
+#        urllib.request.urlretrieve(file_path, file_save_path)
 
-for file in files_model:
-    file_name = file + '.model'
-    file_save_path = os.path.join(model_path, file_name) 
-    file_path = os.path.join(url, file_name)
-    if not os.path.exists(file_save_path):
-        urllib.request.urlretrieve(file_path, file_save_path)
+#for file in files_model:
+#    file_name = file + '.model'
+#    file_save_path = os.path.join(model_path, file_name) 
+#    file_path = os.path.join(url, file_name)
+#    if not os.path.exists(file_save_path):
+#        urllib.request.urlretrieve(file_path, file_save_path)
 
-for file in files_bin:
-    file_name = file + '.bin'
-    file_save_path = os.path.join(model_path, file_name) 
-    file_path = os.path.join(url, file_name)
-    if not os.path.exists(file_save_path):
-        urllib.request.urlretrieve(file_path, file_save_path)
+#for file in files_bin:
+#    file_name = file + '.bin'
+#    file_save_path = os.path.join(model_path, file_name) 
+#    file_path = os.path.join(url, file_name)
+#    if not os.path.exists(file_save_path):
+#        urllib.request.urlretrieve(file_path, file_save_path)
 
 
 # pten_pipeline, enpt_pipeline = classifier.create_model()
 model = classifier.create_model_gec()
 
+DATABASE_URL = f'{config.adapter}://{user}:{password}@{host}:{port}'
+session = db.create_db(DATABASE_URL)
 
 @router.post(r'/suggest_words/')
-async def suggest_words(userInput: InputWords):
+def suggest_words(userInput: InputWords):
     try:
         if userInput:
             keys = userInput.texts
+            print(len(keys))
             for i in range(len(keys)):
+                print('aaaaa')
                 if keys[i]['generate']:
-                    keys[i]['suggestions'] = classifier.get_synonyms(keys[i]['word'])
+                    idx = db.get_word_index(session, keys[i]['word'])
+                    print('idx', idx)
+                    if idx:
+                        print('hi')
+                        synonyms = db.get_suggest_words(session, idx[0][0])
+                        print('synonyms0', synonyms)
+                        keys[i]['suggestions'] = [i[0] for i in synonyms]
+                    else:
+                        synonyms = classifier.get_synonyms(keys[i]['word'])
+                        keys[i]['suggestions'] = synonyms
+                        print('synonyms1', synonyms)
+                        db.create_word(session, keys[i]['word'])
+                        idx = db.get_word_index(session, keys[i]['word'])
+                        db.create_suggestion(session, idx[0][0], synonyms)
+
                 elif isinstance(keys[i]['word'], list):
                     keys[i]['suggestions'] = keys[i]['word']
                 else:
                     keys[i]['suggestions'] = [keys[i]['word']]
+            print(keys)
             return keys
 
     except Exception as e:
@@ -79,7 +108,7 @@ async def suggest_words(userInput: InputWords):
 
 
 @router.post(r'/suggest_sentences/')
-async def suggest_sentences(userInput: InputSentences):
+def suggest_sentences(userInput: InputSentences):
     try:
         if userInput.texts:
             key = userInput.texts
@@ -129,3 +158,15 @@ async def suggest_sentences(userInput: InputSentences):
             return json_file
     except Exception as e:
         logger.error("-" + str(e.__class__) + "occurred while running /suggest_sentences/.")
+
+@router.post(r'/store_corrections/')
+def suggest_words(userInput: InputCorrections):
+    try:
+        if userInput:
+            data = userInput.texts
+            print('source',data[0])
+            print('target',data[1])
+            db.insert_corrections(session, data[0], data[1])
+            return {200: 'Inserted!'}
+    except Exception as e:
+        logger.error("-" +  str(e.__class__) + "occurred while running /store_corrections/.")
