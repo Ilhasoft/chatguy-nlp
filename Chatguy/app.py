@@ -31,6 +31,7 @@ router.add_middleware(
     allow_headers=["*"],
 )
  
+ 
 user = os.environ['POSTGRES_USER']
 password = os.environ['POSTGRES_PASSWORD']
 host = os.environ['POSTGRES_HOST']
@@ -76,34 +77,48 @@ session = db.create_db(DATABASE_URL)
 def suggest_words(userInput: InputWords):
     try:
         if userInput:
+            session = db.create_db(DATABASE_URL)
+            print('A')
             keys = userInput.texts
             for i in range(len(keys)):
                 if keys[i]['generate']:
+                    print('B')
                     idx = db.get_word_index(session, keys[i]['word'])
+                    print('C')
                     if idx:
+                        print('D')
                         synonyms = db.get_suggest_words(session, idx[0][0])
+                        print('E')
                         keys[i]['suggestions'] = [i[0] for i in synonyms]
                     else:
+                        print('F')
                         synonyms = classifier.get_synonyms(keys[i]['word'])
                         keys[i]['suggestions'] = synonyms
+                        print('G')
                         db.create_word(session, keys[i]['word'])
+                        print('H')
                         idx = db.get_word_index(session, keys[i]['word'])
+                        print('I')
                         db.create_suggestion(session, idx[0][0], synonyms)
+                        print('J')
 
                 elif isinstance(keys[i]['word'], list):
                     keys[i]['suggestions'] = keys[i]['word']
                 else:
                     keys[i]['suggestions'] = [keys[i]['word']]
+            session.close()
             return keys
 
     except Exception as e:
-        logger.error("-" +  str(e.__class__) + "occurred while running /suggest_words/.")
+        print(e)
+        #logger.error("-" +  str(e.__class__) + "occurred while running /suggest_words/.")
 
 
 @router.post(r'/suggest_sentences/')
 def suggest_sentences(userInput: InputSentences):
     try:
         if userInput.texts:
+            session = db.create_db(DATABASE_URL)
             key = userInput.texts
 
             lista_entities = []
@@ -147,7 +162,7 @@ def suggest_sentences(userInput: InputSentences):
         
             json_file = {"rasa_nlu_data":{"regex_features":[],"entity_synonyms":[],"common_examples": []}}
             json_file['rasa_nlu_data']['common_examples'] = obj_dict
-
+            session.close()
             return json_file
     except Exception as e:
         logger.error("-" + str(e.__class__) + "occurred while running /suggest_sentences/.")
@@ -156,10 +171,12 @@ def suggest_sentences(userInput: InputSentences):
 def suggest_words(userInput: InputCorrections):
     try:
         if userInput:
+            session = db.create_db(DATABASE_URL)
             data = userInput.texts
             print('source',data[0])
             print('target',data[1])
             db.insert_corrections(session, data[0], data[1])
+            session.close()
             return {200: 'Inserted!'}
     except Exception as e:
         logger.error("-" +  str(e.__class__) + "occurred while running /store_corrections/.")
