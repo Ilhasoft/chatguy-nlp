@@ -1,3 +1,4 @@
+import json
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from models.models import InputCorrections, InputSentences, InputWords
@@ -32,11 +33,15 @@ router.add_middleware(
 )
  
  
-user = os.environ['POSTGRES_USER']
-password = os.environ['POSTGRES_PASSWORD']
-host = os.environ['POSTGRES_HOST']
-port = os.environ['POSTGRES_PORT']
+#user = os.environ['POSTGRES_USER']
+#password = os.environ['POSTGRES_PASSWORD']
+#host = os.environ['POSTGRES_HOST']
+#port = os.environ['POSTGRES_PORT']
 
+user = 'postgres'
+password = 'docker'
+host = '127.0.0.1'
+port = '5432'
 
 url = 'https://'
 files_json = ['config', 'special_tokens_map', 'tokenizer', 'tokenizer_config']
@@ -78,29 +83,19 @@ def suggest_words(userInput: InputWords):
     try:
         if userInput:
             session = db.create_db(DATABASE_URL)
-            print('A')
             keys = userInput.texts
             for i in range(len(keys)):
                 if keys[i]['generate']:
-                    print('B')
                     idx = db.get_word_index(session, keys[i]['word'])
-                    print('C')
                     if idx:
-                        print('D')
                         synonyms = db.get_suggest_words(session, idx[0][0])
-                        print('E')
                         keys[i]['suggestions'] = [i[0] for i in synonyms]
                     else:
-                        print('F')
                         synonyms = classifier.get_synonyms(keys[i]['word'])
                         keys[i]['suggestions'] = synonyms
-                        print('G')
                         db.create_word(session, keys[i]['word'])
-                        print('H')
                         idx = db.get_word_index(session, keys[i]['word'])
-                        print('I')
                         db.create_suggestion(session, idx[0][0], synonyms)
-                        print('J')
 
                 elif isinstance(keys[i]['word'], list):
                     keys[i]['suggestions'] = keys[i]['word']
@@ -110,8 +105,7 @@ def suggest_words(userInput: InputWords):
             return keys
 
     except Exception as e:
-        print(e)
-        #logger.error("-" +  str(e.__class__) + "occurred while running /suggest_words/.")
+        logger.error("-" +  str(e.__class__) + "occurred while running /suggest_words/.")
 
 
 @router.post(r'/suggest_sentences/')
@@ -152,7 +146,7 @@ def suggest_sentences(userInput: InputSentences):
                         for word in lista_words_entity:
                             idx = phrase.find(word)
                             if idx > -1:
-                                values.extend([idx, idx + len(word) - 1, word, entity[0]])
+                                values.extend([idx, idx + len(word), word, entity[0]])
                         entities.append(dict(zip(entity_keys, values)))
                     main_dict.extend([phrase, intent, entities])
                     obj_dict.append(dict(zip(main_keys, main_dict)))
@@ -173,8 +167,6 @@ def suggest_words(userInput: InputCorrections):
         if userInput:
             session = db.create_db(DATABASE_URL)
             data = userInput.texts
-            print('source',data[0])
-            print('target',data[1])
             db.insert_corrections(session, data[0], data[1])
             session.close()
             return {200: 'Inserted!'}
