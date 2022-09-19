@@ -4544,3 +4544,292 @@
 2022-06-15 12:33:38,777 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-en-pt-t5/resolve/main/config.json HTTP/1.1" 200 0
 2022-06-15 12:33:38,791 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
 2022-06-15 12:33:39,590 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /unicamp-dl/translation-en-pt-t5/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2022-09-14 19:46:37,749 - uvicorn.error - INFO - Started server process [84035]
+2022-09-14 19:46:37,750 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-14 19:46:37,751 - uvicorn.error - INFO - Application startup complete.
+2022-09-14 19:48:15,764 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): www.sinonimos.com.br:443
+2022-09-14 19:48:16,574 - urllib3.connectionpool - DEBUG - https://www.sinonimos.com.br:443 "GET /caderno/ HTTP/1.1" 200 7464
+2022-09-15 08:26:45,359 - uvicorn.error - INFO - Shutting down
+2022-09-15 08:26:45,468 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 08:26:45,476 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 08:26:45,476 - uvicorn.error - INFO - Finished server process [84035]
+2022-09-15 08:26:53,310 - uvicorn.error - INFO - Started server process [85212]
+2022-09-15 08:26:53,311 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 08:26:53,311 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 08:27:28,839 - uvicorn.error - INFO - Shutting down
+2022-09-15 08:27:28,948 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 08:27:28,950 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 08:27:28,951 - uvicorn.error - INFO - Finished server process [85212]
+2022-09-15 08:44:31,229 - uvicorn.error - INFO - Started server process [85392]
+2022-09-15 08:44:31,230 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 08:44:31,230 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 08:47:45,434 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 09:04:59,729 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 09:05:53,336 - uvicorn.error - INFO - Shutting down
+2022-09-15 09:05:53,438 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 09:05:53,439 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 09:05:53,439 - uvicorn.error - INFO - Finished server process [85392]
+2022-09-15 09:06:06,570 - uvicorn.error - INFO - Started server process [85769]
+2022-09-15 09:06:06,584 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 09:06:06,591 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 09:06:06,642 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 09:10:23,008 - uvicorn.error - INFO - Shutting down
+2022-09-15 09:10:23,116 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 09:10:23,117 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 09:10:23,117 - uvicorn.error - INFO - Finished server process [85769]
+2022-09-15 09:10:35,757 - uvicorn.error - INFO - Started server process [85835]
+2022-09-15 09:10:35,784 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 09:10:35,785 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 09:10:35,852 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 09:16:11,320 - uvicorn.error - INFO - Shutting down
+2022-09-15 09:16:11,424 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 09:16:11,425 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 09:16:11,425 - uvicorn.error - INFO - Finished server process [85835]
+2022-09-15 09:16:26,382 - uvicorn.error - INFO - Started server process [85930]
+2022-09-15 09:16:26,453 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 09:16:26,454 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 09:16:26,496 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 09:41:51,798 - uvicorn.error - INFO - Shutting down
+2022-09-15 09:41:51,917 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 09:41:51,918 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 09:41:51,919 - uvicorn.error - INFO - Finished server process [85930]
+2022-09-15 09:42:03,775 - uvicorn.error - INFO - Started server process [87203]
+2022-09-15 09:42:03,823 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 09:42:03,824 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 09:42:45,225 - root - ERROR - -<class 'RecursionError'>occurred while running /suggest_words/.
+2022-09-15 09:47:14,890 - root - ERROR - -<class 'RecursionError'>occurred while running /suggest_words/.
+2022-09-15 09:55:39,981 - root - ERROR - -<class 'RecursionError'>occurred while running /suggest_words/.
+2022-09-15 09:57:29,305 - root - ERROR - -<class 'RecursionError'>occurred while running /suggest_words/.
+2022-09-15 10:20:44,494 - root - ERROR - -<class 'RecursionError'>occurred while running /suggest_words/.
+2022-09-15 10:34:26,744 - uvicorn.error - INFO - Shutting down
+2022-09-15 10:34:26,853 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 10:34:26,856 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 10:34:26,857 - uvicorn.error - INFO - Finished server process [87203]
+2022-09-15 10:34:37,336 - uvicorn.error - INFO - Started server process [87892]
+2022-09-15 10:34:37,345 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 10:34:37,346 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 10:34:37,419 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 10:49:08,262 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 10:51:14,527 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 10:58:36,887 - uvicorn.error - INFO - Shutting down
+2022-09-15 10:58:36,993 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 10:58:36,994 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 10:58:36,994 - uvicorn.error - INFO - Finished server process [87892]
+2022-09-15 10:58:50,700 - uvicorn.error - INFO - Started server process [88245]
+2022-09-15 10:58:50,725 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 10:58:50,726 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 10:58:50,763 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 11:02:22,768 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:02:22,871 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:02:22,872 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:02:22,872 - uvicorn.error - INFO - Finished server process [88245]
+2022-09-15 11:02:37,901 - uvicorn.error - INFO - Started server process [88312]
+2022-09-15 11:02:37,923 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:02:37,949 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:02:37,975 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 11:03:01,616 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:03:01,724 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:03:01,724 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:03:01,724 - uvicorn.error - INFO - Finished server process [88312]
+2022-09-15 11:03:18,081 - uvicorn.error - INFO - Started server process [88341]
+2022-09-15 11:03:18,082 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:03:18,082 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:03:18,135 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 11:03:53,665 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:03:53,773 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:03:53,777 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:03:53,783 - uvicorn.error - INFO - Finished server process [88341]
+2022-09-15 11:04:07,436 - uvicorn.error - INFO - Started server process [88345]
+2022-09-15 11:04:07,488 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:04:07,489 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:04:07,530 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 11:06:46,145 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:06:46,248 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:06:46,249 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:06:46,249 - uvicorn.error - INFO - Finished server process [88345]
+2022-09-15 11:06:54,600 - uvicorn.error - INFO - Started server process [88411]
+2022-09-15 11:06:54,600 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:06:54,601 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:07:06,532 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:07:06,640 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:07:06,640 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:07:06,640 - uvicorn.error - INFO - Finished server process [88411]
+2022-09-15 11:07:22,395 - uvicorn.error - INFO - Started server process [88443]
+2022-09-15 11:07:22,411 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:07:22,414 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:07:22,476 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 11:08:06,673 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:08:06,785 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:08:06,789 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:08:06,792 - uvicorn.error - INFO - Finished server process [88443]
+2022-09-15 11:08:22,823 - uvicorn.error - INFO - Started server process [88472]
+2022-09-15 11:08:22,877 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:08:22,878 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:08:22,920 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_words/.
+2022-09-15 11:08:55,281 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:08:55,390 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:08:55,391 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:08:55,391 - uvicorn.error - INFO - Finished server process [88472]
+2022-09-15 11:09:10,619 - uvicorn.error - INFO - Started server process [88499]
+2022-09-15 11:09:10,619 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:09:10,620 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:09:43,205 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:09:43,313 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:09:43,315 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:09:43,315 - uvicorn.error - INFO - Finished server process [88499]
+2022-09-15 11:09:50,832 - uvicorn.error - INFO - Started server process [88528]
+2022-09-15 11:09:50,833 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:09:50,834 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:10:21,071 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:10:21,180 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:10:21,180 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:10:21,181 - uvicorn.error - INFO - Finished server process [88528]
+2022-09-15 11:10:34,203 - uvicorn.error - INFO - Started server process [88559]
+2022-09-15 11:10:34,203 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:10:34,204 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:11:06,165 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:11:06,267 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:11:06,268 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:11:06,268 - uvicorn.error - INFO - Finished server process [88559]
+2022-09-15 11:11:14,074 - uvicorn.error - INFO - Started server process [88583]
+2022-09-15 11:11:14,078 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:11:14,079 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:18:41,653 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:18:41,756 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:18:41,757 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:18:41,758 - uvicorn.error - INFO - Finished server process [88583]
+2022-09-15 11:18:47,852 - uvicorn.error - INFO - Started server process [88693]
+2022-09-15 11:18:47,853 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:18:47,853 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:19:09,396 - uvicorn.error - INFO - Shutting down
+2022-09-15 11:19:09,504 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 11:19:09,504 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 11:19:09,505 - uvicorn.error - INFO - Finished server process [88693]
+2022-09-15 11:19:16,853 - uvicorn.error - INFO - Started server process [88722]
+2022-09-15 11:19:16,859 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 11:19:16,860 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 11:20:54,197 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): www.sinonimos.com.br:443
+2022-09-15 11:20:55,034 - urllib3.connectionpool - DEBUG - https://www.sinonimos.com.br:443 "GET /lapis/ HTTP/1.1" 404 None
+2022-09-15 11:21:06,231 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): www.sinonimos.com.br:443
+2022-09-15 11:21:06,958 - urllib3.connectionpool - DEBUG - https://www.sinonimos.com.br:443 "GET /caneta/ HTTP/1.1" 404 None
+2022-09-15 11:21:39,276 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_sentences/.
+2022-09-15 13:12:21,769 - uvicorn.error - INFO - Shutting down
+2022-09-15 13:12:21,875 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 13:12:21,876 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 13:12:21,876 - uvicorn.error - INFO - Finished server process [88722]
+2022-09-15 13:12:28,662 - uvicorn.error - INFO - Started server process [90053]
+2022-09-15 13:12:28,662 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 13:12:28,663 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 13:16:53,599 - uvicorn.error - INFO - Shutting down
+2022-09-15 13:16:53,708 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 13:16:53,708 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 13:16:53,709 - uvicorn.error - INFO - Finished server process [90053]
+2022-09-15 13:16:57,836 - uvicorn.error - INFO - Started server process [90122]
+2022-09-15 13:16:57,836 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 13:16:57,837 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 13:59:23,452 - uvicorn.error - INFO - Shutting down
+2022-09-15 13:59:23,561 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 13:59:23,563 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 13:59:23,564 - uvicorn.error - INFO - Finished server process [90122]
+2022-09-15 13:59:28,247 - uvicorn.error - INFO - Started server process [90324]
+2022-09-15 13:59:28,247 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 13:59:28,248 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 14:49:49,111 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_sentences/.
+2022-09-15 14:54:41,513 - uvicorn.error - INFO - Shutting down
+2022-09-15 14:54:41,620 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 14:54:41,621 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 14:54:41,621 - uvicorn.error - INFO - Finished server process [90324]
+2022-09-15 15:28:58,887 - uvicorn.error - INFO - Started server process [92661]
+2022-09-15 15:28:58,888 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 15:28:58,888 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 15:30:17,793 - root - ERROR - -<class 'TypeError'>occurred while running /suggest_sentences/.
+2022-09-15 15:32:59,748 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): www.sinonimos.com.br:443
+2022-09-15 15:33:00,461 - urllib3.connectionpool - DEBUG - https://www.sinonimos.com.br:443 "GET /a/ HTTP/1.1" 200 7656
+2022-09-15 15:36:49,115 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): www.sinonimos.com.br:443
+2022-09-15 15:36:49,833 - urllib3.connectionpool - DEBUG - https://www.sinonimos.com.br:443 "GET /jske/ HTTP/1.1" 404 None
+2022-09-15 15:36:58,143 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): www.sinonimos.com.br:443
+2022-09-15 15:36:58,894 - urllib3.connectionpool - DEBUG - https://www.sinonimos.com.br:443 "GET /js/ HTTP/1.1" 404 None
+2022-09-15 15:38:04,911 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): www.sinonimos.com.br:443
+2022-09-15 15:38:05,726 - urllib3.connectionpool - DEBUG - https://www.sinonimos.com.br:443 "GET /5/ HTTP/1.1" 404 None
+2022-09-15 15:38:17,171 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): www.sinonimos.com.br:443
+2022-09-15 15:38:17,969 - urllib3.connectionpool - DEBUG - https://www.sinonimos.com.br:443 "GET /~/ HTTP/1.1" 404 None
+2022-09-15 15:48:24,534 - uvicorn.error - INFO - Shutting down
+2022-09-15 15:48:24,638 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 15:48:24,642 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 15:48:24,645 - uvicorn.error - INFO - Finished server process [92661]
+2022-09-15 15:48:59,562 - uvicorn.error - INFO - Started server process [92932]
+2022-09-15 15:48:59,563 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 15:48:59,564 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 15:51:45,228 - uvicorn.error - INFO - Shutting down
+2022-09-15 15:51:45,330 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 15:51:45,331 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 15:51:45,331 - uvicorn.error - INFO - Finished server process [92932]
+2022-09-15 15:54:48,006 - uvicorn.error - INFO - Started server process [93080]
+2022-09-15 15:54:48,007 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 15:54:48,008 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 15:56:47,188 - uvicorn.error - INFO - Shutting down
+2022-09-15 15:56:47,297 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 15:56:47,298 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 15:56:47,298 - uvicorn.error - INFO - Finished server process [93080]
+2022-09-15 15:58:28,371 - uvicorn.error - INFO - Started server process [93180]
+2022-09-15 15:58:28,372 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 15:58:28,373 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 15:59:45,457 - uvicorn.error - INFO - Shutting down
+2022-09-15 15:59:45,560 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 15:59:45,561 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 15:59:45,561 - uvicorn.error - INFO - Finished server process [93180]
+2022-09-15 15:59:54,827 - uvicorn.error - INFO - Started server process [93217]
+2022-09-15 15:59:54,827 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 15:59:54,828 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 16:02:19,000 - uvicorn.error - INFO - Shutting down
+2022-09-15 16:02:19,104 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 16:02:19,105 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 16:02:19,106 - uvicorn.error - INFO - Finished server process [93217]
+2022-09-15 16:02:35,147 - uvicorn.error - INFO - Started server process [93264]
+2022-09-15 16:02:35,159 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 16:02:35,159 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 16:02:45,643 - root - ERROR - -<class 'AttributeError'>occurred while running /test/.
+2022-09-15 16:04:58,176 - uvicorn.error - INFO - Shutting down
+2022-09-15 16:04:58,284 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 16:04:58,285 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 16:04:58,285 - uvicorn.error - INFO - Finished server process [93264]
+2022-09-15 16:05:06,273 - uvicorn.error - INFO - Started server process [93302]
+2022-09-15 16:05:06,295 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 16:05:06,295 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 16:06:06,140 - uvicorn.error - INFO - Shutting down
+2022-09-15 16:06:06,247 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 16:06:06,249 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 16:06:06,250 - uvicorn.error - INFO - Finished server process [93302]
+2022-09-15 16:06:15,356 - uvicorn.error - INFO - Started server process [93332]
+2022-09-15 16:06:15,362 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 16:06:15,363 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 16:06:39,036 - uvicorn.error - INFO - Shutting down
+2022-09-15 16:06:39,141 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 16:06:39,142 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 16:06:39,143 - uvicorn.error - INFO - Finished server process [93332]
+2022-09-15 16:06:46,175 - uvicorn.error - INFO - Started server process [93366]
+2022-09-15 16:06:46,178 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 16:06:46,180 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 16:07:36,353 - uvicorn.error - INFO - Shutting down
+2022-09-15 16:07:36,461 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 16:07:36,462 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 16:07:36,462 - uvicorn.error - INFO - Finished server process [93366]
+2022-09-15 16:07:44,236 - uvicorn.error - INFO - Started server process [93398]
+2022-09-15 16:07:44,237 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 16:07:44,237 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 16:12:50,393 - uvicorn.error - INFO - Shutting down
+2022-09-15 16:12:50,501 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 16:12:50,501 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 16:12:50,502 - uvicorn.error - INFO - Finished server process [93398]
+2022-09-15 16:12:57,490 - uvicorn.error - INFO - Started server process [93438]
+2022-09-15 16:12:57,490 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 16:12:57,491 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 16:17:50,172 - uvicorn.error - INFO - Shutting down
+2022-09-15 16:17:50,281 - uvicorn.error - INFO - Waiting for application shutdown.
+2022-09-15 16:17:50,284 - uvicorn.error - INFO - Application shutdown complete.
+2022-09-15 16:17:50,285 - uvicorn.error - INFO - Finished server process [93438]
+2022-09-15 16:18:08,918 - uvicorn.error - INFO - Started server process [93519]
+2022-09-15 16:18:08,919 - uvicorn.error - INFO - Waiting for application startup.
+2022-09-15 16:18:08,940 - uvicorn.error - INFO - Application startup complete.
+2022-09-15 16:18:15,139 - root - ERROR - -<class 'TypeError'>occurred while running /test/.
+2022-09-15 16:18:19,047 - root - ERROR - -<class 'TypeError'>occurred while running /test/.
