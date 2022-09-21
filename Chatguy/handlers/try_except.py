@@ -37,6 +37,6 @@ def error_handling(func):
             return func(*args, **kwargs)
         except Exception as e:
             print(e)
-            logger.error("-" + str(e.__class__) +
+            logger.error("-" + str(e) +
                          "occurred while running /test/.")#.format(name_generator))
     return inner

@@ -1,7 +1,9 @@
 from handlers import db
 from handlers import classifier
 from models.models import InputCorrections, InputSentences, InputWords
+from handlers.try_except import error_handling
 from logging import Logger
+import json
 
 
 def generate_words(keys, session):
@@ -41,23 +43,24 @@ def generate_sentences(userInput):
             lista_entities.append([key[i]['entity']])
             lista_entities_words.append([key[i]['suggestions']])
 
-            suggest_list = classifier.list_suggesting(key)
-            #result = classifier.phrase_gec(suggest_list, model)
-            result = suggest_list
-            # result = classifier.phrase_aug(suggest_list, pten_pipeline, enpt_pipeline)
-            obj_dict = []
-            entity_keys = ['start', 'end', 'value', 'entity']
-            main_keys = ['text', 'intent', 'entities']
-            values = []
-            intent = userInput.intent
-            texts = list(dict.fromkeys(result))
-            if userInput.isquestion:
-                texts = [w + ' ?' for w in texts]
+        suggest_list = classifier.list_suggesting(key)
+        #result = classifier.phrase_gec(suggest_list, model)
+        result = suggest_list
+        # result = classifier.phrase_aug(suggest_list, pten_pipeline, enpt_pipeline)
+        obj_dict = []
+        entity_keys = ['start', 'end', 'value', 'entity']
+        main_keys = ['text', 'intent', 'entities']
+        values = []
+        intent = userInput.intent
+        texts = list(dict.fromkeys(result))
 
-            for phrase in texts:
-                entities = []
-                values = []
-                main_dict = []
+        if userInput.isquestion:
+            texts = [w + ' ?' for w in texts]
+
+        for phrase in texts:
+            entities = []
+            values = []
+            main_dict = []
             for i, entity in enumerate(lista_entities):
                 lista_words_entity = lista_entities_words[i][0]
                 values = []
@@ -65,13 +68,13 @@ def generate_sentences(userInput):
                     idx = phrase.find(word)
                     if idx > -1:
                         values.extend(
-                            [idx, idx + len(word), word, entity[0]])
+                        [idx, idx + len(word), word, entity[0]])
                 entities.append(dict(zip(entity_keys, values)))
             main_dict.extend([phrase, intent, entities])
             obj_dict.append(dict(zip(main_keys, main_dict)))
 
         json_file = {"rasa_nlu_data": {"regex_features": [],
-                                           "entity_synonyms": [], "common_examples": []}}
+                                       "entity_synonyms": [], "common_examples": []}}
         json_file['rasa_nlu_data']['common_examples'] = obj_dict
 
         return json_file

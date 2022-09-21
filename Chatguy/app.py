@@ -91,11 +91,8 @@ def suggest_words(userInput: InputWords):
 @error_handling
 def suggest_sentences(userInput: InputSentences):
         if userInput.texts:
-            session = db.create_db(DATABASE_URL)
-            key = userInput.texts
-            result_sentence = text_generators.generate_sentences(key, session)
-            session.close()
-            return result_sentence
+            result_sentence = text_generators.generate_sentences(userInput)
+        return result_sentence
 
 
 @router.post(r'/store_corrections/')
