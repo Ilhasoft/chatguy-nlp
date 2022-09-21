@@ -15,6 +15,7 @@ from uuid import uuid4
 from sqlalchemy.orm import sessionmaker
 from handlers.try_except import error_handling
 from functools import wraps
+from fastapi import APIRouter
 
 logging.basicConfig(
     filename='logfile.log',
@@ -105,3 +106,7 @@ def suggest_words(userInput: InputCorrections):
             session.close()
             return {200: 'Inserted!'}
 
+
+@router.post(r'/test/')
+def test_route():
+    return {"mensagem":"Deu certo!"}
