@@ -29,10 +29,11 @@ def generate_words(keys, session):
     return keys
 
 
-def generate_sentences(key, session, userInput):
+def generate_sentences(userInput):
     '''
     Function to generate statments from a word and entity input
     '''
+    key = userInput.texts
     lista_entities = []
     lista_entities_words = []
     for i in range(len(key)):
@@ -53,21 +54,10 @@ def generate_sentences(key, session, userInput):
             if userInput.isquestion:
                 texts = [w + ' ?' for w in texts]
 
-            output_sentence_format(texts)
-
-            json_file = {"rasa_nlu_data": {"regex_features": [],
-                                           "entity_synonyms": [], "common_examples": []}}
-            json_file['rasa_nlu_data']['common_examples'] = obj_dict
-            
-
-            return json_file
-
-
-def output_sentence_format(lista_entities, lista_entities_words, obj_dict, entity_keys, main_keys, values, intent, texts):
-    for phrase in texts:
-            entities = []
-            values = []
-            main_dict = []
+            for phrase in texts:
+                entities = []
+                values = []
+                main_dict = []
             for i, entity in enumerate(lista_entities):
                 lista_words_entity = lista_entities_words[i][0]
                 values = []
@@ -80,6 +70,8 @@ def output_sentence_format(lista_entities, lista_entities_words, obj_dict, entit
             main_dict.extend([phrase, intent, entities])
             obj_dict.append(dict(zip(main_keys, main_dict)))
 
+        json_file = {"rasa_nlu_data": {"regex_features": [],
+                                           "entity_synonyms": [], "common_examples": []}}
+        json_file['rasa_nlu_data']['common_examples'] = obj_dict
 
-
-
+        return json_file
