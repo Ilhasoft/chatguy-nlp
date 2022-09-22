@@ -15,6 +15,7 @@ env:
   POSTGRES_PASSWORD: docker
   POSTGRES_HOST: postgres
   POSTGRES_PORT: 5432
+  POSTGRES_ADAPTER: postgresql
 jobs:
   # Label of the container job
   container-job:
@@ -35,6 +36,7 @@ jobs:
           POSTGRES_PASSWORD: docker
           POSTGRES_HOST: postgres
           POSTGRES_PORT: 5432
+          POSTGRES_ADAPTER: postgresql
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
