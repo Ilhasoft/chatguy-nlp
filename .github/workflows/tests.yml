@@ -50,6 +50,6 @@ jobs:
         run: |
           pip install -r requirements.txt
       - name: Create database
-        run: python create_db.py
+        run: python Chatguy/create_db.py
       - name: Run Tests
-        run: python test_api.py
+        run: python Chatguy/test_api.py
