@@ -7,8 +7,13 @@ password = 'docker'
 host = '127.0.0.1'
 port = '5432'
 
+user = os.environ['POSTGRES_USER']
+password = os.environ['POSTGRES_PASSWORD']
+host = os.environ['POSTGRES_HOST']
+port = os.environ['POSTGRES_PORT']
+adapter = os.environ['POSTGRES_ADAPTER']
 
-DATABASE_URL = f'postgresql://{user}:{password}@{host}:{port}'
+DATABASE_URL = f'{adapter}://{user}:{password}@{host}:{port}'
 
 
 userInput = {
@@ -23,7 +28,7 @@ userInput = {
 "entity": False,
 "local": False
 }, {
-"word": "venda",
+"word": "compra",
 "generate": True,
 "entity": True,
 "local": False
