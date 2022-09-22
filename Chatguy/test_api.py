@@ -1,11 +1,7 @@
 import pytest
 from handlers import db, text_generators
 from types import SimpleNamespace
-
-user = 'postgres'
-password = 'docker'
-host = '127.0.0.1'
-port = '5432'
+import os
 
 user = os.environ['POSTGRES_USER']
 password = os.environ['POSTGRES_PASSWORD']
