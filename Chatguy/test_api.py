@@ -24,7 +24,7 @@ userInput = {
 "entity": False,
 "local": False
 }, {
-"word": "venda",
+"word": "compra",
 "generate": True,
 "entity": True,
 "local": False
