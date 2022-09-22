@@ -6,11 +6,13 @@ from sqlalchemy import exc
 
 Base = declarative_base()
 
-user = 'postgres'
-password = 'docker'
-host = '127.0.0.1'
-port = '5432'
-adapter = 'postgresql'
+
+user = os.environ['POSTGRES_USER']
+password = os.environ['POSTGRES_PASSWORD']
+host = os.environ['POSTGRES_HOST']
+port = os.environ['POSTGRES_PORT']
+
+adapter = os.environ['POSTGRES_ADAPTER']
 
 DATABASE_URL = f'{adapter}://{user}:{password}@{host}:{port}'
 
