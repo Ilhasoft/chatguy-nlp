@@ -3,9 +3,9 @@ from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy import Column, String, Integer, Date, Table, MetaData, ForeignKey, join
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import exc
+import os
 
 Base = declarative_base()
-
 
 user = os.environ['POSTGRES_USER']
 password = os.environ['POSTGRES_PASSWORD']
