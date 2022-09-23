@@ -1,6 +1,5 @@
 from fastapi.testclient import TestClient
 from email.generator import Generator
-from email.generator import Generator
 import pytest
 from app import router
 
