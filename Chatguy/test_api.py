@@ -1,6 +1,7 @@
 import pytest
 from handlers import db, text_generators
 from types import SimpleNamespace
+import create_db
 import os
 
 user = os.environ['POSTGRES_USER']
