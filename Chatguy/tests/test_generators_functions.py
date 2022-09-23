@@ -1,5 +1,6 @@
 import pytest
 import json
+from fastapi.testclient import TestClient
 from models.models import InputSentences
 from handlers import text_generators
 from pydantic import BaseModel
@@ -18,16 +19,15 @@ def test_answer():
     assert func(3) == 4
 
 
-def suggest_sentences(userInput: InputSentences):
-        if userInput.texts:
-            result_sentence = text_generators.generate_sentences(userInput)
-        return result_sentence
+
 
 # Test Generate Sentence - Test 3
-def test_sentence(userInput, suggest_sentences):
-    if userInput.texts:
-        result_sentence = text_generators.generate_sentences(userInput)
-    assert result_sentence() == ({
+def test_sentence(client: TestClient, userInput, suggest_sentences):
+    response = client.post(r'/suggest_sentences')
+    key = userInput.texts
+    result_sentence = text_generators.generate_sentences(userInput)
+    assert result_sentence == response.json()
+    '''assert result_sentence() == ({
 	"rasa_nlu_data": {
 		"regex_features": [],
 		"entity_synonyms": [],
@@ -45,10 +45,13 @@ def test_sentence(userInput, suggest_sentences):
 				]
 			}]
         }
-    } )
+    } )'''
         
-
-
+# Test Generate Sentence - Test 4
+def test_sentence_output(userInput):
+    key = userInput.texts
+    result_sentence = text_generators.generate_sentences(key)
+    assert key == result_sentence
 '''
 assert InputSentences(
         {"isquestion": True,
