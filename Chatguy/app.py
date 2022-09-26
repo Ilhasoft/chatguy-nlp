@@ -77,7 +77,3 @@ def suggest_words(userInput: InputCorrections):
 
 
 
-@router.get('/')
-def get_root():
-    return {"mensagem":"Deu certo!"}
-
