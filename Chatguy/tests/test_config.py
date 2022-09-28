@@ -2,8 +2,7 @@ import pytest
 from app import DATABASE_URL, router
 from app import router
 
-'''
-@pytest.fixture(scope = 'function')
+'''@pytest.fixture(scope = 'function')
 def setup_database():
 	session = db.create_db(DATABASE_URL)
 	session.close()'''
@@ -138,225 +137,145 @@ word_synonym_res = [
 ]
 
 
-user_input_sentence = {
-    "isquestion": True,
-    "intent": "teste",
-    "texts": [
-        {
-            "word": "existem",
-            "generate": True,
-            "entity": "existir",
-            "suggestions": [
-                "há",
-                "existem"
-            ]
-        },
-        {
-            "word": "muitas",
-            "generate": True,
-            "entity": False,
-            "suggestions": [
-                "diversas"
-            ]
-        },
-        {
-            "word": "pessoas",
-            "generate": True,
-            "entity": "sujeito",
-            "suggestions": [
-                "homens",
-                "mulheres",
-                "crianças"
-            ]
-        },
-        {
-            "word": "no",
-            "generate": False,
-            "entity": False,
-            "suggestions": ["no"]
-        },
-        {
-            "word": "mundo",
-            "generate": True,
-            "entity": False,
-            "suggestions": [
-                "planeta"
-            ]
-        }
-    ]
-}
+user_input_sentence = {"isquestion": True,
+                       "intent": "teste",
+                       "texts": [
+                           {
+                               "word": "existem",
+                               "generate": True,
+                               "entity": "existir",
+                               "suggestions": [
+                                   "há",
+                                   "existem"
+                               ]
+                           },
+                           {
+                               "word": "muitas",
+                               "generate": True,
+                               "entity": False,
+                               "suggestions": [
+                                   "diversas"
+                               ]
+                           },
+                           {
+                               "word": "pessoas",
+                               "generate": True,
+                               "entity": "sujeito",
+                               "suggestions": [
+                                   "homens",
+                                   "mulheres",
+                                   "crianças"
+                               ]
+                           },
+                           {
+                               "word": "no",
+                               "generate": False,
+                               "entity": False,
+                               "suggestions": ["no"]
+                           },
+                           {
+                               "word": "mundo",
+                               "generate": True,
+                               "entity": False,
+                               "suggestions": [
+                                   "planeta"
+                               ]
+                           }
+                       ]
+                       }
 
 sentence_res = {
-    "rasa_nlu_data": {
-        "regex_features": [],
-        "entity_synonyms": [],
-        "common_examples": [
-            {
-                "text": "há diversas homens no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 2,
-                        "value": "há",
-                        "entity": "brilhar"
-                    }
-                ]
-            },
-            {
-                "text": "há diversas mulheres no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 2,
-                        "value": "há",
-                        "entity": "brilhar"
-                    }
-                ]
-            },
-            {
-                "text": "há diversas crianças no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 2,
-                        "value": "há",
-                        "entity": "brilhar"
-                    }
-                ]
-            },
-            {
-                "text": "existem diversas homens no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 7,
-                        "value": "existem",
-                        "entity": "brilhar"
-                    }
-                ]
-            },
-            {
-                "text": "existem diversas mulheres no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 7,
-                        "value": "existem",
-                        "entity": "brilhar"
-                    }
-                ]
-            },
-            {
-                "text": "existem diversas crianças no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 7,
-                        "value": "existem",
-                        "entity": "brilhar"
-                    }
-                ]
-            }
-        ]
-    }
-}, {
-    "rasa_nlu_data": {
-        "regex_features": [],
-        "entity_synonyms": [],
-        "common_examples": [
-            {
-                "text": "há diversas homens no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 2,
-                        "value": "há",
-                        "entity": "brilhar"
-                    }
-                ]
-            },
-            {
-                "text": "há diversas mulheres no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 2,
-                        "value": "há",
-                        "entity": "brilhar"
-                    }
-                ]
-            },
-            {
-                "text": "há diversas crianças no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 2,
-                        "value": "há",
-                        "entity": "brilhar"
-                    }
-                ]
-            },
-            {
-                "text": "existem diversas homens no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 7,
-                        "value": "existem",
-                        "entity": "brilhar"
-                    }
-                ]
-            },
-            {
-                "text": "existem diversas mulheres no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 7,
-                        "value": "existem",
-                        "entity": "brilhar"
-                    }
-                ]
-            },
-            {
-                "text": "existem diversas crianças no planeta ?",
-                        "intent": "teste",
-                "entities": [
-                    {
-                        "start": 0,
-                        "end": 7,
-                        "value": "existem",
-                        "entity": "brilhar"
-                    }
-                ]
-            }
-        ]
-    }
+	"rasa_nlu_data": {
+		"regex_features": [],
+		"entity_synonyms": [],
+		"common_examples": [
+			{
+				"text": "há diversas homens no planeta ?",
+				"intent": "teste",
+				"entities": [
+					{
+						"start": 0,
+						"end": 2,
+						"value": "há",
+						"entity": "existir"
+					}
+				]
+			},
+			{
+				"text": "há diversas mulheres no planeta ?",
+				"intent": "teste",
+				"entities": [
+					{
+						"start": 0,
+						"end": 2,
+						"value": "há",
+						"entity": "existir"
+					}
+				]
+			},
+			{
+				"text": "há diversas crianças no planeta ?",
+				"intent": "teste",
+				"entities": [
+					{
+						"start": 0,
+						"end": 2,
+						"value": "há",
+						"entity": "existir"
+					}
+				]
+			},
+			{
+				"text": "existem diversas homens no planeta ?",
+				"intent": "teste",
+				"entities": [
+					{
+						"start": 0,
+						"end": 7,
+						"value": "existem",
+						"entity": "existir"
+					}
+				]
+			},
+			{
+				"text": "existem diversas mulheres no planeta ?",
+				"intent": "teste",
+				"entities": [
+					{
+						"start": 0,
+						"end": 7,
+						"value": "existem",
+						"entity": "existir"
+					}
+				]
+			},
+			{
+				"text": "existem diversas crianças no planeta ?",
+				"intent": "teste",
+				"entities": [
+					{
+						"start": 0,
+						"end": 7,
+						"value": "existem",
+						"entity": "existir"
+					}
+				]
+			}
+		]
+	}
 }
 
 user_input_corrections = {
     "texts": [["olá tudo bem como você vai?1",
-	 "olá tudo bem como você vai?2",
-	 "olá tudo bem como você vai?3"],
-	["tchau, to vazando, saindo fora meu chegado, até mais!1",
-	"tchau, to vazando, saindo fora meu chegado, até mais!2",
-	"tchau, to vazando, saindo fora meu chegado, até mais!3"]]
+               "olá tudo bem como você vai?2",
+               "olá tudo bem como você vai?3"],
+              ["tchau, to vazando, saindo fora meu chegado, até mais!1",
+               "tchau, to vazando, saindo fora meu chegado, até mais!2",
+               "tchau, to vazando, saindo fora meu chegado, até mais!3"]]
 }
 
 result_corrections_res = {
-	"200": "Inserted!"
+    "200": "Inserted!"
 }
 
 synonyms_teste = ['avaliação', 'exame', 'prova',

@@ -50,12 +50,21 @@ def test_get_word_equals_suggested_synonyms():
     print(suggested)
     assert suggested == synonyms_caderno
 
-def test_list_suggesting():
+@pytest.mark.skip(reason = 'not mess up for now')
+def test_list_suggesting(key):
     print('test list suggesting')
+    new_arr = []
+    for i in range(len(key)):
+        new_arr.append(key[i]['suggestions'])
+    arr_new = list(itertools.product(*new_arr))
+    result = map(join_tuple_string, list(arr_new))
+    return list(result)
 
+@pytest.mark.skip(reason = 'will be used after model implementation')
 def test_create_model_gec():
     print('test create model gec')
 
+@pytest.mark.skip(reason = 'will be used after model implementation')
 def test_create_model():
     print('test create model')
 

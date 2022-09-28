@@ -1,3 +1,4 @@
+import json
 import pytest
 from handlers import db, text_generators, try_except, try_except
 from types import SimpleNamespace
@@ -27,6 +28,7 @@ class dotdict(dict):
 
 user_input_word = dotdict(user_input_word)
 user_input_sentence = dotdict(user_input_sentence)
+user_input_corrections = dotdict(user_input_corrections)
 
 #userInput = json.dumps(userInput)
 #userInput = json.loads(userInput, object_hook=lambda d: SimpleNamespace(**d))
@@ -36,22 +38,26 @@ def test_word_generator_function():
     print(user_input_word.texts)
     session = db.create_db(DATABASE_URL)
     keys = user_input_word.texts
-    result = text_generators.generate_words(keys, session)
+    result_word = text_generators.generate_words(keys, session)
     session.close()
-    assert result == word_synonym_res
+
+    assert result_word == word_synonym_res
+    assert isinstance(result_word, list)
     #assert text_generators.generate_words(keys, session) == 5
 
 
 def test_sentence_generator_function():
-    print('hi this is a test')
-    print(user_input_sentence.texts)
+    print('Sentence Generator Test\n')
     session = db.create_db(DATABASE_URL)
     key = user_input_sentence
     result_sentence = text_generators.generate_sentences(key)
     session.close()
-    assert result_sentence == sentence_res()
 
+    assert result_sentence == sentence_res
+    assert isinstance(result_sentence, dict)
+    
 
+@pytest.mark.skip(reason='not ready, WIP')
 def test_store_corrections():
     '''
     Teste para garantir conexão com a rota, conexão com banco
@@ -59,7 +65,15 @@ def test_store_corrections():
     '''
     session = db.create_db(DATABASE_URL)
     data = user_input_corrections
-    result_corrections = db.insert_corrections(session, data[1], data[2])
+    print('Store Corrections test \n')
+    print('data: \n', data)
+    print('data [0]: \n', data["texts"][0])
+    print('data [1]: \n', data["texts"][1])
+    print('data new: \n', data.items)
+    result_corrections = db.insert_corrections(session, data[0], data[1])
+    #print(result_corrections = db.insert_corrections(session, data[0], data[1]))
     session.close()
+    print('Result corrections: ', result_corrections)
+    print('Result corrections res: ', result_corrections_res)
     assert result_corrections == result_corrections_res
 
