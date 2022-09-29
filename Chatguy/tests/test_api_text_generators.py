@@ -28,7 +28,7 @@ class dotdict(dict):
 
 user_input_word = dotdict(user_input_word)
 user_input_sentence = dotdict(user_input_sentence)
-user_input_corrections = dotdict(user_input_corrections)
+#user_input_corrections = dotdict(user_input_corrections)
 
 #userInput = json.dumps(userInput)
 #userInput = json.loads(userInput, object_hook=lambda d: SimpleNamespace(**d))
@@ -57,7 +57,7 @@ def test_sentence_generator_function():
     assert isinstance(result_sentence, dict)
     
 
-@pytest.mark.skip(reason='not ready, WIP')
+#@pytest.mark.skip(reason='not ready, WIP')
 def test_store_corrections():
     '''
     Teste para garantir conexão com a rota, conexão com banco
@@ -65,15 +65,15 @@ def test_store_corrections():
     '''
     session = db.create_db(DATABASE_URL)
     data = user_input_corrections
-    print('Store Corrections test \n')
-    print('data: \n', data)
-    print('data [0]: \n', data["texts"][0])
-    print('data [1]: \n', data["texts"][1])
-    print('data new: \n', data.items)
-    result_corrections = db.insert_corrections(session, data[0], data[1])
+    print('Store Corrections test \n')   
+    list = []
+    print('lista vazia\n', list)
+    data1 = list.append(data["texts"][0])
+    data2 = list.append(data["texts"][1])
+    print('lista pós append\n', list)
+    result_corrections = list
     #print(result_corrections = db.insert_corrections(session, data[0], data[1]))
+    result_corrections = db.insert_corrections(session, data[0], data[1])
     session.close()
-    print('Result corrections: ', result_corrections)
-    print('Result corrections res: ', result_corrections_res)
-    assert result_corrections == result_corrections_res
-
+    assert result_corrections == list # result_corrections_res
+    assert 
