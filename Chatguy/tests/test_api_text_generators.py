@@ -76,4 +76,4 @@ def test_store_corrections():
     result_corrections = db.insert_corrections(session, data[0], data[1])
     session.close()
     assert result_corrections == list # result_corrections_res
-    assert 
+    
