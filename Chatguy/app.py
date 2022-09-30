@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from models.models import InputCorrections, InputSentences, InputWords
 import csv
-from handlers import classifier, db, text_generators, try_except
+from handlers import classifier, db, text_generators
 import logging
 import sqlalchemy
 import os

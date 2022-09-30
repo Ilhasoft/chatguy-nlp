@@ -1,8 +1,6 @@
 import pytest
 import sys
-from app import router #DATABASE_URL, 
-#from test_api_fuctions import DATABASE_URL
-
+from app import router 
 
 
 '''@pytest.fixture(scope = 'function')
