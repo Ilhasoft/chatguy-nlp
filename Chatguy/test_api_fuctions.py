@@ -1,3 +1,4 @@
+from tkinter import Y
 import pytest
 import json
 import sys
@@ -66,21 +67,21 @@ def test_sentence_generator_function():
     
 
 
-@pytest.mark.skip(reason='not ready, WIP')
+#@pytest.mark.skip(reason='not ready, WIP')
 def test_store_corrections():
     '''
     Teste para garantir conexão com a rota, conexão com banco
     e retornar output corretamente
     '''
     session = handlers.db.create_db(DATABASE_URL)
-    data = user_input_corrections
-    print(type(data.items))
-    print(type(data[0]))
-    print(type(data[1]))
-    print(type(data))
+    data = user_input_corrections.texts
+    print(type(data), data)
+    print(type(data[0]), data[0])
+    print(type(data[1]), data[1])
+   
     result_corrections = handlers.db.insert_corrections(session, data[0], data[1])
  
-    print(result_corrections)
+    print(type(result_corrections), result_corrections)
     session.close()
     
     assert result_corrections == test_config.result_corrections_res 
@@ -126,8 +127,11 @@ def test_list_suggesting():
     suggested_list = handlers.classifier.list_suggesting(key)
     
     print('test list suggesting', suggested_list)
+    print('test list suggesting', test_config.sentence_res)
+    print('test list suggesting', key)
 
-    assert isinstance(suggested_list, dict)
+    #assert isinstance(suggested_list, dict)
+    assert suggested_list == test_config.sentence_res
 
 
 def test_join_tuple_string():
@@ -140,14 +144,27 @@ def test_join_tuple_string():
 
     assert result_join == str('teste teste teste')
 
+@pytest.mark.skip(reason = 'will be used after model implementation')
 def test_phrase_gec():
     ''''''
     print('test phrase gec | param = list_phrases, model')
+    list_phrases = ['teste']
+    model = handlers.classifier.create_model_gec() 
+    phrase_gec = handlers.classifier.phrase_gec(list_phrases, model)
 
+    print(phrase_gec, model)
 
+    assert isinstance(phrase_gec, list)
+
+@pytest.mark.skip(reason = 'will be used after model implementation')
 def test_phrase_aug():
     ''''''
     print('test phrase aug | param = suggest_list, pten_pipeline, enpt_pipeline')
+    suggest_list  = handlers.classifier.list_suggesting()
+    pten_pipeline, enpt_pipeline = handlers.classifier.create_model()
+
+    aug_list = handlers.classifier.phrase_aug(suggest_list, pten_pipeline, enpt_pipeline)
+    assert isinstance(aug_list, list)
 
 
 @pytest.mark.skip(reason = 'will be used after model implementation')
@@ -156,6 +173,7 @@ def test_create_model_gec():
     print('test create model gec')
     model = SimpleT5()
     model.load_model("t5",'./model', use_gpu=False)
+    
     return model
 
 
