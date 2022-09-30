@@ -1,6 +1,9 @@
 import pytest
-from app import DATABASE_URL, router
-from app import router
+import sys
+from app import router #DATABASE_URL, 
+#from test_api_fuctions import DATABASE_URL
+
+
 
 '''@pytest.fixture(scope = 'function')
 def setup_database():
