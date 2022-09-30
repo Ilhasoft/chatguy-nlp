@@ -63,7 +63,7 @@ def test_sentence_generator_function():
     assert isinstance(result_sentence, dict)
     
 
-#@pytest.mark.skip(reason='not ready, WIP')
+@pytest.mark.skip(reason='not ready, WIP')
 def test_store_corrections():
     '''
     Teste para garantir conexão com a rota, conexão com banco
@@ -71,18 +71,31 @@ def test_store_corrections():
     '''
     session = db.create_db(DATABASE_URL)
     data = user_input_corrections
-    print('Store Corrections test \n')   
-    list = []
-    print('lista vazia\n', list)
-    data1 = list.append(data["texts"][0])
-    data2 = list.append(data["texts"][1])
-    print('lista pós append\n', list)
-    #result_corrections = list
-    #print(result_corrections = db.insert_corrections(session, data[0], data[1]))
+    print('Store Corrections test \n')
+    data[0] = data['texts'][0]
+    data[1] = data['texts'][1]
     result_corrections = db.insert_corrections(session, data[0], data[1])
+    print(data[0])
+    print(data[1])
     print(result_corrections)
     session.close()
-    assert result_corrections == result_corrections_res # result_corrections_res
+    assert result_corrections == result_corrections_res
+
+@pytest.mark.skip(reason='not ready, WIP')
+def test_store_corrections_2():
+    '''
+    Teste para garantir conexão com a rota, conexão com banco
+    e retornar output corretamente
+    '''
+    session = db.create_db(DATABASE_URL)
+    data = user_input_corrections
+    result_corrections = db.insert_corrections(session, data[0], data[1])
+    print(type(data[0]))
+    print(type(data[1]))
+    print(type(data))
+    print(result_corrections)
+    session.close()
+    assert result_corrections == result_corrections_res 
     
 def test_one_plus_five():
     '''
