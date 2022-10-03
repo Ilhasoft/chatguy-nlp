@@ -75,9 +75,9 @@ def test_store_corrections():
     '''
     session = handlers.db.create_db(DATABASE_URL)
     data = user_input_corrections.texts
-    print(type(data), data)
-    print(type(data[0]), data[0])
-    print(type(data[1]), data[1])
+    print('Type data e data\n', type(data), data)
+    print('Type data[0] e data[0]\n', type(data[0]), data[0])
+    print('Type data[1] e data[1]\n', type(data[1]), data[1])
    
     result_corrections = handlers.db.insert_corrections(session, data[0], data[1])
  
