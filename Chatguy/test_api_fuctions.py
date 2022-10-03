@@ -67,7 +67,7 @@ def test_sentence_generator_function():
     
 
 
-#@pytest.mark.skip(reason='not ready, WIP')
+@pytest.mark.skip(reason='not ready, WIP')
 def test_store_corrections():
     '''
     Teste para garantir conexão com a rota, conexão com banco
@@ -81,7 +81,7 @@ def test_store_corrections():
    
     result_corrections = handlers.db.insert_corrections(session, data[0], data[1])
     print(result_corrections)
-    
+
     print(type(result_corrections), result_corrections)
     session.close()
     
