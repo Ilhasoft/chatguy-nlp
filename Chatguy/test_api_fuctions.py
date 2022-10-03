@@ -80,7 +80,8 @@ def test_store_corrections():
     print('Type data[1] e data[1]\n', type(data[1]), data[1])
    
     result_corrections = handlers.db.insert_corrections(session, data[0], data[1])
- 
+    print(result_corrections)
+    
     print(type(result_corrections), result_corrections)
     session.close()
     
