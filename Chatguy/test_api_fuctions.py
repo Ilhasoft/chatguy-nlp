@@ -81,9 +81,9 @@ def test_store_corrections():
    '''
     result_corrections = handlers.db.insert_corrections(session, data[0], data[1])
     print(result_corrections)
-    print(session, data[0], data[1])
+    print('corrections\n', session, data[0], data[1])
 
-    print(handlers.db.insert_corrections(session, data[0], data[1]))
+    print(handlers.db.insert_corrections(data[0], data[1]))
 
     print(type(result_corrections), result_corrections)
     session.close()
