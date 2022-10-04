@@ -14,7 +14,6 @@ from pydantic import BaseModel
 from pysinonimos import sinonimos
 from pysinonimos.sinonimos import Search, historic
 
-
 user = os.environ['POSTGRES_USER']
 password = os.environ['POSTGRES_PASSWORD']
 host = os.environ['POSTGRES_HOST']
@@ -83,7 +82,7 @@ def test_store_corrections():
     print(result_corrections)
     print('corrections\n', session, data[0], data[1])
 
-    print(handlers.db.insert_corrections(data[0], data[1]))
+    print(handlers.db.insert_corrections(session, data[0], data[1]))
 
     print(type(result_corrections), result_corrections)
     session.close()

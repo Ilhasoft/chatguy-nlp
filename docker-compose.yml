@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  postgres_db:
+    image: postgres:14
+    networks:
+      - app-net
+    ports:
+      - target: 5432
+        published: 5432
+        mode: host
+    environment:   # Set up postgres database name and password
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: postgres
+      POSTGRES_PORT: 5432
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+  python_app:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+    networks:
+      - app-net
+    command:
+      python /home/Chatguy/create_db.py
+
+
+networks:
+  app-net:
+    driver: overlay
+    attachable: true
