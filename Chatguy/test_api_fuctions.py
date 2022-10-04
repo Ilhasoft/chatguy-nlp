@@ -67,7 +67,7 @@ def test_sentence_generator_function():
     
 
 
-@pytest.mark.skip(reason='not ready, WIP')
+#@pytest.mark.skip(reason='not ready, WIP')
 def test_store_corrections():
     '''
     Teste para garantir conexão com a rota, conexão com banco
@@ -75,12 +75,15 @@ def test_store_corrections():
     '''
     session = handlers.db.create_db(DATABASE_URL)
     data = user_input_corrections.texts
-    print('Type data e data\n', type(data), data)
+    '''print('Type data e data\n', type(data), data)
     print('Type data[0] e data[0]\n', type(data[0]), data[0])
     print('Type data[1] e data[1]\n', type(data[1]), data[1])
-   
+   '''
     result_corrections = handlers.db.insert_corrections(session, data[0], data[1])
     print(result_corrections)
+    print(session, data[0], data[1])
+
+    print(handlers.db.insert_corrections(session, data[0], data[1]))
 
     print(type(result_corrections), result_corrections)
     session.close()
