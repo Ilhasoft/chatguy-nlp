@@ -2,7 +2,12 @@ from test_api_fuctions import *
 from test_config import user_input_word, word_synonym_res
 import sys
 
-
+class TestsEnsemble:
+    def __init__(self):
+        self.name = 1 
+        self.input = 2
+        self.output = 3
+        pass
 
 all_tests = [
 {"Test_word_generator": test_word_generator_function,
