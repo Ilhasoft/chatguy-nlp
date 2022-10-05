@@ -54,4 +54,5 @@ jobs:
       - name: Create database
         run: python Chatguy/create_db.py
       - name: Run Tests
-        run: python Chatguy/test_api_functions.py -m pytest -v 
+        path: ./chatguy-nlp/Chatguy
+        run: python -m pytest -v 
