@@ -54,5 +54,5 @@ jobs:
       - name: Create database
         run: python Chatguy/create_db.py
       - name: Run Tests
-        entrypoint: '/chatguy-nlp/Chatguy'
+        entrypoint: /chatguy-nlp/Chatguy
         run: python -m pytest -v 
