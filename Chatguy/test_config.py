@@ -288,3 +288,7 @@ synonyms_teste = ['avaliação', 'exame', 'prova',
 synonyms_caderno = ['caderneta', 'livrete', 'seção',
                     'suplemento', 'brochura', 'fascículo', 'folheto',
                     'livro', 'bloco', 'agenda']
+
+res_suggested_list = ['há diversas homens no planeta', 'há diversas mulheres no planeta',
+'há diversas crianças no planeta', 'existem diversas homens no planeta',
+'existem diversas mulheres no planeta', 'existem diversas crianças no planeta']

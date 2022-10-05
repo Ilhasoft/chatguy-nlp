@@ -60,6 +60,7 @@ def test_sentence_generator_function():
     print('Sentence Generator Test\n')
     session = handlers.db.create_db(DATABASE_URL)
     key = user_input_sentence
+
     result_sentence = handlers.text_generators.generate_sentences(key)
     session.close()
 
@@ -123,24 +124,28 @@ def test_get_word_equals_suggested_synonyms():
     
     assert suggested == test_config.synonyms_caderno
 
-@pytest.mark.skip(reason='not ready, WIP')
+
 def test_list_suggesting():
-    ''''''
-    key = user_input_sentence
+    '''
+    Test list suggesting output
+    '''
+    key = user_input_sentence.texts
     suggested_list = handlers.classifier.list_suggesting(key)
     
     print('test list suggesting', suggested_list)
-    print('test list suggesting', test_config.sentence_res)
-    print('test list suggesting', key)
+    print('\ntest consfig sentence res', test_config.sentence_res)
 
-    #assert isinstance(suggested_list, dict)
-    assert suggested_list == test_config.sentence_res
+    assert isinstance(suggested_list, list)
+    assert suggested_list == test_config.res_suggested_list
 
 
 def test_join_tuple_string():
-    ''''''
+    '''
+    Test join tuple String
+    '''
     print('test join tuple string | param = strings_tuple')
     string = ('teste', 'teste', 'teste')
+
     join_tuple_str = handlers.classifier.join_tuple_string 
     result_join = join_tuple_str(string)
     print(result_join)
