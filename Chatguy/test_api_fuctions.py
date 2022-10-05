@@ -38,10 +38,6 @@ user_input_corrections = dotdict(test_config.user_input_corrections)
 #userInput = json.dumps(userInput)
 #userInput = json.loads(userInput, object_hook=lambda d: SimpleNamespace(**d))
 
-def test_one_plus_five():
-
-    assert 1 + 5 == 6
-
 
 def test_word_generator_function():
     print('hi')
