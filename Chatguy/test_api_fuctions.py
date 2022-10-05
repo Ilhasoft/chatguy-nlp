@@ -1,3 +1,4 @@
+from lib2to3.pgen2.token import EQUAL
 from tkinter import Y
 import pytest
 import json
@@ -13,6 +14,7 @@ from pkg_resources import NullProvider
 from pydantic import BaseModel
 from pysinonimos import sinonimos
 from pysinonimos.sinonimos import Search, historic
+from test_config import StoreCorrections
 
 user = os.environ['POSTGRES_USER']
 password = os.environ['POSTGRES_PASSWORD']
@@ -74,21 +76,25 @@ def test_store_corrections():
     '''
     session = handlers.db.create_db(DATABASE_URL)
     data = user_input_corrections.texts
-    '''print('Type data e data\n', type(data), data)
-    print('Type data[0] e data[0]\n', type(data[0]), data[0])
-    print('Type data[1] e data[1]\n', type(data[1]), data[1])
-   '''
-    result_corrections = handlers.db.insert_corrections(session, data[0], data[1])
-    print(result_corrections)
-    print('corrections\n', session, data[0], data[1])
+    handlers.db.insert_corrections(session, data[0], data[1])
 
-    print(handlers.db.insert_corrections(session, data[0], data[1]))
-
-    print(type(result_corrections), result_corrections)
+    resultado = handlers.db.query_corrections(session)
     session.close()
     
-    assert result_corrections == test_config.result_corrections_res 
+    #print('resultado/n', list(resultado.values))
+    print('resultado/n', type(list(resultado)))
+  
+    print('teste novo/n', resultado[0].source_text)
+    print('teste novo/n', test_config.result_corrections_res.source_text)
 
+    banco = StoreCorrections()
+    banco.id = resultado[0].id
+    banco.source_text = resultado[0].source_text
+    banco.target_text = resultado[0].target_text
+
+
+
+    assert banco == test_config.result_corrections_res
 
 def test_get_synonyms_word_not_null():
     '''

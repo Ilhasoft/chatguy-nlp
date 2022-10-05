@@ -8,6 +8,13 @@ def setup_database():
 	session = db.create_db(DATABASE_URL)
 	session.close()'''
 
+class StoreCorrections:
+    def __init__(self):
+        self.id = 1
+        self.source_text = 'olá tudo bem como você vai?1'
+        self.target_text = 'tchau, to vazando, saindo fora meu chegado, até mais!1'
+       
+
 user_input_word = {
     "texts": [{
         "word": "mulher",
@@ -267,17 +274,11 @@ sentence_res = {
 }
 
 user_input_corrections = {
-    "texts": [["olá tudo bem como você vai?1",
-               "olá tudo bem como você vai?2",
-               "olá tudo bem como você vai?3"],
-              ["tchau, to vazando, saindo fora meu chegado, até mais!1",
-               "tchau, to vazando, saindo fora meu chegado, até mais!2",
-               "tchau, to vazando, saindo fora meu chegado, até mais!3"]]
+    "texts": [["olá tudo bem como você vai?1"],
+              ["tchau, to vazando, saindo fora meu chegado, até mais!1"]]
 }
 
-result_corrections_res = {
-    "200": "Inserted!"
-}
+result_corrections_res = StoreCorrections()
 
 synonyms_teste = ['avaliação', 'exame', 'prova',
                   'provação', 'verificação', 'constatação', 'ensaio',
