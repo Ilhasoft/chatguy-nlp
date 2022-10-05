@@ -67,34 +67,28 @@ def test_sentence_generator_function():
     assert isinstance(result_sentence, dict)
     
 
-
-#@pytest.mark.skip(reason='not ready, WIP')
 def test_store_corrections():
     '''
-    Teste para garantir conexão com a rota, conexão com banco
-    e retornar output corretamente
+    Test to ensure the correct inclusion of fixes in the database connection
     '''
     session = handlers.db.create_db(DATABASE_URL)
     data = user_input_corrections.texts
+
     handlers.db.insert_corrections(session, data[0], data[1])
 
-    resultado = handlers.db.query_corrections(session)
+    query_result = handlers.db.query_corrections(session)
+  
+    banco = StoreCorrections()
+    banco.id = query_result [0].id
+    banco.source_text = query_result[0].source_text
+    banco.target_text = query_result[0].target_text
+
     session.close()
     
-    #print('resultado/n', list(resultado.values))
-    print('resultado/n', type(list(resultado)))
-  
-    print('teste novo/n', resultado[0].source_text)
-    print('teste novo/n', test_config.result_corrections_res.source_text)
+    assert banco.id == test_config.result_corrections_res.id, 'ID is not the same'
+    assert banco.source_text == test_config.result_corrections_res.source_text, 'Source text is not the same'
+    assert banco.target_text == test_config.result_corrections_res.target_text, 'Target text is not the same'
 
-    banco = StoreCorrections()
-    banco.id = resultado[0].id
-    banco.source_text = resultado[0].source_text
-    banco.target_text = resultado[0].target_text
-
-
-
-    assert banco == test_config.result_corrections_res
 
 def test_get_synonyms_word_not_null():
     '''
