@@ -54,4 +54,5 @@ jobs:
       - name: Create database
         run: python Chatguy/create_db.py
       - name: Run Tests
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
         run: python -m pytest -v 
