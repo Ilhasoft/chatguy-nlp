@@ -55,4 +55,4 @@ jobs:
         run: python Chatguy/create_db.py
       - name: Run Tests
         run: |
-          pytest Chatguy/test_api_functions.py -v 
+          python -m pytest -v 
