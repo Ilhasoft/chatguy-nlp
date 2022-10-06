@@ -6,7 +6,7 @@ import csv
 from handlers import classifier, db, text_generators
 import logging
 import sqlalchemy
-import os
+import os, sys
 import urllib.request
 from sqlalchemy import Column, Integer, MetaData, String, ForeignKey, Boolean, DateTime, Float
 from sqlalchemy.ext.declarative import declarative_base
@@ -16,6 +16,13 @@ from sqlalchemy.orm import sessionmaker
 from handlers.try_except import error_handling
 from functools import wraps
 from fastapi import APIRouter
+
+
+from os.path import dirname, join, abspath
+
+sys.path.insert(0, abspath(join(dirname(__file__), '..')))
+
+
 
 logging.basicConfig(
     filename='logfile.log',

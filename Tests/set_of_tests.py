@@ -1,5 +1,5 @@
-from test_api_fuctions import *
-from test_config import user_input_word, word_synonym_res
+from Tests.test_api_fuctions import *
+from Tests.test_config import user_input_word, word_synonym_res
 import sys
 
 class TestsEnsemble:

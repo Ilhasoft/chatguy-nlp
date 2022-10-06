@@ -1,7 +1,10 @@
 import pytest
-import sys
+import sys, os
 from app import router 
 
+from os.path import dirname, join, abspath
+
+sys.path.insert(0, abspath(join(dirname(__file__), '..')))
 
 '''@pytest.fixture(scope = 'function')
 def setup_database():

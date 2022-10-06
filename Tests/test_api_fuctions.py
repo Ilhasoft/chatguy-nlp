@@ -4,7 +4,7 @@ import pytest
 import json
 import sys
 import os
-import test_config
+import Tests.test_config as test_config
 import itertools
 import handlers.db, handlers.text_generators, handlers.classifier
 from models.models import InputWords, InputSentences, InputCorrections
@@ -14,7 +14,17 @@ from pkg_resources import NullProvider
 from pydantic import BaseModel
 from pysinonimos import sinonimos
 from pysinonimos.sinonimos import Search, historic
-from test_config import StoreCorrections
+from Tests.test_config import StoreCorrections
+
+
+#sys.path.insert(1, '/home/mel/chatguy-nlp/Chatguy')
+#sys.path.append('../')
+#os.path.abspath(os.path.join(mydir, '..'))
+
+from os.path import dirname, join, abspath
+
+sys.path.insert(0, abspath(join(dirname(__file__), '..')))
+from root_folder import file_name
 
 user = os.environ['POSTGRES_USER']
 password = os.environ['POSTGRES_PASSWORD']
