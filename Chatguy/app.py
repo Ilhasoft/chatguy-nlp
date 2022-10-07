@@ -18,12 +18,6 @@ from functools import wraps
 from fastapi import APIRouter
 
 
-from os.path import dirname, join, abspath
-
-sys.path.insert(0, abspath(join(dirname(__file__), '..')))
-
-
-
 logging.basicConfig(
     filename='logfile.log',
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.DEBUG

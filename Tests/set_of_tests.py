@@ -1,6 +1,12 @@
 from Tests.test_api_fuctions import *
 from Tests.test_config import user_input_word, word_synonym_res
-import sys
+import sys, os
+from os.path import dirname, join, abspath
+
+#sys.path.insert(1, abspath(join(dirname(__file__), '..')))
+
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
 
 class TestsEnsemble:
     def __init__(self):

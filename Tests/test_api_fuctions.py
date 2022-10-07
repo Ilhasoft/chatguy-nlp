@@ -1,3 +1,4 @@
+from os.path import dirname, join, abspath
 from lib2to3.pgen2.token import EQUAL
 from tkinter import Y
 import pytest
@@ -17,14 +18,10 @@ from pysinonimos.sinonimos import Search, historic
 from Tests.test_config import StoreCorrections
 
 
-#sys.path.insert(1, '/home/mel/chatguy-nlp/Chatguy')
-#sys.path.append('../')
-#os.path.abspath(os.path.join(mydir, '..'))
-
-from os.path import dirname, join, abspath
-
-sys.path.insert(0, abspath(join(dirname(__file__), '..')))
-from root_folder import file_name
+#sys.path.insert(0, abspath(join(dirname(__file__), '..')))
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
+print(myPath)
 
 user = os.environ['POSTGRES_USER']
 password = os.environ['POSTGRES_PASSWORD']

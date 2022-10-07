@@ -1,10 +1,12 @@
+from os.path import dirname, join, abspath
 import pytest
 import sys, os
-from app import router 
+from ..Chatguy.app import router 
 
-from os.path import dirname, join, abspath
 
-sys.path.insert(0, abspath(join(dirname(__file__), '..')))
+#sys.path.insert(0, abspath(join(dirname(__file__), '..')))
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
 
 '''@pytest.fixture(scope = 'function')
 def setup_database():
