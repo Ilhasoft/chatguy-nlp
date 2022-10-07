@@ -1,29 +1,34 @@
-from os.path import dirname, join, abspath
-from lib2to3.pgen2.token import EQUAL
+from os.path import join, abspath, dirname
+'''from lib2to3.pgen2.token import EQUAL
 from tkinter import Y
 import pytest
 import json
-import sys
-import os
-from ..Chatguy import *
 import Tests.test_config as test_config
 import itertools
-from ..Chatguy.handlers import db, text_generators, classifier
+import Chatguy.handlers.text_generators
+import Chatguy.handlers.classifier
+import Chatguy.handlers.db
 from ..Chatguy.models.models import InputWords, InputSentences, InputCorrections
-from types import SimpleNamespace
-from simplet5 import SimpleT5
-import SimpleT5 
-from pkg_resources import NullProvider
 from pydantic import BaseModel
 from pysinonimos import sinonimos
-
+from types import SimpleNamespace
 from ..Chatguy.models.models import Search, historic, pysinonimos, sinonimos
 from Tests.test_config import StoreCorrections
+import SimpleT5 
+from simplet5 import SimpleT5'''
+from pkg_resources import NullProvider
 
 
-sys.path.insert(1, abspath(join(dirname(__file__), '..')))
-sys.path.insert(0, abspath(join(dirname(__file__), '.')))
-sys.path.insert(os.path.join(os.path.abspath(os.path.dirname(__file__), '..', '.')))
+
+import sys
+import os
+sys.path.insert(0, abspath(join(dirname(__file__), '..')))
+
+
+#sys.path.insert(os.path.join(os.path.abspath(os.path.dirname(__file__), '..')))
+#sys.path.append(os.path.abspath(os.path.pardir))
+
+#sys.path.insert(1, abspath(join(dirname(__file__), '..')))
 
 '''myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')

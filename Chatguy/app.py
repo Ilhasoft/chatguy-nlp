@@ -18,6 +18,7 @@ from functools import wraps
 from fastapi import APIRouter
 
 sys.path.insert(os.path.join(os.path.abspath(os.path.dirname(__file__), '..', '.')))
+#sys.path.append(os.path.abspath(os.path.pardir))
 
 logging.basicConfig(
     filename='logfile.log',
