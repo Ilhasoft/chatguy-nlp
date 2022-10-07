@@ -4,9 +4,7 @@ import sys, os
 from ..Chatguy.app import router 
 
 
-#sys.path.insert(0, abspath(join(dirname(__file__), '..')))
-myPath = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, myPath + '/../')
+sys.path.insert(os.path.join(os.path.abspath(os.path.dirname(__file__), '..', '.')))
 
 '''@pytest.fixture(scope = 'function')
 def setup_database():

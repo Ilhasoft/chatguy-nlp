@@ -5,23 +5,31 @@ import pytest
 import json
 import sys
 import os
+from ..Chatguy import *
 import Tests.test_config as test_config
 import itertools
-import handlers.db, handlers.text_generators, handlers.classifier
-from models.models import InputWords, InputSentences, InputCorrections
+from ..Chatguy.handlers import db, text_generators, classifier
+from ..Chatguy.models.models import InputWords, InputSentences, InputCorrections
 from types import SimpleNamespace
 from simplet5 import SimpleT5
+import SimpleT5 
 from pkg_resources import NullProvider
 from pydantic import BaseModel
 from pysinonimos import sinonimos
-from pysinonimos.sinonimos import Search, historic
+
+from ..Chatguy.models.models import Search, historic, pysinonimos, sinonimos
 from Tests.test_config import StoreCorrections
 
 
-#sys.path.insert(0, abspath(join(dirname(__file__), '..')))
-myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(1, abspath(join(dirname(__file__), '..')))
+sys.path.insert(0, abspath(join(dirname(__file__), '.')))
+sys.path.insert(os.path.join(os.path.abspath(os.path.dirname(__file__), '..', '.')))
+
+'''myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
-print(myPath)
+print(myPath)'''
+
+
 
 user = os.environ['POSTGRES_USER']
 password = os.environ['POSTGRES_PASSWORD']
@@ -49,9 +57,9 @@ user_input_corrections = dotdict(test_config.user_input_corrections)
 def test_word_generator_function():
     print('hi')
     print(user_input_word.texts)
-    session = handlers.db.create_db(DATABASE_URL)
+    session = db.create_db(DATABASE_URL)
     keys = user_input_word.texts
-    result_word = handlers.text_generators.generate_words(keys, session)
+    result_word = text_generators.generate_words(keys, session)
     session.close()
 
     assert result_word == test_config.word_synonym_res
@@ -61,10 +69,10 @@ def test_word_generator_function():
 
 def test_sentence_generator_function():
     print('Sentence Generator Test\n')
-    session = handlers.db.create_db(DATABASE_URL)
+    session = db.create_db(DATABASE_URL)
     key = user_input_sentence
 
-    result_sentence = handlers.text_generators.generate_sentences(key)
+    result_sentence = text_generators.generate_sentences(key)
     session.close()
 
     assert result_sentence == test_config.sentence_res
@@ -75,12 +83,12 @@ def test_store_corrections():
     '''
     Test to ensure the correct inclusion of fixes in the database connection
     '''
-    session = handlers.db.create_db(DATABASE_URL)
+    session = db.create_db(DATABASE_URL)
     data = user_input_corrections.texts
 
-    handlers.db.insert_corrections(session, data[0], data[1])
+    db.insert_corrections(session, data[0], data[1])
 
-    query_result = handlers.db.query_corrections(session)
+    query_result = db.query_corrections(session)
   
     banco = StoreCorrections()
     banco.id = query_result [0].id
@@ -133,7 +141,7 @@ def test_list_suggesting():
     Test list suggesting output
     '''
     key = user_input_sentence.texts
-    suggested_list = handlers.classifier.list_suggesting(key)
+    suggested_list = classifier.list_suggesting(key)
     
     print('test list suggesting', suggested_list)
     print('\ntest consfig sentence res', test_config.sentence_res)
@@ -149,7 +157,7 @@ def test_join_tuple_string():
     print('test join tuple string | param = strings_tuple')
     string = ('teste', 'teste', 'teste')
 
-    join_tuple_str = handlers.classifier.join_tuple_string 
+    join_tuple_str = classifier.join_tuple_string 
     result_join = join_tuple_str(string)
     print(result_join)
 
@@ -160,8 +168,8 @@ def test_phrase_gec():
     ''''''
     print('test phrase gec | param = list_phrases, model')
     list_phrases = ['teste']
-    model = handlers.classifier.create_model_gec() 
-    phrase_gec = handlers.classifier.phrase_gec(list_phrases, model)
+    model = classifier.create_model_gec() 
+    phrase_gec = classifier.phrase_gec(list_phrases, model)
 
     print(phrase_gec, model)
 
@@ -171,10 +179,10 @@ def test_phrase_gec():
 def test_phrase_aug():
     ''''''
     print('test phrase aug | param = suggest_list, pten_pipeline, enpt_pipeline')
-    suggest_list  = handlers.classifier.list_suggesting()
-    pten_pipeline, enpt_pipeline = handlers.classifier.create_model()
+    suggest_list  = classifier.list_suggesting()
+    pten_pipeline, enpt_pipeline = classifier.create_model()
 
-    aug_list = handlers.classifier.phrase_aug(suggest_list, pten_pipeline, enpt_pipeline)
+    aug_list = classifier.phrase_aug(suggest_list, pten_pipeline, enpt_pipeline)
     assert isinstance(aug_list, list)
 
 
