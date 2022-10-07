@@ -17,6 +17,8 @@ from handlers.try_except import error_handling
 from functools import wraps
 from fastapi import APIRouter
 
+path = sys.path.append(os.path.abspath(os.path.dirname(__file__)+".."))
+
 
 logging.basicConfig(
     filename='logfile.log',

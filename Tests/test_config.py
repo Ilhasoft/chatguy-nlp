@@ -2,7 +2,11 @@ import pytest
 import sys
 import os
 
-sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/.."))
+path = sys.path.append(os.path.abspath(os.path.dirname(__file__)+"/.."))
+print('\npath test config  -->',os.path.dirname(__file__))
+print('\npath - config 2  -->', os.path.abspath(os.path.pardir))
+print('\npath config 3 -->', os.path.dirname(os.path.abspath(__file__)))
+#print('\npath config 4 -->', sys.path.insert(os.path.join(os.path.abspath(os.path.dirname(__file__), '..'))))
 
 '''@pytest.fixture(scope = 'function')
 def setup_database():

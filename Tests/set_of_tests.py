@@ -3,7 +3,10 @@ from Tests.test_config import user_input_word, word_synonym_res
 import sys, os
 from os.path import dirname, join, abspath
 
-sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/.."))
+path = sys.path.append(os.path.abspath(os.path.dirname(__file__)+"/.."))
+print('path - set os tests\n',os.path.abspath(os.path.dirname(__file__)))
+print('path - set os tests 2\n', os.path.abspath(os.path.pardir))
+
 
 class TestsEnsemble:
     def __init__(self):
