@@ -15,8 +15,11 @@ from Chatguy.handlers.classifier import join_tuple_string, list_suggesting, get_
 from types import SimpleNamespace
 from Tests.test_config import StoreCorrections, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
 
-path = sys.path.append(os.path.abspath(os.path.dirname(__file__)+"/.."))
-print('Path api func -->', path)
+sys.path.append(os.path.abspath(os.path.dirname(__file__)+"/../.."))
+path_handlers = os.path.abspath(os.path.join(os.path.dirname(__file__), '..') +  '/Chatguy/handlers')
+path_tests = os.path.abspath(os.path.join(os.path.dirname(__file__), '..') +  '/Chatguy/Tests')
+sys.path.append(path_handlers)
+sys.path.append(path_tests)
 
 
 user = os.environ['POSTGRES_USER']
