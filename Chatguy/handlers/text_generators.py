@@ -1,9 +1,11 @@
-from handlers import db
-from handlers import classifier
-from models.models import InputCorrections, InputSentences, InputWords
-from handlers.try_except import error_handling
+import sys
+from Chatguy.handlers import db
+from Chatguy.handlers import classifier
+from Chatguy.models.models import InputCorrections, InputSentences, InputWords
+from Chatguy.handlers.try_except import error_handling
 from logging import Logger
 import json
+
 
 
 def generate_words(keys, session):

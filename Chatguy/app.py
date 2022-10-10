@@ -1,9 +1,11 @@
+import sys
+sys.path.insert(1, '..')
 import json
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from models.models import InputCorrections, InputSentences, InputWords
+from Chatguy.models.models import InputCorrections, InputSentences, InputWords
 import csv
-from handlers import classifier, db, text_generators
+from Chatguy.handlers import classifier, db, text_generators, try_except, try_except
 import logging
 import sqlalchemy
 import os, sys
@@ -13,11 +15,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects.postgresql import UUID
 from uuid import uuid4
 from sqlalchemy.orm import sessionmaker
-from handlers.try_except import error_handling
 from functools import wraps
 from fastapi import APIRouter
 
-path = sys.path.append(os.path.abspath(os.path.dirname(__file__)+".."))
+#path = sys.path.append(os.path.abspath(os.path.dirname(__file__)+".."))
 
 
 logging.basicConfig(
@@ -50,7 +51,7 @@ session = db.create_db(DATABASE_URL)
 
 
 @router.post(r'/suggest_words/')
-@error_handling
+@try_except.error_handling
 def suggest_words(userInput: InputWords):
     if userInput:
         session = db.create_db(DATABASE_URL)
@@ -61,7 +62,7 @@ def suggest_words(userInput: InputWords):
 
 
 @router.post(r'/suggest_sentences/')
-@error_handling
+@try_except.error_handling
 def suggest_sentences(userInput: InputSentences):
         if userInput.texts:
             result_sentence = text_generators.generate_sentences(userInput)
@@ -69,7 +70,7 @@ def suggest_sentences(userInput: InputSentences):
 
 
 @router.post(r'/store_corrections/')
-@error_handling
+@try_except.error_handling
 def suggest_words(userInput: InputCorrections):
         if userInput:
             session = db.create_db(DATABASE_URL)
