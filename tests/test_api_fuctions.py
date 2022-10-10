@@ -94,11 +94,14 @@ def test_get_synonyms_word_not_null():
     '''
     Test synonyms words
     '''
-    word = 'teste'
+    word = 'abelha'
     print(word)
     suggested = Search(word)
-    suggested = suggested.synonyms()
+    word_suggested = suggested.synonyms()
 
+    print('teste sinonimo -->', suggested)
+    print('\nteste sinonimo -->', word_suggested)
+    
     assert Search(word) != Search(' ')
     
 
