@@ -2,24 +2,26 @@ import pytest
 import sys
 import os
 import json
-import Tests.test_config as test_config
+import tests.test_config as test_config
 import itertools
 from pkg_resources import NullProvider
 from lib2to3.pgen2.token import EQUAL
 from tkinter import Y
 from types import SimpleNamespace
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__)+"/../.."))
+path_handlers = os.path.abspath(os.path.join(os.path.dirname(__file__), '...') +  'chatguy-nlp/Chatguy/handlers')
+path_tests = os.path.abspath(os.path.join(os.path.dirname(__file__), '...') +  'chatguy-nlp/Chatguy/Tests')
+sys.path.append(path_handlers)
+sys.path.append(path_tests)
+
+
 from Chatguy.models.models import InputWords, InputSentences, InputCorrections
 from Chatguy.handlers.db import Base, Words, Suggestions, Corrections, create_db, create_word, create_suggestion, insert_corrections, query_corrections
 from Chatguy.handlers.text_generators import generate_sentences, generate_words
 from Chatguy.handlers.classifier import join_tuple_string, list_suggesting, get_synonyms, create_model_gec, create_model, phrase_aug, phrase_gec
 from types import SimpleNamespace
-from Tests.test_config import StoreCorrections, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
-
-sys.path.append(os.path.abspath(os.path.dirname(__file__)+"/../.."))
-path_handlers = os.path.abspath(os.path.join(os.path.dirname(__file__), '..') +  '/Chatguy/handlers')
-path_tests = os.path.abspath(os.path.join(os.path.dirname(__file__), '..') +  '/Chatguy/Tests')
-sys.path.append(path_handlers)
-sys.path.append(path_tests)
+from tests.test_config import StoreCorrections, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
 
 
 user = os.environ['POSTGRES_USER']
