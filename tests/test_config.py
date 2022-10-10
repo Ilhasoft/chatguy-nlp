@@ -2,14 +2,6 @@ import pytest
 import sys
 import os
 
-'''sys.path.append(os.path.abspath(os.path.dirname(__file__)+"/../.."))
-path_handlers = os.path.abspath(os.path.join(os.path.dirname(__file__), '..') +  '/Chatguy/handlers')
-path_tests = os.path.abspath(os.path.join(os.path.dirname(__file__), '..') +  '/Chatguy/Tests')
-sys.path.append(path_handlers)
-sys.path.append(path_tests)
-
-print('\npath test config tests -->',path_tests, '\npath test config tests -->', path_handlers)
-'''
 '''@pytest.fixture(scope = 'function')
 def setup_database():
 	session = db.create_db(DATABASE_URL)

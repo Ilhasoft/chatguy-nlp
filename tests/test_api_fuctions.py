@@ -90,26 +90,27 @@ def test_store_corrections():
     assert banco.target_text == test_config.result_corrections_res.target_text, 'Target text is not the same'
 
 
-def test_get_synonyms_word_not_null():
+def test_get_synonyms_word_type():
     '''
-    Test synonyms words
+    test to check the input and output type of the synonym generator function.
+    Input must be -> str 
+    Output must be -> list
     '''
-    word = 'abelha'
-    print(word)
+    word = 'teste'
+ 
     suggested = Search(word)
     word_suggested = suggested.synonyms()
 
-    print('teste sinonimo -->', suggested)
-    print('\nteste sinonimo -->', word_suggested)
-    
-    assert Search(word) != Search(' ')
-    
+    assert type(word) == str, 'Input word is not string type'
+    assert type(word_suggested) == list, 'suggest synonym is not list type'
+
 
 def test_get_word_equals_suggested_synonyms():
     '''
     Test synonyms words output
     '''
     word = 'teste'
+
     suggested = Search(word)
     suggested = suggested.synonyms()
     
@@ -154,6 +155,7 @@ def test_join_tuple_string():
 
     assert result_join == str('teste teste teste')
 
+
 @pytest.mark.skip(reason = 'will be used after model implementation')
 def test_phrase_gec():
     ''''''
@@ -165,6 +167,7 @@ def test_phrase_gec():
     print(phrase_gec, model)
 
     assert isinstance(phrase_gec, list)
+
 
 @pytest.mark.skip(reason = 'will be used after model implementation')
 def test_phrase_aug():
