@@ -16,7 +16,7 @@ from Chatguy.handlers.text_generators import generate_sentences, generate_words
 from Chatguy.handlers.classifier import join_tuple_string, list_suggesting, get_synonyms, create_model_gec, create_model, phrase_aug, phrase_gec
 from types import SimpleNamespace
 from tests.test_config import StoreCorrections, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
-
+from pysinonimos.sinonimos import Search, historic
 
 
 user = os.environ['POSTGRES_USER']
