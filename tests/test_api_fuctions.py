@@ -9,21 +9,7 @@ from lib2to3.pgen2.token import EQUAL
 from tkinter import Y
 from types import SimpleNamespace
 
-'''sys.path.append(os.path.abspath(os.path.dirname(__file__)+"/../.."))
-path_handlers = os.path.abspath(os.path.join(os.path.dirname(__file__), '...') +  'chatguy-nlp/Chatguy/handlers')
-path_tests = os.path.abspath(os.path.join(os.path.dirname(__file__), '...') +  'chatguy-nlp/Chatguy/Tests')
-sys.path.append(path_handlers)
-sys.path.append(path_tests)
-
-a =sys.path.insert(1, os.path.dirname(os.path.abspath((os.path.dirname(__file__), '...'), 'chatguy-nlp/Chatguy/handlers')))
-print('teste novo -->',a)
-
-modpath = os.path.dirname(os.path.abspath(sys.argv[0]))
-datapath = os.path.join(modpath, '../../handlers')
-print('Modpath -->', modpath, '\ndatapath -->', datapath)
-'''
-
-print(sys.path.insert(1, '..'))
+sys.path.insert(1, '..')
 from Chatguy.models.models import InputWords, InputSentences, InputCorrections
 from Chatguy.handlers.db import Base, Words, Suggestions, Corrections, create_db, create_word, create_suggestion, insert_corrections, query_corrections
 from Chatguy.handlers.text_generators import generate_sentences, generate_words

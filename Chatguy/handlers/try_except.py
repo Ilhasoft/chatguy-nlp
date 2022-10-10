@@ -1,6 +1,4 @@
 from fastapi import FastAPI
-#from Chatguy.handlers import db, text_generators
-#from Chatguy import app
 import logging
 from functools import wraps
 

@@ -1,5 +1,6 @@
 import sys
 sys.path.insert(1, '..')
+
 import json
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,8 +18,6 @@ from uuid import uuid4
 from sqlalchemy.orm import sessionmaker
 from functools import wraps
 from fastapi import APIRouter
-
-#path = sys.path.append(os.path.abspath(os.path.dirname(__file__)+".."))
 
 
 logging.basicConfig(
