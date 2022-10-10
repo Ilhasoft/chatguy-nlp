@@ -8,7 +8,6 @@ from pkg_resources import NullProvider
 from lib2to3.pgen2.token import EQUAL
 from tkinter import Y
 from types import SimpleNamespace
-
 sys.path.insert(1, '..')
 from Chatguy.models.models import InputWords, InputSentences, InputCorrections
 from Chatguy.handlers.db import Base, Words, Suggestions, Corrections, create_db, create_word, create_suggestion, insert_corrections, query_corrections
@@ -43,7 +42,8 @@ user_input_corrections = dotdict(test_config.user_input_corrections)
 
 
 def test_word_generator_function():
-    print('hi')
+    '''
+    '''
     print(user_input_word.texts)
     session = create_db(DATABASE_URL)
     keys = user_input_word.texts
@@ -56,7 +56,8 @@ def test_word_generator_function():
 
 
 def test_sentence_generator_function():
-    print('Sentence Generator Test\n')
+    '''
+    '''
     session = create_db(DATABASE_URL)
     key = user_input_sentence
 
@@ -107,25 +108,19 @@ def test_get_synonyms_word_type():
 
 def test_get_word_equals_suggested_synonyms():
     '''
-    Test synonyms words output
+    Test synonyms words output for input word 'teste' and 'caderno'
     '''
-    word = 'teste'
+    word_1 = 'teste'
+    word_2 = 'caderno'
 
-    suggested = Search(word)
-    suggested = suggested.synonyms()
+    suggested_word_1 = Search(word_1)
+    suggested_word_2 = Search(word_2)
+
+    suggested_1 = suggested_word_1.synonyms()
+    suggested_2 = suggested_word_2.synonyms()
     
-    assert suggested == test_config.synonyms_teste
-
-
-def test_get_word_equals_suggested_synonyms():
-    '''
-    Test synonyms words output
-    '''
-    word = 'caderno'
-    suggested = Search(word)
-    suggested = suggested.synonyms()
-    
-    assert suggested == test_config.synonyms_caderno
+    assert suggested_1 == test_config.synonyms_teste
+    assert suggested_2 == test_config.synonyms_caderno
 
 
 def test_list_suggesting():
