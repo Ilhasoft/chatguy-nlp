@@ -2,10 +2,32 @@ import pytest
 import sys
 import os
 
-'''@pytest.fixture(scope = 'function')
+'''
+Fixtures 
+--------
+
+Fixture connection to Database
+@pytest.fixture(scope = 'function')
 def setup_database():
 	session = db.create_db(DATABASE_URL)
-	session.close()'''
+	session.close()
+
+
+Decorators
+----------
+
+Decorator to register log
+from datetime import datetime
+
+def log_datetime(func):
+    Log the date and time of a function
+
+    def wrapper():
+        print(f'Function: {func.__name__}\nRun on: {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}')
+        print(f'{"-"*30}')
+        func()
+    return wrapper   
+'''
 
 class StoreCorrections:
     def __init__(self):
