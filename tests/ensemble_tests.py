@@ -27,12 +27,15 @@ test_config.result_corrections_res.source_text,
 test_config.result_corrections_res.target_text), test_config.synonyms_teste,
 (test_config.synonyms_teste, test_config.synonyms_caderno), test_config.res_suggested_list,
  'phrase_gec','aug_list', 'model', 'model']}                                                             
-                                                                                                                     
-print('Func keys--> ', ensemble_tests_dict.keys())
-print('\nFunc values --> ', ensemble_tests_dict.values())
-print('\nFunc name --> ', ensemble_tests_dict['tests_name'])
-print('\nFunc input --> ', ensemble_tests_dict['tests_input'])
-print('\nFunc output --> ', ensemble_tests_dict['tests_output'])
+
+
+for keys in ensemble_tests_dict.keys():
+    print('Func keys--> ', keys)
+
+for values in ensemble_tests_dict.values():
+    print('\nFunc values --> ', values)                                                                                                                        
+
+
 
 
 
