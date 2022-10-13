@@ -1,7 +1,11 @@
-from handlers import db
-from handlers import classifier
-from models.models import InputCorrections, InputSentences, InputWords
+import sys
+from Chatguy.handlers import db
+from Chatguy.handlers import classifier
+from Chatguy.models.models import InputCorrections, InputSentences, InputWords
+from Chatguy.handlers.try_except import error_handling
 from logging import Logger
+import json
+
 
 
 def generate_words(keys, session):
@@ -29,10 +33,11 @@ def generate_words(keys, session):
     return keys
 
 
-def generate_sentences(key, session, userInput):
+def generate_sentences(userInput):
     '''
     Function to generate statments from a word and entity input
     '''
+    key = userInput.texts
     lista_entities = []
     lista_entities_words = []
     for i in range(len(key)):
@@ -40,31 +45,21 @@ def generate_sentences(key, session, userInput):
             lista_entities.append([key[i]['entity']])
             lista_entities_words.append([key[i]['suggestions']])
 
-            suggest_list = classifier.list_suggesting(key)
-            #result = classifier.phrase_gec(suggest_list, model)
-            result = suggest_list
-            # result = classifier.phrase_aug(suggest_list, pten_pipeline, enpt_pipeline)
-            obj_dict = []
-            entity_keys = ['start', 'end', 'value', 'entity']
-            main_keys = ['text', 'intent', 'entities']
-            values = []
-            intent = userInput.intent
-            texts = list(dict.fromkeys(result))
-            if userInput.isquestion:
-                texts = [w + ' ?' for w in texts]
+        suggest_list = classifier.list_suggesting(key)
+        #result = classifier.phrase_gec(suggest_list, model)
+        result = suggest_list
+        # result = classifier.phrase_aug(suggest_list, pten_pipeline, enpt_pipeline)
+        obj_dict = []
+        entity_keys = ['start', 'end', 'value', 'entity']
+        main_keys = ['text', 'intent', 'entities']
+        values = []
+        intent = userInput.intent
+        texts = list(dict.fromkeys(result))
 
-            output_sentence_format(texts)
+        if userInput.isquestion:
+            texts = [w + ' ?' for w in texts]
 
-            json_file = {"rasa_nlu_data": {"regex_features": [],
-                                           "entity_synonyms": [], "common_examples": []}}
-            json_file['rasa_nlu_data']['common_examples'] = obj_dict
-            
-
-            return json_file
-
-
-def output_sentence_format(lista_entities, lista_entities_words, obj_dict, entity_keys, main_keys, values, intent, texts):
-    for phrase in texts:
+        for phrase in texts:
             entities = []
             values = []
             main_dict = []
@@ -75,11 +70,13 @@ def output_sentence_format(lista_entities, lista_entities_words, obj_dict, entit
                     idx = phrase.find(word)
                     if idx > -1:
                         values.extend(
-                            [idx, idx + len(word), word, entity[0]])
+                        [idx, idx + len(word), word, entity[0]])
                 entities.append(dict(zip(entity_keys, values)))
             main_dict.extend([phrase, intent, entities])
             obj_dict.append(dict(zip(main_keys, main_dict)))
 
+        json_file = {"rasa_nlu_data": {"regex_features": [],
+                                       "entity_synonyms": [], "common_examples": []}}
+        json_file['rasa_nlu_data']['common_examples'] = obj_dict
 
-
-
+        return json_file

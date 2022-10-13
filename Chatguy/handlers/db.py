@@ -56,3 +56,6 @@ def insert_corrections(session, source_text, target_text):
             session.commit()
     except Exception as e:
         session.rollback()
+
+def query_corrections(session):
+    return session.query(Corrections)

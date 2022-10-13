@@ -1,7 +1,4 @@
 from fastapi import FastAPI
-from handlers import db
-from handlers import text_generators
-import app
 import logging
 from functools import wraps
 
@@ -9,10 +6,8 @@ from functools import wraps
 logger = logging.getLogger()
 
 
-def type_text_generator():
-    '''
-    Function to save the name of the generator in a variable
-    '''
+'''def type_text_generator():
+
     if app.suggest_words.__name__ == 'sugest_words':
         name_generator = 'suggest_words'
     if app.suggest_sentences.__name__ == 'store_corrections':
@@ -21,7 +16,7 @@ def type_text_generator():
         if app.suggest_sentences.__name__ == 'suggest_sentences':
                 name_generator = 'suggest_sentences'
     
-    return name_generator
+    return name_generator'''
 
 
 def error_handling(func):
@@ -37,6 +32,6 @@ def error_handling(func):
             return func(*args, **kwargs)
         except Exception as e:
             print(e)
-            logger.error("-" + str(e.__class__) +
+            logger.error("-" + str(e) +
                          "occurred while running /test/.")#.format(name_generator))
     return inner

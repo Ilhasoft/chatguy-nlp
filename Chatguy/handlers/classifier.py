@@ -1,4 +1,3 @@
-
 from pysinonimos.sinonimos import Search, historic
 import json
 import itertools
