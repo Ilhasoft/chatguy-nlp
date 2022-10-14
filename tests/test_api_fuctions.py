@@ -97,12 +97,11 @@ def test_get_synonyms_word_type():
     Input must be -> str 
     Output must be -> list
     '''
-    word = 'teste'
  
-    suggested = Search(word)
+    suggested = Search(test_config.word)
     word_suggested = suggested.synonyms()
 
-    assert type(word) == str, 'Input word is not string type'
+    assert type(test_config.word) == str, 'Input word is not string type'
     assert type(word_suggested) == list, 'suggest synonym is not list type'
 
 
@@ -110,11 +109,9 @@ def test_get_word_equals_suggested_synonyms():
     '''
     Test synonyms words output for input word 'teste' and 'caderno'
     '''
-    word_1 = 'teste'
-    word_2 = 'caderno'
 
-    suggested_word_1 = Search(word_1)
-    suggested_word_2 = Search(word_2)
+    suggested_word_1 = Search(test_config.word_1)
+    suggested_word_2 = Search(test_config.word_2)
 
     suggested_1 = suggested_word_1.synonyms()
     suggested_2 = suggested_word_2.synonyms()
@@ -141,12 +138,10 @@ def test_join_tuple_string():
     '''
     Test join tuple String
     '''
-    print('test join tuple string | param = strings_tuple')
-    string = ('teste', 'teste', 'teste')
 
     join_tuple_str = join_tuple_string 
-    result_join = join_tuple_str(string)
-    print(result_join)
+
+    result_join = join_tuple_str(test_config.string)
 
     assert result_join == str('teste teste teste')
 
@@ -155,11 +150,11 @@ def test_join_tuple_string():
 def test_phrase_gec():
     ''''''
     print('test phrase gec | param = list_phrases, model')
-    list_phrases = ['teste']
-    model = create_model_gec() 
-    phrase_gec = phrase_gec(list_phrases, model)
+    
 
-    print(phrase_gec, model)
+    model = create_model_gec() 
+    phrase_gec = phrase_gec(test_config.list_phrases, model)
+
 
     assert isinstance(phrase_gec, list)
 
@@ -167,7 +162,7 @@ def test_phrase_gec():
 @pytest.mark.skip(reason = 'will be used after model implementation')
 def test_phrase_aug():
     ''''''
-    print('test phrase aug | param = suggest_list, pten_pipeline, enpt_pipeline')
+    
     suggest_list  = list_suggesting()
     pten_pipeline, enpt_pipeline = create_model()
 
@@ -177,8 +172,9 @@ def test_phrase_aug():
 
 @pytest.mark.skip(reason = 'will be used after model implementation')
 def test_create_model_gec():
-    ''''''
-    print('test create model gec')
+    '''
+    '''
+ 
     model = SimpleT5()
     model.load_model("t5",'./model', use_gpu=False)
     
@@ -187,5 +183,6 @@ def test_create_model_gec():
 
 @pytest.mark.skip(reason = 'will be used after model implementation')
 def test_create_model():
-    ''''''
-    print('test create model')
+    '''
+    '''
+  

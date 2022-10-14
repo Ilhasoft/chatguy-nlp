@@ -35,6 +35,15 @@ class StoreCorrections:
         self.source_text = 'olá tudo bem como você vai?1'
         self.target_text = 'tchau, to vazando, saindo fora meu chegado, até mais!1'
        
+word = 'teste'
+
+word_1 = 'teste'
+
+word_2 = 'caderno'
+
+string = ('teste', 'teste', 'teste')
+
+list_phrases = ['teste']
 
 user_input_word = {
     "texts": [{

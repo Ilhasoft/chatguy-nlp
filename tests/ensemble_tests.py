@@ -6,10 +6,9 @@ import sys
 sys.path.insert(1, '..')
 
 
-word = 'teste'
-word_1 = 'teste'
-word_2 = 'caderno'
-string = ('teste', 'teste', 'teste')
+
+
+
 
 
 ensemble_tests_dict = {'tests_name': ['test_word_generator_function', 'test_sentence_generator_fuction',
@@ -18,7 +17,7 @@ ensemble_tests_dict = {'tests_name': ['test_word_generator_function', 'test_sent
                                       'test_create_model_gec', 'test_create_model'],
 
                        'tests_input': [user_input_word.texts, user_input_sentence, user_input_corrections.texts,
-                                       word, word_1, word_2, user_input_sentence.texts, string, 'test phrase gec', 'test phrase aug',
+                                       test_config.word, test_config.word_1, test_config.word_2, user_input_sentence.texts, test_config.string, 'test phrase gec', 'test phrase aug',
                                        'test create model gec', 'test create model'],
 
                        'tests_output': [test_config.word_synonym_res, test_config.sentence_res,
