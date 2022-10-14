@@ -7,10 +7,6 @@ sys.path.insert(1, '..')
 
 
 
-
-
-
-
 ensemble_tests_dict = {'tests_name': ['test_word_generator_function', 'test_sentence_generator_fuction',
                                       'test_store_corrections', 'test_get_synonyms_word_type', 'test_get_word_equals_suggest_synonyms',
                                       'test_list_suggesting', 'test_join_tuple_string', 'test_phrase_gec', 'test_phrase_aug',

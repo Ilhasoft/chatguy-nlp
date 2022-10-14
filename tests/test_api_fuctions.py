@@ -43,6 +43,7 @@ user_input_corrections = dotdict(test_config.user_input_corrections)
 
 def test_word_generator_function():
     '''
+    Test to verify that the generation of synonyms for words is correct.
     '''
     print(user_input_word.texts)
     session = create_db(DATABASE_URL)
@@ -57,6 +58,7 @@ def test_word_generator_function():
 
 def test_sentence_generator_function():
     '''
+    Test to verify that the sentence generation is correct.
     '''
     session = create_db(DATABASE_URL)
     key = user_input_sentence
@@ -148,9 +150,8 @@ def test_join_tuple_string():
 
 @pytest.mark.skip(reason = 'will be used after model implementation')
 def test_phrase_gec():
-    ''''''
-    print('test phrase gec | param = list_phrases, model')
-    
+    '''
+    '''    
 
     model = create_model_gec() 
     phrase_gec = phrase_gec(test_config.list_phrases, model)
@@ -161,7 +162,8 @@ def test_phrase_gec():
 
 @pytest.mark.skip(reason = 'will be used after model implementation')
 def test_phrase_aug():
-    ''''''
+    '''
+    '''
     
     suggest_list  = list_suggesting()
     pten_pipeline, enpt_pipeline = create_model()
