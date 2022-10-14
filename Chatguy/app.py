@@ -79,4 +79,10 @@ def suggest_words(userInput: InputCorrections):
             return {200: 'Inserted!'}
 
 
+@router.post(r'/tests/')
+@try_except.error_handling
+def application_test(userInput):
+    user_input = 'ping'
+    if userInput:
+        session = db.create_db(DATABASE_URL)
 
