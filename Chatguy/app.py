@@ -1,3 +1,4 @@
+from imghdr import tests
 import sys
 sys.path.insert(1, '..')
 
@@ -7,6 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from Chatguy.models.models import InputCorrections, InputSentences, InputWords
 import csv
 from Chatguy.handlers import classifier, db, text_generators, try_except, try_except
+from tests.test_config import log_datetime, timeit
 import logging
 import sqlalchemy
 import os, sys
@@ -42,6 +44,7 @@ user = os.environ['POSTGRES_USER']
 password = os.environ['POSTGRES_PASSWORD']
 host = os.environ['POSTGRES_HOST']
 port = os.environ['POSTGRES_PORT']
+adapter = os.environ['POSTGRES_ADAPTER']
 
 
 
@@ -81,8 +84,6 @@ def suggest_words(userInput: InputCorrections):
 
 @router.post(r'/tests/')
 @try_except.error_handling
-def application_test(userInput):
-    user_input = 'ping'
-    if userInput:
-        session = db.create_db(DATABASE_URL)
-
+@log_datetime
+def application_test():
+    return {'message': 200}

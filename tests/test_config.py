@@ -1,6 +1,10 @@
 import pytest
 import sys
 import os
+import time
+from functools import wraps
+from datetime import datetime
+
 
 '''
 Fixtures 
@@ -15,19 +19,28 @@ def setup_database():
 
 Decorators
 ----------
-
-Decorator to register log
-from datetime import datetime
+'''
 
 def log_datetime(func):
-    Log the date and time of a function
-
+    '''
+    Decorator to register log
+    '''
     def wrapper():
         print(f'Function: {func.__name__}\nRun on: {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}')
         print(f'{"-"*30}')
         func()
     return wrapper   
-'''
+
+
+def timeit(func):
+    def timeit_wrapper(*args, **kwargs):
+        start_time = time.perf_counter()
+        result = func(*args, **kwargs)
+        end_time = time.perf_counter()
+        total_time = end_time - start_time
+        print(f'Function {func.__name__}{args} {kwargs} Took {total_time:.4f} seconds')
+        return result
+    return timeit_wrapper
 
 class StoreCorrections:
     def __init__(self):
@@ -44,6 +57,8 @@ word_2 = 'caderno'
 string = ('teste', 'teste', 'teste')
 
 list_phrases = ['teste']
+
+input_test = 'ping'
 
 user_input_word = {
     "texts": [{
