@@ -28,7 +28,6 @@ def error_handling(func):
     @wraps(func)
     async def inner(*args, **kwargs):
         try:
-            print('entrou em handler')
             return func(*args, **kwargs)
         except Exception as e:
             print(e)
