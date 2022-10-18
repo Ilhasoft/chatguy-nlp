@@ -9,7 +9,6 @@
 [![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Tests.yml/badge.svg)]()
 [![Coverage Status](https://coveralls.io/repos/github/Ilhasoft/chatguy-nlp/badge.svg?branch=main)](https://coveralls.io/github/Ilhasoft/chatguy-nlp?branch=main)
 [![Coverage Status](https://coveralls.io/repos/github/Ilhasoft/chatguy-nlp/badge.svg?branch=main)](https://coveralls.io/github/Ilhasoft/chatguy-nlp?branch=dev)
-[![Build Status](https://app.travis-ci.com/Ilhasoft/chatguy-nlp.svg?branch=main)](https://app.travis-ci.com/Ilhasoft/chatguy-nlp)
 [![](https://img.shields.io/github/last-commit/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/contributors/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/issues-pr/Ilhasoft/chatguy-nlp)]()
