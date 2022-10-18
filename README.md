@@ -57,6 +57,9 @@ The docker compose file image will install all requirements and dependencies wit
 |POSTGRES_ADAPTER|postgresql|
 
 After the creation of images by docker is finished, export the database credentials so that docker can connect to the application. <br>
+5. enter the Chatguy dir <br>
+``` cd Chatguy ``` 
+
 6. Export database credentials in terminal <br>
 ``` 
 export POSTGRES_USER=postgres
@@ -68,7 +71,7 @@ export POSTGRES_ADAPTER=postgresql
 
 ## API Reference <br>
 After installing and configuring the environment and dependencies, the application is ready to run. <br>
-The connection to the application is made by the FAST API by the following command: <br>
+7. The connection to the application is made by the FAST API by the following command: <br>
 ```
 uvicorn --host=0.0.0.0 app:router --reload
 ``` 
