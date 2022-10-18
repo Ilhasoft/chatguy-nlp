@@ -7,7 +7,8 @@
 [![CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml)
 [![Docker Image CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml)
 [![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Tests.yml/badge.svg)]()
-[![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Coverage.yml/badge.svg)]()	
+[![Coverage Status](https://coveralls.io/repos/github/Ilhasoft/chatguy-nlp/badge.svg?branch=main)](https://coveralls.io/github/Ilhasoft/chatguy-nlp?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/Ilhasoft/chatguy-nlp/badge.svg?branch=main)](https://coveralls.io/github/Ilhasoft/chatguy-nlp?branch=dev)
 [![](https://img.shields.io/github/last-commit/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/contributors/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/issues-pr/Ilhasoft/chatguy-nlp)]()
@@ -15,6 +16,8 @@
 [![](https://img.shields.io/github/v/release/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/languages/top/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/badge/python-3.8-informational)]()
+
+
 </div>
 
 ## Overview
@@ -58,8 +61,7 @@ The docker compose file image will install all requirements and dependencies wit
 |POSTGRES_ADAPTER|postgresql|
 
 After the creation of images by docker is finished, export the database credentials so that docker can connect to the application. <br>
-
-5. Export database credentials in terminal <br>
+6. Export database credentials in terminal <br>
 ``` 
 export POSTGRES_USER=postgres
 export POSTGRES_PASSWORD=docker
@@ -68,15 +70,9 @@ export POSTGRES_PORT=5432
 export POSTGRES_ADAPTER=postgresql
 ``` 
 
-6. Enter Chatguy dir <br>
-```
-cd Chatguy
-```
-
 ## API Reference <br>
 After installing and configuring the environment and dependencies, the application is ready to run. <br>
-
-7. Run the server program <br> 
+The connection to the application is made by the FAST API by the following command: <br>
 ```
 uvicorn --host=0.0.0.0 app:router --reload
 ``` 
