@@ -55,4 +55,5 @@ jobs:
         run: python Chatguy/create_db.py
       - name: Run Tests
         run: |
-          python -m pytest -v 
+          python -m pytest -v
+          python pytest --cov
