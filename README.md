@@ -7,6 +7,7 @@
 [![CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml)
 [![Docker Image CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml)
 [![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Tests.yml/badge.svg)]()
+[![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Coverage.yml/badge.svg)]()	
 [![](https://img.shields.io/github/last-commit/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/contributors/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/issues-pr/Ilhasoft/chatguy-nlp)]()
@@ -57,7 +58,8 @@ The docker compose file image will install all requirements and dependencies wit
 |POSTGRES_ADAPTER|postgresql|
 
 After the creation of images by docker is finished, export the database credentials so that docker can connect to the application. <br>
-6. Export database credentials in terminal <br>
+
+5. Export database credentials in terminal <br>
 ``` 
 export POSTGRES_USER=postgres
 export POSTGRES_PASSWORD=docker
@@ -66,9 +68,15 @@ export POSTGRES_PORT=5432
 export POSTGRES_ADAPTER=postgresql
 ``` 
 
+6. Enter Chatguy dir <br>
+```
+cd Chatguy
+```
+
 ## API Reference <br>
 After installing and configuring the environment and dependencies, the application is ready to run. <br>
-The connection to the application is made by the FAST API by the following command: <br>
+
+7. Run the server program <br> 
 ```
 uvicorn --host=0.0.0.0 app:router --reload
 ``` 
