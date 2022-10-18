@@ -1,24 +1,2 @@
-name: CoverageBadge
-
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches:
-      - '**'
-  pull_request:
-    branches:
-      - '**'     
-jobs:
-  # Label of the container job
-  container-job:
-    # Containers must run in Linux based operating systems
-    runs-on: ubuntu-latest
-    # Docker Hub image that `container-job` executes in
-    container: python:3.8.14-bullseye
-    
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Coverage Badge
-        uses: tj-actions/coverage-badge-py@v1.8
+- name: coverage.py badge
+  uses: tj-actions/coverage-badge-py@v1.8
