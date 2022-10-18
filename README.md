@@ -1,20 +1,20 @@
+<div align="center">
+
+
 # Chatguy 🤖
-### Chatguy - The powerful NLP's dataset creator.  <br><br>
+### The powerful NLP's dataset creator.  <br><br>
 
-
-[![]()]()
 [![CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml)
 [![Docker Image CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml)
-[![](https://img.shields.io/appveyor/tests/Ilhasoft/chatguy-nlp)](https://github.com/Ilhasoft/chatguy-nlp/tree/main/tests)
+[![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Tests.yml/badge.svg)]()
 [![](https://img.shields.io/github/last-commit/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/contributors/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/issues-pr/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/v/tag/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/v/release/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/languages/top/Ilhasoft/chatguy-nlp)]()
-[![](https://img.shields.io/badge/python-3.8-informational)]() 
-[![]()]()
-[![]()]() 
+[![](https://img.shields.io/badge/python-3.8-informational)]()
+</div>
 
 ## Overview
 Chatguy is a Brazilian Portuguese dataset generator. Through natural language processing techniques it is possible to generate sentences from synonymous words and entity recognition. Its main functions can be divided between generating synonymous words and generating phrases or sentences.
@@ -57,9 +57,6 @@ The docker compose file image will install all requirements and dependencies wit
 |POSTGRES_ADAPTER|postgresql|
 
 After the creation of images by docker is finished, export the database credentials so that docker can connect to the application. <br>
-5. enter the Chatguy dir <br>
-``` cd Chatguy ``` 
-
 6. Export database credentials in terminal <br>
 ``` 
 export POSTGRES_USER=postgres
@@ -71,7 +68,7 @@ export POSTGRES_ADAPTER=postgresql
 
 ## API Reference <br>
 After installing and configuring the environment and dependencies, the application is ready to run. <br>
-7. The connection to the application is made by the FAST API by the following command: <br>
+The connection to the application is made by the FAST API by the following command: <br>
 ```
 uvicorn --host=0.0.0.0 app:router --reload
 ``` 
