@@ -7,6 +7,8 @@
 [![CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml)
 [![Docker Image CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml)
 [![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Tests.yml/badge.svg)]()
+[![Coverage Status](https://coveralls.io/repos/github/Ilhasoft/chatguy-nlp/badge.svg?branch=main)](https://coveralls.io/github/Ilhasoft/chatguy-nlp?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/Ilhasoft/chatguy-nlp/badge.svg?branch=main)](https://coveralls.io/github/Ilhasoft/chatguy-nlp?branch=dev)
 [![](https://img.shields.io/github/last-commit/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/contributors/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/issues-pr/Ilhasoft/chatguy-nlp)]()
@@ -14,6 +16,8 @@
 [![](https://img.shields.io/github/v/release/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/languages/top/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/badge/python-3.8-informational)]()
+
+
 </div>
 
 ## Overview
