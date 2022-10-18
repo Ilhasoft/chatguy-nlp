@@ -12,7 +12,8 @@
 [![](https://img.shields.io/github/v/tag/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/v/release/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/languages/top/Ilhasoft/chatguy-nlp)]()
-[![](https://img.shields.io/badge/python-3.8-informational)]() 
+[![](https://img.shields.io/badge/python-3.8-informational)]()
+[![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml/badge.svg)]()
 [![]()]()
 [![]()]() 
 
