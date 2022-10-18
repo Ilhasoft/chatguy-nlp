@@ -1,2 +1,2 @@
-- name: coverage.py badge
-  uses: tj-actions/coverage-badge-py@v1.8
+- name: Coveralls GitHub Action
+  uses: coverallsapp/github-action@1.1.3
