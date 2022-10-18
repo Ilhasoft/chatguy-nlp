@@ -1,11 +1,12 @@
+<div align="center">
+
+
 # Chatguy 🤖
-### Chatguy - The powerful NLP's dataset creator.  <br><br>
+### The powerful NLP's dataset creator.  <br><br>
 
-
-[![]()]()
 [![CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml)
 [![Docker Image CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml)
-[![](https://img.shields.io/appveyor/tests/Ilhasoft/chatguy-nlp)](https://github.com/Ilhasoft/chatguy-nlp/tree/main/tests)
+[![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Tests.yml/badge.svg)]()
 [![](https://img.shields.io/github/last-commit/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/contributors/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/issues-pr/Ilhasoft/chatguy-nlp)]()
@@ -13,9 +14,7 @@
 [![](https://img.shields.io/github/v/release/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/languages/top/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/badge/python-3.8-informational)]()
-[![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml/badge.svg)]()
-[![]()]()
-[![]()]() 
+</div>
 
 ## Overview
 Chatguy is a Brazilian Portuguese dataset generator. Through natural language processing techniques it is possible to generate sentences from synonymous words and entity recognition. Its main functions can be divided between generating synonymous words and generating phrases or sentences.
