@@ -7,6 +7,7 @@ COPY requirements.txt /home
 
 RUN apt update
 RUN apt-get install -y libpq-dev
+RUN apt-get install -y redis-server
 RUN pip install -r requirements.txt --no-cache-dir
 
 WORKDIR /home/Chatguy
