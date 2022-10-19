@@ -57,16 +57,9 @@ jobs:
         run: |
           coverage run -m pytest -v
           coverage report -m
-          coverage html -d coverage_report
-      - name: Test coverage badge
-      - uses: actions/checkout@v2
-
-          coverage report -m
-          coverage html -d coverage_report
-
-      - uses: pooi/coverage-badge@1.0.0
+          coverage xml
+      - name: Pytest coverage comment
+        uses: MishaKav/pytest-coverage-comment@main
         with:
-          token: ${{ secret.GITHUB_ACCESS_TOKEN }}
-          xml-test-report-path: ${SOURCE_PATH}/build/reports/kover/report.xml
-          html-test-report-path: ${SOURCE_PATH}/build/reports/kover/html
-    
+          pytest-coverage-path: ./pytest-coverage.txt
+          junitxml-path: ./pytest.xml
