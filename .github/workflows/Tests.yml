@@ -59,5 +59,14 @@ jobs:
           coverage report -m
           coverage html -d coverage_report
       - name: Test coverage badge
-        uses: pooi/coverage-badge@1.0.0
+      - uses: actions/checkout@v2
+
+          coverage report -m
+          coverage html -d coverage_report
+
+      - uses: pooi/coverage-badge@1.0.0
+        with:
+          token: ${{ secret.GITHUB_ACCESS_TOKEN }}
+          xml-test-report-path: ${SOURCE_PATH}/build/reports/kover/report.xml
+          html-test-report-path: ${SOURCE_PATH}/build/reports/kover/html
     
