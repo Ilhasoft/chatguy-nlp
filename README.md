@@ -16,6 +16,9 @@
 [![](https://img.shields.io/github/v/release/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/languages/top/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/badge/python-3.8-informational)]()
+[![Test Coverage](https://raw.githubusercontent.com/Ilhasoft/chatguy-nlp/dev/coverage_report/index.html)]()
+[![coverage](https://pages.github.com/Ilhasoft/chatguy-nlp/coverage.svg)](https://pages.github.com/Ilhasoft/chatguy-nlp/coverage)
+[![Coverage](https://raw.githubusercontent.com/Ilhasoft/chatguy-nlp/coverage_badge.svg?sanitize=true)]()
 
 
 </div>
