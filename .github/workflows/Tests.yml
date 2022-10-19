@@ -64,9 +64,19 @@ jobs:
           pytest-xml-coverage-path: ./coverage.xml
           junitxml-path: ./coverage.xml
           title: My Coverage Report Title
-          badge-title: My Badge Coverage Title
+          badge-title: Coverage Report
           hide-badge: false
           hide-report: false
+      - name: Create the Badge
+        uses: schneegans/dynamic-badges-action@v1.0.0
+        with:
+          auth: ${{ secrets.PYTEST_COVERAGE_COMMENT }}
+          gistID: 5e90d640f8c212ab7bbac38f72323f80
+          filename: pytest-coverage-comment__main.json
+          label: Coverage Report
+          message: ${{ steps.coverageComment.outputs.coverage }}
+          color: ${{ steps.coverageComment.outputs.color }}
+          namedLogo: python    
       - name: Check the output coverage
         run: |
           echo "Coverage Percantage - ${{ steps.coverageComment.outputs.coverage }}"
@@ -79,13 +89,4 @@ jobs:
           echo "Coverage Tests - ${{ steps.coverageComment.outputs.tests }}"
           echo "Coverage Time - ${{ steps.coverageComment.outputs.time }}"
           echo "Not Success Test Info - ${{ steps.coverageComment.outputs.notSuccessTestInfo }}"
-      - name: Create the Badge
-        uses: schneegans/dynamic-badges-action@v1.0.0
-        with:
-          auth: ${{ secrets.PYTEST_COVERAGE_COMMENT }}
-          gistID: 5e90d640f8c212ab7bbac38f72323f80
-          filename: pytest-coverage-comment__main.json
-          label: Coverage Report
-          message: ${{ steps.coverageComment.outputs.coverage }}
-          color: ${{ steps.coverageComment.outputs.color }}
-          namedLogo: python
+      
