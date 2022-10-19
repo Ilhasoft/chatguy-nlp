@@ -58,3 +58,6 @@ jobs:
           coverage run -m pytest -v
           coverage report -m
           coverage html -d coverage_report
+      - name: Test coverage badge
+        uses: pooi/coverage-badge@1.0.0
+    
