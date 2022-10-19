@@ -63,3 +63,7 @@ jobs:
         with:
           pytest-coverage-path: ./pytest-coverage.txt
           junitxml-path: ./pytest.xml
+          title: My Coverage Report Title
+          badge-title: My Badge Coverage Title
+          hide-badge: false
+          hide-report: false
