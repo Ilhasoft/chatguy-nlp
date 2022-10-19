@@ -61,12 +61,13 @@ jobs:
       - name: Pytest coverage comment
         uses: MishaKav/pytest-coverage-comment@main
         with:
+          pytest-xml-coverage-path: ./coverage.xml
           junitxml-path: ./coverage.xml
           title: My Coverage Report Title
           badge-title: My Badge Coverage Title
           hide-badge: false
           hide-report: false
-            - name: Check the output coverage
+      - name: Check the output coverage
         run: |
           echo "Coverage Percantage - ${{ steps.coverageComment.outputs.coverage }}"
           echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
