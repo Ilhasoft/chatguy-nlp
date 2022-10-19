@@ -11,4 +11,5 @@ class InputWords(BaseModel):
 class InputCorrections(BaseModel):
     texts: list
 
-    
+class Recover(BaseModel):
+    token: str

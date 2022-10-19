@@ -1,8 +1,10 @@
 import sys
+
+from models.models import Recover
 sys.path.insert(1, '..')
 
 import json
-from fastapi import FastAPI
+from fastapi import FastAPI, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from Chatguy.models.models import InputCorrections, InputSentences, InputWords
 import csv
@@ -17,8 +19,13 @@ from sqlalchemy.dialects.postgresql import UUID
 from uuid import uuid4
 from sqlalchemy.orm import sessionmaker
 from functools import wraps
-from fastapi import APIRouter
+import json
+import redis
+import base64
+from hashlib import blake2b
+import time
 
+r = redis.StrictRedis(host='localhost', port=6379, db=0)
 
 logging.basicConfig(
     filename='logfile.log',
@@ -48,6 +55,25 @@ port = os.environ['POSTGRES_PORT']
 DATABASE_URL = f'postgresql://{user}:{password}@{host}:{port}'
 session = db.create_db(DATABASE_URL)
 
+def gen_sentences(userInput, token):
+    resul = json.dumps(text_generators.generate_sentences(userInput))
+    message = str(resul)
+    ascii_message = message.encode('ascii')
+    output_byte = base64.b64encode(ascii_message)
+    r.set(token, output_byte)
+
+
+def gen_token(token=None):
+    while True:
+        k = str(time.time()).encode('utf-8')
+        h = blake2b(key=k, digest_size=16)
+        if not r.get(h.hexdigest()):
+            return h.hexdigest()
+
+
+def del_token(token):
+    r.delete(token)
+
 
 @router.post(r'/suggest_words/')
 @try_except.error_handling
@@ -62,10 +88,22 @@ def suggest_words(userInput: InputWords):
 
 @router.post(r'/suggest_sentences/')
 @try_except.error_handling
-def suggest_sentences(userInput: InputSentences):
-        if userInput.texts:
-            result_sentence = text_generators.generate_sentences(userInput)
-        return result_sentence
+def suggest_sentences(userInput: InputSentences, background_tasks: BackgroundTasks):
+        if userInput.texts:            
+            token = gen_token()
+            background_tasks.add_task(gen_sentences, userInput, token) 
+        return token
+
+
+@router.post(r'/recover_sentences/')
+@try_except.error_handling
+def application_test(id: Recover, background_tasks: BackgroundTasks):
+    if not r.get(id.token):
+        return None
+    msg_bytes = base64.b64decode(r.get(id.token))
+    msg_bytes = msg_bytes.decode('ascii')
+    background_tasks.add_task(del_token, id.token) 
+    return json.loads(msg_bytes)
 
 
 @router.post(r'/store_corrections/')
