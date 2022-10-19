@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt --no-cache-dir
 WORKDIR /home/Chatguy
 RUN mkdir -p /home/Chatguy/model
 
-CMD sh -c 'redis-server --appendonly yes --appendfsync no && uvicorn app:router --host 0.0.0.0 --port 8000 --reload'
+CMD sh -c 'redis-server --appendonly yes --appendfsync no & exec uvicorn app:router --host 0.0.0.0 --port 8000 --reload'
