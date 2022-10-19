@@ -86,4 +86,4 @@ def suggest_words(userInput: InputCorrections):
 @try_except.error_handling
 @log_datetime
 def application_test():
-    return {'message': 200}
+    return {'message': 'Yay'}
