@@ -67,25 +67,3 @@ jobs:
           badge-title: Coverage Report
           hide-badge: false
           hide-report: false
-      - name: Create the Badge
-        uses: schneegans/dynamic-badges-action@v1.0.0
-        with:
-          auth: ${{ secrets.PYTEST_COVERAGE_COMMENT }}
-          gistID: 5e90d640f8c212ab7bbac38f72323f80
-          filename: pytest-coverage-comment__main.json
-          label: Coverage Report
-          message: ${{ steps.coverageComment.outputs.coverage }}
-          color: ${{ steps.coverageComment.outputs.color }}
-      - name: Check the output coverage
-        run: |
-          "Coverage Percantage - ${{ steps.coverageComment.outputs.coverage }}"
-          "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
-          "Coverage Html - ${{ steps.coverageComment.outputs.coverageHtml }}"
-          "Coverage Warnings - ${{ steps.coverageComment.outputs.warnings }}"
-          "Coverage Errors - ${{ steps.coverageComment.outputs.errors }}"
-          "Coverage Failures - ${{ steps.coverageComment.outputs.failures }}"
-          "Coverage Skipped - ${{ steps.coverageComment.outputs.skipped }}"
-          "Coverage Tests - ${{ steps.coverageComment.outputs.tests }}"
-          "Coverage Time - ${{ steps.coverageComment.outputs.time }}"
-          "Not Success Test Info - ${{ steps.coverageComment.outputs.notSuccessTestInfo }}"
-      
