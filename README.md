@@ -7,7 +7,7 @@
 [![CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml)
 [![Docker Image CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml)
 [![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Tests.yml/badge.svg)]()
-[![Code Coverage](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/create-badge.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/create-badge.yml)
+[![Code Coverage](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/code-coverage-badge.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/code-coverage-badge.yml)
 [![](https://img.shields.io/github/last-commit/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/contributors/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/issues-pr/Ilhasoft/chatguy-nlp)]()
