@@ -1,12 +1,16 @@
+from curses import wrapper
 import pytest
 import sys
 import os
 import json
+from symbol import decorated
 import tests.test_config as test_config
 import itertools
 from pkg_resources import NullProvider
 from lib2to3.pgen2.token import EQUAL
 from tkinter import Y
+from datetime import datetime
+from functools import wraps
 from types import SimpleNamespace
 sys.path.insert(1, '..')
 from Chatguy.models.models import InputWords, InputSentences, InputCorrections
@@ -14,7 +18,7 @@ from Chatguy.handlers.db import Base, Words, Suggestions, Corrections, create_db
 from Chatguy.handlers.text_generators import generate_sentences, generate_words
 from Chatguy.handlers.classifier import join_tuple_string, list_suggesting, get_synonyms, create_model_gec, create_model, phrase_aug, phrase_gec
 from types import SimpleNamespace
-from tests.test_config import StoreCorrections, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
+from tests.test_config import StoreCorrections, log_datetime, timer, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
 from pysinonimos.sinonimos import Search, historic
 
 
@@ -152,10 +156,8 @@ def test_join_tuple_string():
 def test_phrase_gec():
     '''
     '''    
-
     model = create_model_gec() 
     phrase_gec = phrase_gec(test_config.list_phrases, model)
-
 
     assert isinstance(phrase_gec, list)
 
@@ -164,7 +166,6 @@ def test_phrase_gec():
 def test_phrase_aug():
     '''
     '''
-    
     suggest_list  = list_suggesting()
     pten_pipeline, enpt_pipeline = create_model()
 

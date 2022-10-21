@@ -2,6 +2,7 @@ import pytest
 import sys
 import os
 import time
+import statistics
 from functools import wraps
 from datetime import datetime
 
@@ -31,23 +32,30 @@ def log_datetime(func):
         func()
     return wrapper   
 
-
-def timeit(func):
-    def timeit_wrapper(*args, **kwargs):
+def timer(func):
+    @wraps(func)
+    def timer_wrapper(*args, **kwargs):
         start_time = time.perf_counter()
         result = func(*args, **kwargs)
         end_time = time.perf_counter()
+
         total_time = end_time - start_time
+        #average_time = statistics.mean(total_time)
         print(f'Function {func.__name__}{args} {kwargs} Took {total_time:.4f} seconds')
+        #print(f'Average execution time :{average_time:.4f} secondas')
+        print(f'{"-"*30}')
         return result
-    return timeit_wrapper
+
+    return timer_wrapper
+
 
 class StoreCorrections:
     def __init__(self):
         self.id = 1
         self.source_text = 'olá tudo bem como você vai?1'
         self.target_text = 'tchau, to vazando, saindo fora meu chegado, até mais!1'
-       
+
+
 word = 'teste'
 
 word_1 = 'teste'
