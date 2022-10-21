@@ -3,15 +3,18 @@ from imghdr import tests
 import sys
 
 from models.models import Recover
+
 sys.path.insert(1, '..')
 
 import json
 from fastapi import FastAPI, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.testclient import TestClient
 from Chatguy.models.models import InputCorrections, InputSentences, InputWords
 import csv
 from Chatguy.handlers import classifier, db, text_generators, try_except, try_except
-from tests.test_config import log_datetime, timer
+from tests import test_api_fuctions, test_config
+from tests.test_config import log_datetime, timer, StoreCorrections, word_synonym_res, sentence_res
 import logging
 import sqlalchemy
 import os, sys
@@ -121,21 +124,13 @@ def suggest_words(userInput: InputCorrections):
             return {200: 'Inserted!'}
 
 
-def write_notification(email: str, message=""):
-    with open("log.txt", mode="w") as email_file:
-        content = f"notification for {email}: {message}"
-        email_file.write(content)
+client = TestClient(router)
 
 
-@router.post("/send-notification/{email}")
-async def send_notification(email: str, background_tasks: BackgroundTasks):
-    background_tasks.add_task(write_notification, email, message="some notification")
-    return {"message": "Notification sent in the background"}
-
-
-@router.post('/tests/')
+@router.post(r'/tests/')
 @try_except.error_handling
 @timer
 @log_datetime
-def ping(background_tasks: BackgroundTasks):
-    pass
+def test_application_route():
+    route_tests = test_api_fuctions.test_application_route()
+    return route_tests

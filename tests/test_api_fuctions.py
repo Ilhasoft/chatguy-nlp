@@ -20,6 +20,8 @@ from Chatguy.handlers.classifier import join_tuple_string, list_suggesting, get_
 from types import SimpleNamespace
 from tests.test_config import StoreCorrections, log_datetime, timer, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
 from pysinonimos.sinonimos import Search, historic
+from fastapi.testclient import TestClient
+from fastapi import FastAPI
 
 
 user = os.environ['POSTGRES_USER']
@@ -44,6 +46,26 @@ user_input_corrections = dotdict(test_config.user_input_corrections)
 #userInput = json.dumps(userInput)
 #userInput = json.loads(userInput, object_hook=lambda d: SimpleNamespace(**d))
 
+router = FastAPI()
+
+client = TestClient(router)
+
+
+def test_application_route():
+    response_suggest_words = client.get('/suggest_words/')
+    response_suggest_sentences = client.get('/suggest_sentences/')
+    response_store_corrections = client.get('/store_corrections/')
+
+    assert response_suggest_words.status_code == 200, 'route suggest_words status code is not 200'
+    assert response_suggest_words.json == test_config.word_synonym_res, 'the json response of the word suggestion route is not what was expected'
+
+    assert response_suggest_sentences.status_code == 200, 'route suggest_sentences status code is not 200'
+    assert response_suggest_sentences.json == test_config.sentence_res, 'the json response of the sentence suggestion route is not what was expected'
+
+    assert response_store_corrections.status_code == 200, 'route store_corrections status code is not 200'
+    assert response_store_corrections.json == test_config.result_corrections_res, 'the json response of the store corrections route is not what was expected'
+    
+  
 
 def test_word_generator_function():
     '''

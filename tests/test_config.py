@@ -40,9 +40,7 @@ def timer(func):
         end_time = time.perf_counter()
 
         total_time = end_time - start_time
-        #average_time = statistics.mean(total_time)
-        print(f'Function {func.__name__}{args} {kwargs} Took {total_time:.4f} seconds')
-        #print(f'Average execution time :{average_time:.4f} secondas')
+        print(f'Function: {func.__name__}{args} {kwargs} \nTook {total_time:.4f} seconds to run')
         print(f'{"-"*30}')
         return result
 

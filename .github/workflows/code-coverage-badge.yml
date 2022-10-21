@@ -57,26 +57,26 @@ jobs:
           run: |
             coverage run -m pytest -v
             coverage report -m tests/test_api_fuctions.py
-            coverage xml 
+            coverage xml
+
+          - uses: tj-actions/coverage-badge-py@v1.8
+          - name: Coverage Badge
           
-        - name: Coverage Badge
-          uses: tj-actions/coverage-badge-py@v1.8
-
-        - name: Verify Changed files
-          uses: tj-actions/verify-changed-files@v9
-          id: changed_files
-          with:
-            files: coverage.svg
-
-        - name: Commit Files
-          if: steps.changed_files.outputs.files_changed == 'true'
-          run: |
-            git add coverage.svg
-            git commit -m "Update coverage.svg"
-
-        - name: Push Changes
-          if: steps.changed_files.outputs.files_changed == 'true'
-          uses: ad-m/github-push-action@master
+          - name: Verify Changed files
+          - uses: tj-actions/verify-changed-files@v9
+            id: changed_files
             with:
-            github_token: ${{ secrets.github_token }}
-            branch: ${{ github.ref }}        
+              files: coverage.svg
+
+          - name: Commit Files
+            if: steps.changed_files.outputs.files_changed == 'true'
+            run: |
+              git add coverage.svg
+              git commit -m "Update coverage.svg"
+
+          - name: Push Changes
+            if: steps.changed_files.outputs.files_changed == 'true'
+          - uses: ad-m/github-push-action@master
+              with:
+              github_token: ${{ secrets.github_token }}
+              branch: ${{ github.ref }}        
