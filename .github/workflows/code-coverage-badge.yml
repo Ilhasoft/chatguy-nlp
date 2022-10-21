@@ -5,35 +5,78 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches:
-      - dev
-
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+env:
+  DEFAULT_DATABASE: "postgresql://postgres:docker@postgres:5432"
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: docker
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: 5432
+  POSTGRES_ADAPTER: postgresql
 jobs:
+  # Label of the container job
+  container-job:
     # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
-    
+    # Docker Hub image that `container-job` executes in
+    container: python:3.8.14-bullseye
+
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:11
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: docker
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
+          POSTGRES_ADAPTER: postgresql
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          
-      - name: Coverage Badge
-        uses: tj-actions/coverage-badge-py@v1.8
 
-      - name: Verify Changed files
-        uses: tj-actions/verify-changed-files@v9
-        id: changed_files
-        with:
-          files: coverage.svg
-
-      - name: Commit Files
-        if: steps.changed_files.outputs.files_changed == 'true'
+        - name: Setup Python
         run: |
-          git add coverage.svg
-          git commit -m "Update coverage.svg"
+          pip install -r requirements.txt
+        - name: Create database
+          run: python Chatguy/create_db.py
+        - name: Run Tests
+          run: |
+            coverage run -m pytest -v
+            coverage report -m tests/test_api_fuctions.py
+            coverage xml 
+          
+        - name: Coverage Badge
+          uses: tj-actions/coverage-badge-py@v1.8
 
-       - name: Push Changes
-        if: steps.changed_files.outputs.files_changed == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.github_token }}
-          branch: ${{ github.ref }}        
+        - name: Verify Changed files
+          uses: tj-actions/verify-changed-files@v9
+          id: changed_files
+          with:
+            files: coverage.svg
+
+        - name: Commit Files
+          if: steps.changed_files.outputs.files_changed == 'true'
+          run: |
+            git add coverage.svg
+            git commit -m "Update coverage.svg"
+
+        - name: Push Changes
+          if: steps.changed_files.outputs.files_changed == 'true'
+          uses: ad-m/github-push-action@master
+            with:
+            github_token: ${{ secrets.github_token }}
+            branch: ${{ github.ref }}        
