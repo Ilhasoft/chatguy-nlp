@@ -1,4 +1,4 @@
-name: Create Code Coverage Badge for Readme
+name: Code Coverage Badge for Readme
 
 # Controls when the workflow will run
 on:
@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Check out repository code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
