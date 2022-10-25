@@ -50,11 +50,24 @@ router = FastAPI()
 
 client = TestClient(router)
 
+words = response_suggest_words = client.get('/suggest_words/'),
+sentences = response_suggest_sentences = client.get('/suggest_sentences/'),
+corrections = response_store_corrections = client.get('/store_corrections/')
 
-def test_application_route():
-    response_suggest_words = client.get('/suggest_words/')
-    response_suggest_sentences = client.get('/suggest_sentences/')
-    response_store_corrections = client.get('/store_corrections/')
+
+routes = [words, sentences, corrections]
+
+@timer
+def application_route():
+    for route in routes:
+        print('Route --> {}'.format(route))
+        return route
+
+
+    '''
+    session = create_db(DATABASE_URL)
+    keys = user_input_word.texts
+    result_word = generate_words(keys, session)
 
     assert response_suggest_words.status_code == 200, 'route suggest_words status code is not 200'
     assert response_suggest_words.json == test_config.word_synonym_res, 'the json response of the word suggestion route is not what was expected'
@@ -64,7 +77,7 @@ def test_application_route():
 
     assert response_store_corrections.status_code == 200, 'route store_corrections status code is not 200'
     assert response_store_corrections.json == test_config.result_corrections_res, 'the json response of the store corrections route is not what was expected'
-    
+    '''
   
 
 def test_word_generator_function():

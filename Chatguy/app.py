@@ -14,7 +14,7 @@ from Chatguy.models.models import InputCorrections, InputSentences, InputWords
 import csv
 from Chatguy.handlers import classifier, db, text_generators, try_except, try_except
 from tests import test_api_fuctions, test_config
-from tests.test_config import log_datetime, timer, StoreCorrections, word_synonym_res, sentence_res
+from tests.test_config import TimedRoute, log_datetime, timer, StoreCorrections, word_synonym_res, sentence_res
 import logging
 import sqlalchemy
 import os, sys
@@ -39,7 +39,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger()
 
-router = FastAPI()
+router = FastAPI(route_class=TimedRoute)
+
 
 origins = ["*"]
 
@@ -57,7 +58,7 @@ host = os.environ['POSTGRES_HOST']
 port = os.environ['POSTGRES_PORT']
 adapter = os.environ['POSTGRES_ADAPTER']
 
-
+client = TestClient(router)
 
 DATABASE_URL = f'postgresql://{user}:{password}@{host}:{port}'
 session = db.create_db(DATABASE_URL)
@@ -124,13 +125,16 @@ def suggest_words(userInput: InputCorrections):
             return {200: 'Inserted!'}
 
 
-client = TestClient(router)
-
-
 @router.post(r'/tests/')
 @try_except.error_handling
-@timer
 @log_datetime
-def test_application_route():
-    route_tests = test_api_fuctions.test_application_route()
-    return route_tests
+def test_application_route(route_class=TimedRoute):
+    route_tests = test_api_fuctions.application_route()
+    print('routes ->', test_api_fuctions.routes)
+    print('\nroute_tests ->', route_tests)
+    print('\nroute_tests ->', test_api_fuctions.routes)
+    return {'message': route_tests}
+
+@router.get('/timed')
+async def timed():
+    return {'message': 'Its the time of my life'}    

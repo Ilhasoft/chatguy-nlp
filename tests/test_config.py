@@ -1,11 +1,18 @@
+from typing import Callable
 import pytest
 import sys
 import os
 import time
 import statistics
-from functools import wraps
+import functools 
 from datetime import datetime
+sys.path.insert(1, '..')
 
+import time
+from typing import Callable
+
+from fastapi import APIRouter, FastAPI, Request, Response
+from fastapi.routing import APIRoute
 
 '''
 Fixtures 
@@ -27,24 +34,28 @@ def log_datetime(func):
     Decorator to register log
     '''
     def wrapper():
-        print(f'Function: {func.__name__}\nRun on: {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}')
         print(f'{"-"*30}')
+        print(f'{"-"*30}')
+        print(f'Function: {func.__name__}\nRun on: {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}')
         func()
     return wrapper   
 
 def timer(func):
-    @wraps(func)
+    '''print the runtime of the decorated function'''
+    @functools.wraps(func)
     def timer_wrapper(*args, **kwargs):
         start_time = time.perf_counter()
         result = func(*args, **kwargs)
         end_time = time.perf_counter()
 
-        total_time = end_time - start_time
-        print(f'Function: {func.__name__}{args} {kwargs} \nTook {total_time:.4f} seconds to run')
+        run_time = end_time - start_time
+
+        print(f'Finished {func.__name__!r} in {run_time:.4} seconds')
+        #print(f'Function: {func.__name__}{args} {kwargs} \nTook {total_time:.4f} seconds to run')
+        print(f'{"-"*30}')
         print(f'{"-"*30}')
         return result
-
-    return timer_wrapper
+    return timer_wrapper    
 
 
 class StoreCorrections:
@@ -53,6 +64,21 @@ class StoreCorrections:
         self.source_text = 'olá tudo bem como você vai?1'
         self.target_text = 'tchau, to vazando, saindo fora meu chegado, até mais!1'
 
+class TimedRoute(APIRoute):
+    def get_route_(self) -> Callable:
+        original_route = super().get_route()
+
+        def custom_route(request: Request) -> Response:
+            before = time.time()
+            response: Response = original_route(request)
+            duration = time.time() - before
+            response.headers["X-Response-Time"] = str(duration)
+            print(f'route duration: {duration}')
+            print(f'route response: {response}')
+            print(f'route response header: {response.headers}')
+
+        return custom_route
+        
 
 word = 'teste'
 

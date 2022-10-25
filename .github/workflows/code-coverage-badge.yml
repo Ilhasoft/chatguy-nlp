@@ -59,18 +59,18 @@ jobs:
             coverage report -m tests/test_api_fuctions.py
             coverage xml
 
-          - uses: tj-actions/coverage-badge-py@v1.8
-          - name: Coverage Badge
+        - uses: tj-actions/coverage-badge-py@v1.8
+        - name: Coverage Badge
           
-          - name: Verify Changed files
-          - uses: tj-actions/verify-changed-files@v9
-            id: changed_files
+        - name: Verify Changed files
+        - uses: tj-actions/verify-changed-files@v9
+          id: changed_files
             with:
               files: coverage.svg
 
-          - name: Commit Files
-            if: steps.changed_files.outputs.files_changed == 'true'
-            run: |
+        - name: Commit Files
+          if: steps.changed_files.outputs.files_changed == 'true'
+          run: |
               git add coverage.svg
               git commit -m "Update coverage.svg"
 
