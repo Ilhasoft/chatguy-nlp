@@ -85,6 +85,7 @@ def del_token(token):
 
 @router.post(r'/suggest_words/')
 @try_except.error_handling
+@timer
 def suggest_words(userInput: InputWords):
     if userInput:
         session = db.create_db(DATABASE_URL)
@@ -125,16 +126,16 @@ def suggest_words(userInput: InputCorrections):
             return {200: 'Inserted!'}
 
 
+router.route_class = TimedRoute
+
 @router.post(r'/tests/')
 @try_except.error_handling
 @log_datetime
-def test_application_route(route_class=TimedRoute):
-    route_tests = test_api_fuctions.application_route()
-    print('routes ->', test_api_fuctions.routes)
-    print('\nroute_tests ->', route_tests)
-    print('\nroute_tests ->', test_api_fuctions.routes)
-    return {'message': route_tests}
+def test_application_route():
+    runtime_route_words = test_api_fuctions.test_route_suggets_words()
+    runtime_route_sentence = test_api_fuctions.test_route_suggets_sentence()
+    runtime_route_words = test_api_fuctions.test_route_store_corrections()
 
-@router.get('/timed')
-async def timed():
-    return {'message': 'Its the time of my life'}    
+    return {'Route Name -->': ('Suggest Words', 'Suggest Sentences', 'Store Corrections'),
+            'Runtime': (runtime_route_words, runtime_route_sentence, runtime_route_words )}
+

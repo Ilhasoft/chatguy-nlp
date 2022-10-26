@@ -34,9 +34,11 @@ def log_datetime(func):
     Decorator to register log
     '''
     def wrapper():
-        print(f'{"-"*30}')
-        print(f'{"-"*30}')
-        print(f'Function: {func.__name__}\nRun on: {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}')
+        print_string_datetime = (f'Function: {func.__name__}\nRun on: {datetime.today().strftime("%d-%m-%Y %H:%M:%S")}')
+        
+        print(f'{"-"*len(print_string_datetime)}')
+        
+        print(print_string_datetime)
         func()
     return wrapper   
 
@@ -49,11 +51,12 @@ def timer(func):
         end_time = time.perf_counter()
 
         run_time = end_time - start_time
+        
+        print_string_timer = (f'Finished {func.__name__!r} in {run_time:.4} seconds')
 
-        print(f'Finished {func.__name__!r} in {run_time:.4} seconds')
-        #print(f'Function: {func.__name__}{args} {kwargs} \nTook {total_time:.4f} seconds to run')
-        print(f'{"-"*30}')
-        print(f'{"-"*30}')
+        print('\n', print_string_timer)
+        print(f'{"-"*len(print_string_timer)}')
+        
         return result
     return timer_wrapper    
 

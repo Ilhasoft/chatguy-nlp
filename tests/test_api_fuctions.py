@@ -18,7 +18,7 @@ from Chatguy.handlers.db import Base, Words, Suggestions, Corrections, create_db
 from Chatguy.handlers.text_generators import generate_sentences, generate_words
 from Chatguy.handlers.classifier import join_tuple_string, list_suggesting, get_synonyms, create_model_gec, create_model, phrase_aug, phrase_gec
 from types import SimpleNamespace
-from tests.test_config import StoreCorrections, log_datetime, timer, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
+from tests.test_config import StoreCorrections, TimedRoute, log_datetime, timer, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
 from pysinonimos.sinonimos import Search, historic
 from fastapi.testclient import TestClient
 from fastapi import FastAPI
@@ -50,21 +50,41 @@ router = FastAPI()
 
 client = TestClient(router)
 
-words = response_suggest_words = client.get('/suggest_words/'),
-sentences = response_suggest_sentences = client.get('/suggest_sentences/'),
-corrections = response_store_corrections = client.get('/store_corrections/')
-
-
-routes = [words, sentences, corrections]
-
+routes = [router.post(r'/suggest_words/'),
+            router.post(r'/suggest_sentences/'),
+            router.post(r'/suggest_sentences/')]
 @timer
-def application_route():
+def application_route(route):
     for route in routes:
-        print('Route --> {}'.format(route))
         return route
 
+@timer
+def test_route_suggets_words():
+    result_route_words = router.post(r'/suggest_words/')
+    return result_route_words
 
-    '''
+@timer
+def test_route_suggets_sentence():
+    result_route_sentence = router.post(r'/suggest_sentences/')
+    return result_route_sentence
+
+@timer
+def test_route_store_corrections():
+    result_route_store_correc = router.post(r'/suggest_sentences/')
+    return result_route_store_correc                
+
+'''
+
+
+    result_routes_word = test_api_fuctions.application_route(test_routes[0])
+    result_routes_sent = test_api_fuctions.application_route(test_routes[1])
+    result_routes_corre = test_api_fuctions.application_route(test_routes[2])
+    
+    return result_routes_word, result_routes_sent, result_routes_corre
+
+    routes_list = []
+    routes_list = routes_list.append(route)
+
     session = create_db(DATABASE_URL)
     keys = user_input_word.texts
     result_word = generate_words(keys, session)
