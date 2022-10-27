@@ -13,7 +13,7 @@ from fastapi.testclient import TestClient
 from Chatguy.models.models import InputCorrections, InputSentences, InputWords
 import csv
 from Chatguy.handlers import classifier, db, text_generators, try_except, try_except
-from tests import test_api_fuctions, test_config
+from tests import test_api_functions, test_config
 from tests.test_config import TimedRoute, log_datetime, timer, StoreCorrections, word_synonym_res, sentence_res
 import logging
 import sqlalchemy
@@ -39,7 +39,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger()
 
-router = FastAPI(route_class=TimedRoute)
+router = FastAPI()
 
 
 origins = ["*"]
@@ -132,10 +132,11 @@ router.route_class = TimedRoute
 @try_except.error_handling
 @log_datetime
 def test_application_route():
-    runtime_route_words = test_api_fuctions.test_route_suggets_words()
-    runtime_route_sentence = test_api_fuctions.test_route_suggets_sentence()
-    runtime_route_words = test_api_fuctions.test_route_store_corrections()
+    runtime_route_words = test_api_functions.test_route_suggets_words()
+    runtime_route_sentence = test_api_functions.test_route_suggets_sentence()
+    runtime_route_words = test_api_functions.test_route_store_corrections()
+    runtime_route_recover = test_api_functions.test_route_recover_sentences()
 
-    return {'Route Name -->': ('Suggest Words', 'Suggest Sentences', 'Store Corrections'),
-            'Runtime': (runtime_route_words, runtime_route_sentence, runtime_route_words )}
+    return {'Route Name -->': ('Suggest Words', 'Suggest Sentences', 'Store Corrections', 'Recover Sentences'),
+            'Runtime': (runtime_route_words, runtime_route_sentence, runtime_route_words, runtime_route_recover)}
 

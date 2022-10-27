@@ -56,8 +56,9 @@ jobs:
         - name: Run Tests
           run: |
             coverage run -m pytest -v
-            coverage report -m tests/test_api_fuctions.py
+            coverage report -m tests/test_api_functions.py
             coverage xml
+            coverage.svg
 
         - uses: tj-actions/coverage-badge-py@v1.8
         - name: Coverage Badge

@@ -35,12 +35,12 @@ def log_datetime(func):
     '''
     def wrapper():
         print_string_datetime = (f'Function: {func.__name__}\nRun on: {datetime.today().strftime("%d-%m-%Y %H:%M:%S")}')
-        
         print(f'{"-"*len(print_string_datetime)}')
-        
         print(print_string_datetime)
+        print(f'{"-"*len(print_string_datetime)}')
         func()
     return wrapper   
+
 
 def timer(func):
     '''print the runtime of the decorated function'''
@@ -55,7 +55,7 @@ def timer(func):
         print_string_timer = (f'Finished {func.__name__!r} in {run_time:.4} seconds')
 
         print('\n', print_string_timer)
-        print(f'{"-"*len(print_string_timer)}')
+
         
         return result
     return timer_wrapper    
@@ -72,10 +72,10 @@ class TimedRoute(APIRoute):
         original_route = super().get_route()
 
         def custom_route(request: Request) -> Response:
-            before = time.time()
+            before = time.perf_counter()
             response: Response = original_route(request)
-            duration = time.time() - before
-            response.headers["X-Response-Time"] = str(duration)
+            duration = time.perf_counter() - before
+            
             print(f'route duration: {duration}')
             print(f'route response: {response}')
             print(f'route response header: {response.headers}')

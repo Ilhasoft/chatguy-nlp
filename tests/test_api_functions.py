@@ -1,4 +1,5 @@
 from curses import wrapper
+from statistics import mean
 import pytest
 import sys
 import os
@@ -52,7 +53,10 @@ client = TestClient(router)
 
 routes = [router.post(r'/suggest_words/'),
             router.post(r'/suggest_sentences/'),
-            router.post(r'/suggest_sentences/')]
+            router.post(r'/suggest_sentences/'),
+            router.post(r'/recover_sentences/'),
+            router.post(r'/store_corrections/'),
+            ]
 @timer
 def application_route(route):
     for route in routes:
@@ -63,42 +67,24 @@ def test_route_suggets_words():
     result_route_words = router.post(r'/suggest_words/')
     return result_route_words
 
+
 @timer
 def test_route_suggets_sentence():
     result_route_sentence = router.post(r'/suggest_sentences/')
     return result_route_sentence
 
+
 @timer
 def test_route_store_corrections():
-    result_route_store_correc = router.post(r'/suggest_sentences/')
-    return result_route_store_correc                
-
-'''
+    result_route_store_correc = router.post(r'/store_corrections/')
+    return result_route_store_correc
 
 
-    result_routes_word = test_api_fuctions.application_route(test_routes[0])
-    result_routes_sent = test_api_fuctions.application_route(test_routes[1])
-    result_routes_corre = test_api_fuctions.application_route(test_routes[2])
-    
-    return result_routes_word, result_routes_sent, result_routes_corre
+@timer
+def test_route_recover_sentences():
+    result_route_recover_sentenc = router.post(r'/recover_sentences/')
+    return result_route_recover_sentenc 
 
-    routes_list = []
-    routes_list = routes_list.append(route)
-
-    session = create_db(DATABASE_URL)
-    keys = user_input_word.texts
-    result_word = generate_words(keys, session)
-
-    assert response_suggest_words.status_code == 200, 'route suggest_words status code is not 200'
-    assert response_suggest_words.json == test_config.word_synonym_res, 'the json response of the word suggestion route is not what was expected'
-
-    assert response_suggest_sentences.status_code == 200, 'route suggest_sentences status code is not 200'
-    assert response_suggest_sentences.json == test_config.sentence_res, 'the json response of the sentence suggestion route is not what was expected'
-
-    assert response_store_corrections.status_code == 200, 'route store_corrections status code is not 200'
-    assert response_store_corrections.json == test_config.result_corrections_res, 'the json response of the store corrections route is not what was expected'
-    '''
-  
 
 def test_word_generator_function():
     '''

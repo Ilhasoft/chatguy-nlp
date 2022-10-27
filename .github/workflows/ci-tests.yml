@@ -58,3 +58,4 @@ jobs:
           coverage run -m pytest -v
           coverage report -m tests/test_api_fuctions.py
           coverage xml
+          coverage.svg

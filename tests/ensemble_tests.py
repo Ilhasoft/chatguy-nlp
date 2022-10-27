@@ -1,6 +1,6 @@
 from Chatguy.handlers.db import *
 from Chatguy.handlers.text_generators import generate_words, generate_sentences
-from tests.test_api_fuctions import *
+from tests.test_api_functions import *
 from tests.test_config import user_input_word, word_synonym_res
 import sys
 sys.path.insert(1, '..')
