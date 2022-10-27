@@ -58,7 +58,5 @@ jobs:
           coverage run -m pytest -v
           coverage report -m tests/test_api_functions.py
           coverage xml
-          coverage html
-          git add htmlcov/index.html
-          git commit -m "Update coverage.svg"
+
           
