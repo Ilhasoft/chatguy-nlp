@@ -1,7 +1,6 @@
 <div align="center">
 
-
-# Chatguy 🤖
+# Chatguy <img src="https://user-images.githubusercontent.com/72058182/198705259-1aa1824b-f09b-4d4c-a697-65281856f0f5.png" width="auto" height="40px">
 ### The powerful NLP's dataset creator.  <br><br>
 
 [![CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml)
