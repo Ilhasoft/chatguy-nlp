@@ -8,6 +8,7 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
 def create_model_gec():  
   model = SimpleT5()
+  model.from_pretrained('t5', 't5-base')
   model.load_model("t5",'./model', use_gpu=False)
   return model
 

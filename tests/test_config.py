@@ -10,7 +10,7 @@ sys.path.insert(1, '..')
 
 import time
 from typing import Callable
-
+from fastapi.testclient import TestClient
 from fastapi import APIRouter, FastAPI, Request, Response
 from fastapi.routing import APIRoute
 
@@ -81,7 +81,23 @@ class TimedRoute(APIRoute):
             print(f'route response header: {response.headers}')
 
         return custom_route
-        
+
+router = FastAPI()
+
+client = TestClient(router)
+
+routes = [router.post(r'/suggest_words/'),
+            router.post(r'/suggest_sentences/'),
+            router.post(r'/suggest_sentences/'),
+            router.post(r'/recover_sentences/'),
+            router.post(r'/store_corrections/'),
+            ]
+
+@timer
+def application_route(route):
+    for route in routes:
+        return route
+    assert route == route
 
 word = 'teste'
 

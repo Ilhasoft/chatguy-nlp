@@ -1,5 +1,7 @@
 from codecs import backslashreplace_errors
+from http.cookies import SimpleCookie
 from imghdr import tests
+from signal import Handlers
 import sys
 
 from models.models import Recover
@@ -126,12 +128,13 @@ def suggest_words(userInput: InputCorrections):
             return {200: 'Inserted!'}
 
 
-router.route_class = TimedRoute
+#router.route_class = TimedRoute
 
 @router.post(r'/tests/')
 @try_except.error_handling
 @log_datetime
 def test_application_route():
+    
     runtime_route_words = test_api_functions.test_route_suggets_words()
     runtime_route_sentence = test_api_functions.test_route_suggets_sentence()
     runtime_route_words = test_api_functions.test_route_store_corrections()
