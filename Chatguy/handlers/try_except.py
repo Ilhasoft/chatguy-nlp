@@ -5,20 +5,6 @@ from functools import wraps
 
 logger = logging.getLogger()
 
-
-'''def type_text_generator():
-
-    if app.suggest_words.__name__ == 'sugest_words':
-        name_generator = 'suggest_words'
-    if app.suggest_sentences.__name__ == 'store_corrections':
-        name_generator = 'store_corrections'
-    else:
-        if app.suggest_sentences.__name__ == 'suggest_sentences':
-                name_generator = 'suggest_sentences'
-    
-    return name_generator'''
-
-
 def error_handling(func):
     ''' 
     Function to deal with errors

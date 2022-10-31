@@ -76,9 +76,8 @@ class TimedRoute(APIRoute):
             response: Response = original_route(request)
             duration = time.perf_counter() - before
             
-            print(f'route duration: {duration}')
+            print(f'route duration: {duration:.4}')
             print(f'route response: {response}')
-            print(f'route response header: {response.headers}')
 
         return custom_route
 
@@ -97,7 +96,7 @@ routes = [router.post(r'/suggest_words/'),
 def application_route(route):
     for route in routes:
         return route
-    assert route == route
+
 
 word = 'teste'
 

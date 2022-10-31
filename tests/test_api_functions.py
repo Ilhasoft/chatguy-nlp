@@ -180,6 +180,17 @@ def test_join_tuple_string():
     assert result_join == str('teste teste teste')
 
 
+def test_application_route():
+    testing_list = ['a', 'b', 'c']
+
+    for route in testing_list:
+        return route
+
+    assert route == 'a'
+    assert route == 'b'
+    assert route == 'c'    
+
+
 #pytest.mark.skip(reason = 'will be used after model implementation')
 def test_phrase_gec():
     '''
