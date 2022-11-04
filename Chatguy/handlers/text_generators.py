@@ -79,4 +79,4 @@ def generate_sentences(userInput):
                                        "entity_synonyms": [], "common_examples": []}}
         json_file['rasa_nlu_data']['common_examples'] = obj_dict
 
-        return json_file
+    return json_file
