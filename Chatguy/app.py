@@ -130,7 +130,6 @@ def suggest_words(userInput: InputCorrections):
             return {200: 'Inserted!'}
 
 
-#router.route_class = TimedRoute
 
 @router.post(r'/tests/')
 @try_except.error_handling
