@@ -49,10 +49,10 @@ user_input_corrections = dotdict(test_config.user_input_corrections)
 #userInput = json.loads(userInput, object_hook=lambda d: SimpleNamespace(**d))
 
 
-
+@timer
 def test_route_suggets_words():
     result_route_words = test_config.router.post(r'/suggest_words/')
-    x = result_route_words.tempo
+    x = result_route_words
     return x
 
 
