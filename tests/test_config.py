@@ -51,7 +51,6 @@ def timer(func):
         end_time = time.perf_counter()
 
         run_time = end_time - start_time
-        
         print_string_timer = (f'Finished {func.__name__!r} in {run_time:.4} seconds')
 
         print('\n', print_string_timer)
@@ -67,20 +66,44 @@ class StoreCorrections:
         self.source_text = 'olá tudo bem como você vai?1'
         self.target_text = 'tchau, to vazando, saindo fora meu chegado, até mais!1'
 
-class TimedRoute(APIRoute):
-    def get_route_(self) -> Callable:
-        original_route = super().get_route()
 
-        def custom_route(request: Request) -> Response:
-            before = time.perf_counter()
-            response: Response = original_route(request)
-            duration = time.perf_counter() - before
+class TimedRoute():
+    def __init__(self, func, *args, **kwargs):
+        self.__init__()
+        self.tempo = 10
+        
+        def timer(func):
+        '''print the runtime of the decorated function'''
+        @functools.wraps(func)
+        def timer_wrapper(*args, **kwargs):
+            start_time = time.perf_counter()
+            result = func(*args, **kwargs)
+            end_time = time.perf_counter()
+
+        run_time = end_time - start_time
+        print_string_timer = (f'Finished {func.__name__!r} in {run_time:.4} seconds')
+
+        print('\n', print_string_timer)
+
+        
+        return result
+    return timer_wrapper  
+        '''
+        self.tempo_inicial = time.perf_counter()
+        self.tempo_rodando = func(*args, **kwargs)
+        self.tempo_final = time.perf_counter()
+        self.tempo_total = time.perf_counter() - self.tempo_incial
+        print_string_timer = (f'Finished {func.__name__!r} in {run_time:.4} seconds')
+        '''
+    
             
-            print(f'route duration: {duration:.4}')
-            print(f'route response: {response}')
 
-        return custom_route
-
+        
+            
+        
+        
+        
+ 
 router = FastAPI()
 
 client = TestClient(router)
@@ -301,6 +324,12 @@ sentence_res = {
 						"end": 2,
 						"value": "há",
 						"entity": "existir"
+					},
+					{
+						"start": 12,
+						"end": 18,
+						"value": "homens",
+						"entity": "sujeito"
 					}
 				]
 			},
@@ -313,6 +342,12 @@ sentence_res = {
 						"end": 2,
 						"value": "há",
 						"entity": "existir"
+					},
+					{
+						"start": 12,
+						"end": 20,
+						"value": "mulheres",
+						"entity": "sujeito"
 					}
 				]
 			},
@@ -325,6 +360,12 @@ sentence_res = {
 						"end": 2,
 						"value": "há",
 						"entity": "existir"
+					},
+					{
+						"start": 12,
+						"end": 20,
+						"value": "crianças",
+						"entity": "sujeito"
 					}
 				]
 			},
@@ -337,6 +378,12 @@ sentence_res = {
 						"end": 7,
 						"value": "existem",
 						"entity": "existir"
+					},
+					{
+						"start": 17,
+						"end": 23,
+						"value": "homens",
+						"entity": "sujeito"
 					}
 				]
 			},
@@ -349,6 +396,12 @@ sentence_res = {
 						"end": 7,
 						"value": "existem",
 						"entity": "existir"
+					},
+					{
+						"start": 17,
+						"end": 25,
+						"value": "mulheres",
+						"entity": "sujeito"
 					}
 				]
 			},
@@ -361,6 +414,12 @@ sentence_res = {
 						"end": 7,
 						"value": "existem",
 						"entity": "existir"
+					},
+					{
+						"start": 17,
+						"end": 25,
+						"value": "crianças",
+						"entity": "sujeito"
 					}
 				]
 			}

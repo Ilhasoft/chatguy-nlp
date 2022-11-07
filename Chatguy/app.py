@@ -99,11 +99,13 @@ def suggest_words(userInput: InputWords):
 
 @router.post(r'/suggest_sentences/')
 @try_except.error_handling
+@timer
 def suggest_sentences(userInput: InputSentences, background_tasks: BackgroundTasks):
         if userInput.texts:            
             token = gen_token()
             background_tasks.add_task(gen_sentences, userInput, token) 
         return token
+
 
 
 @router.post(r'/recover_sentences/')
@@ -113,7 +115,7 @@ def application_test(id: Recover, background_tasks: BackgroundTasks):
         return None
     msg_bytes = base64.b64decode(r.get(id.token))
     msg_bytes = msg_bytes.decode('ascii')
-    background_tasks.add_task(del_token, id.token) 
+    background_tasks.add_task(del_token, id.token)   
     return json.loads(msg_bytes)
 
 
@@ -135,11 +137,14 @@ def suggest_words(userInput: InputCorrections):
 @log_datetime
 def test_application_route():
     
-    runtime_route_words = test_api_functions.test_route_suggets_words()
+    runtime_route_words = test_api_functions.test_route_suggets_words
     runtime_route_sentence = test_api_functions.test_route_suggets_sentence()
     runtime_route_words = test_api_functions.test_route_store_corrections()
     runtime_route_recover = test_api_functions.test_route_recover_sentences()
 
-    return {'Route Name -->': ('Suggest Words', 'Suggest Sentences', 'Store Corrections', 'Recover Sentences'),
-            'Runtime': (runtime_route_words, runtime_route_sentence, runtime_route_words, runtime_route_recover)}
+    print('\nROTAS -->', runtime_route_words, runtime_route_sentence)
+    print('\nTIPO ROTAS -->', runtime_route_words, runtime_route_sentence)
+
+    print({'Route Name -->': ('Suggest Words', 'Suggest Sentences', 'Store Corrections', 'Recover Sentences'),
+            'Runtime': (runtime_route_words, runtime_route_sentence, runtime_route_words, runtime_route_recover)})
 

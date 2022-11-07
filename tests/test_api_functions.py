@@ -49,10 +49,11 @@ user_input_corrections = dotdict(test_config.user_input_corrections)
 #userInput = json.loads(userInput, object_hook=lambda d: SimpleNamespace(**d))
 
 
-@timer
+
 def test_route_suggets_words():
     result_route_words = test_config.router.post(r'/suggest_words/')
-    return result_route_words
+    x = result_route_words.tempo
+    return x
 
 
 @timer
@@ -97,7 +98,7 @@ def test_sentence_generator_function():
 
     result_sentence = generate_sentences(key)
     session.close()
-
+   
     assert result_sentence == test_config.sentence_res
     assert isinstance(result_sentence, dict)
     
