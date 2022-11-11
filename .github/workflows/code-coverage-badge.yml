@@ -1,4 +1,4 @@
-name: Unit Test With Coverage
+name: Code Coverage
 on:
   workflow_dispatch:
 jobs:
