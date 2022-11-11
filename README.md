@@ -14,6 +14,7 @@
 [![](https://img.shields.io/github/v/release/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/languages/top/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/badge/python-3.8-informational)]()
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/Mel-iza/4e3721eede9c6f0753da666369967529/raw/code-coverage.json)
 
 </div>
 
