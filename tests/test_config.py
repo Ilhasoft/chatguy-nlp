@@ -6,6 +6,8 @@ import time
 import statistics
 import functools 
 from datetime import datetime
+import tracemalloc
+from time import perf_counter 
 sys.path.insert(1, '..')
 
 import time
@@ -42,22 +44,24 @@ def log_datetime(func):
     return wrapper   
 
 
-def timer(func):
-    '''print the runtime of the decorated function'''
+def measure_performance(func):
+    '''Measure performance of a function'''
+
     @functools.wraps(func)
-    def timer_wrapper(*args, **kwargs):
-        start_time = time.perf_counter()
-        result = func(*args, **kwargs)
-        end_time = time.perf_counter()
-
-        run_time = end_time - start_time
-        print_string_timer = (f'Finished {func.__name__!r} in {run_time:.4} seconds')
-
-        print('\n', print_string_timer)
-
-        
-        return result
-    return timer_wrapper    
+    def wrapper(*args, **kwargs):
+        tracemalloc.start()
+        start_time = perf_counter()
+        func(*args, **kwargs)
+        current, peak = tracemalloc.get_traced_memory()
+        finish_time = perf_counter()
+        print(f'Function: {func.__name__}')
+        print(f'Method: {func.__doc__}')
+        print(f'Memory usage:\t\t {current / 10**6:.6f} MB \n'
+              f'Peak memory usage:\t {peak / 10**6:.6f} MB ')
+        print(f'Time elapsed is seconds: {finish_time - start_time:.6f}')
+        print(f'{"-"*40}')
+        tracemalloc.stop()
+    return wrapper
 
 
 class StoreCorrections:
@@ -66,38 +70,31 @@ class StoreCorrections:
         self.source_text = 'olá tudo bem como você vai?1'
         self.target_text = 'tchau, to vazando, saindo fora meu chegado, até mais!1'
 
+'''
+class MeasurePerformance:
+
+    def __init__(self, func):
+        self.func = func
 
 
-class TimedRoute(APIRoute):
-    def get_route_(self) -> Callable:
-        original_route = super().get_route()
-        def custom_route(request: Request) -> Response:
-            before = time.perf_counter()
-            response: Response = original_route(request)
-            duration = time.perf_counter() - before
+    def _call__(self, func, *args, **kwargs):
+        tracemalloc.start()
+        self.start_time = perf_counter()
+        self.func = func(*args, **kwargs)
+        self.current, self.peak = tracemalloc.get_traced_memory()
+        self.finish_time = perf_counter()
 
-            print(f'route duration: {duration}')
-            print(f'route duration: {duration:.4}')
-            print(f'route response: {response}')
-            print(f'route response header: {response.headers}')
+        self.message = (f'Function: {self.func.__name__}',
+                        f'\nMethod: {self.func.__doc__}',
+                        f'\nMemory usage:\t\t {self.current / 10**6:.6f} MB \n'
+                        f'\nPeak memory usage:\t {self.peak / 10**6:.6f} MB ',
+                        f'\nTime elapsed is seconds: {self.finish_time - self.start_time:.6f}',
+                        f'{"-"*40}' )
+        tracemalloc.stop()
+    def showPerformance(self):
+        print(self.message)
+'''
 
-        return custom_route
-    '''
-        self.tempo_inicial = time.perf_counter()
-        self.tempo_rodando = func(*args, **kwargs)
-        self.tempo_final = time.perf_counter()
-        self.tempo_total = time.perf_counter() - self.tempo_incial
-        print_string_timer = (f'Finished {func.__name__!r} in {run_time:.4} seconds')
-    '''
-    
-            
-
-        
-            
-        
-        
-        
- 
 router = FastAPI()
 
 client = TestClient(router)
@@ -109,10 +106,30 @@ routes = [router.post(r'/suggest_words/'),
             router.post(r'/store_corrections/'),
             ]
 
-@timer
+
 def application_route(route):
     for route in routes:
         return route
+
+@measure_performance
+def route_suggest_words():
+    result_route_words = router.post(r'/suggest_words/')
+    return result_route_words
+
+@measure_performance
+def route_suggets_sentence():
+    result_route_sentence = router.post(r'/suggest_sentences/')
+    return result_route_sentence
+
+@measure_performance
+def route_store_corrections():
+    result_route_store_correc = router.post(r'/store_corrections/')
+    return result_route_store_correc        
+
+@measure_performance
+def route_recover_sentences():
+    result_route_recover_sentenc = router.post(r'/recover_sentences/')
+    return result_route_recover_sentenc 
 
 
 word = 'teste'

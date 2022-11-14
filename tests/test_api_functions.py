@@ -20,9 +20,11 @@ from Chatguy.handlers.db import Base, Words, Suggestions, Corrections, create_db
 from Chatguy.handlers.text_generators import generate_sentences, generate_words
 from Chatguy.handlers.classifier import join_tuple_string, list_suggesting, get_synonyms, create_model_gec, create_model, phrase_aug, phrase_gec
 from types import SimpleNamespace
-from tests.test_config import StoreCorrections, TimedRoute, log_datetime, timer, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
+from tests.test_config import StoreCorrections, log_datetime, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
 from pysinonimos.sinonimos import Search, historic
-
+from datetime import datetime
+import tracemalloc
+from time import perf_counter 
 from fastapi import FastAPI
 
 
@@ -49,26 +51,24 @@ user_input_corrections = dotdict(test_config.user_input_corrections)
 #userInput = json.loads(userInput, object_hook=lambda d: SimpleNamespace(**d))
 
 
-@timer
-def test_route_suggets_words():
+
+def test_route_suggest_words():
     result_route_words = test_config.router.post(r'/suggest_words/')
-    x = result_route_words
-    return x
+    return result_route_words
 
 
-@timer
 def test_route_suggets_sentence():
     result_route_sentence = test_config.router.post(r'/suggest_sentences/')
     return result_route_sentence
 
 
-@timer
+
 def test_route_store_corrections():
     result_route_store_correc = test_config.router.post(r'/store_corrections/')
     return result_route_store_correc
 
 
-@timer
+
 def test_route_recover_sentences():
     result_route_recover_sentenc = test_config.router.post(r'/recover_sentences/')
     return result_route_recover_sentenc 

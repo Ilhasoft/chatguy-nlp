@@ -16,7 +16,7 @@ from Chatguy.models.models import InputCorrections, InputSentences, InputWords
 import csv
 from Chatguy.handlers import classifier, db, text_generators, try_except, try_except
 from tests import test_api_functions, test_config
-from tests.test_config import TimedRoute, log_datetime, timer, StoreCorrections, word_synonym_res, sentence_res
+from tests.test_config import log_datetime, StoreCorrections, word_synonym_res, sentence_res
 import logging
 import sqlalchemy
 import os, sys
@@ -87,7 +87,6 @@ def del_token(token):
 
 @router.post(r'/suggest_words/')
 @try_except.error_handling
-@timer
 def suggest_words(userInput: InputWords):
     if userInput:
         session = db.create_db(DATABASE_URL)
@@ -99,7 +98,6 @@ def suggest_words(userInput: InputWords):
 
 @router.post(r'/suggest_sentences/')
 @try_except.error_handling
-@timer
 def suggest_sentences(userInput: InputSentences, background_tasks: BackgroundTasks):
         if userInput.texts:            
             token = gen_token()
@@ -135,15 +133,18 @@ def suggest_words(userInput: InputCorrections):
 @try_except.error_handling
 @log_datetime
 def test_application_route():
+    from time import perf_counter 
+
+    runtime_route_words = test_config.route_suggest_words()
+    runtime_route_sentence = test_config.route_suggets_sentence()
+    runtime_route_store_correc = test_config.route_store_corrections()
+    runtime_route_recover = test_config.route_recover_sentences()
+
     
-    runtime_route_words = test_api_functions.test_route_suggets_words
-    runtime_route_sentence = test_api_functions.test_route_suggets_sentence()
-    runtime_route_words = test_api_functions.test_route_store_corrections()
-    runtime_route_recover = test_api_functions.test_route_recover_sentences()
+    return({'Route Name -->': ('Suggest Words', 'Suggest Sentences', 'Store Corrections', 'Recover Sentences'),
+            'Runtime': (test_config.route_suggest_words(),
+                        test_config.route_suggets_sentence(), 
+                        test_config.route_store_corrections(),
+                        test_config.route_recover_sentences())})
 
-    print('\nROTAS -->', runtime_route_words, runtime_route_sentence)
-    print('\nTIPO ROTAS -->', runtime_route_words, runtime_route_sentence)
-
-    print({'Route Name -->': ('Suggest Words', 'Suggest Sentences', 'Store Corrections', 'Recover Sentences'),
-            'Runtime': (runtime_route_words, runtime_route_sentence, runtime_route_words, runtime_route_recover)})
-
+    
