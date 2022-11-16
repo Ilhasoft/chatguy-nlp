@@ -9,23 +9,35 @@ from datetime import datetime
 import tracemalloc
 from time import perf_counter 
 sys.path.insert(1, '..')
+sys.path.insert(1, '.')
+from typing import Generator
 import time
 from typing import Callable
+from fastapi.testclient import TestClient
+from fastapi import FastAPI
 
 
 '''
 Fixtures 
 --------
-
 Fixture connection to Database
 @pytest.fixture(scope = 'function')
 def setup_database():
 	session = db.create_db(DATABASE_URL)
 	session.close()
 
+'''
+router = FastAPI()
 
+@pytest.fixture(scope='function')
+def client() -> Generator:
+    with TestClient(router):
+        yield TestClient
+
+'''
 Decorators
 ----------
+
 '''
 
 def log_datetime(func):
@@ -91,6 +103,21 @@ class MeasurePerformance:
     def showPerformance(self):
         print(self.message)
 '''
+
+
+
+routes = [router.post(r'/suggest_words/'),
+            router.post(r'/suggest_sentences/'),
+            router.post(r'/suggest_sentences/'),
+            router.post(r'/recover_sentences/'),
+            router.post(r'/store_corrections/'),
+            ]
+
+
+def application_route(route):
+    for route in routes:
+        return route
+
 
 
 word = 'teste'

@@ -139,7 +139,6 @@ def suggest_words(userInput: InputCorrections):
 def test_application_route():
 
     @measure_performance
-    
     def test_route_suggest_words_request():
         response_words = client.post(r'/suggest_words/')
         print('Request Status Code -->', response_words)
@@ -149,19 +148,19 @@ def test_application_route():
     def test_route_suggest_sentence_request():
         response_sentence = client.post(r'/suggest_sentences/')
         print('Request Status Code -->',response_sentence)
-        return response_sentence
+        return response_sentence.status_code
 
     @measure_performance
     def test_route_suggest_store_corrections_request():
         response_store = client.post(r'/store_corrections/')
         print('Request Status Code -->',response_store)
-        return response_store
+        return response_store.status_code
 
     @measure_performance
     def test_route_suggest_recover_sentence_request():
         response_recover = client.post(r'/recover_sentences/')
         print('Request Status Code -->',response_recover)
-        return response_recover
+        return response_recover.status_code
 
 
     return{'Route Name -->': ('Suggest Words', 'Suggest Sentences', 'Store Corrections', 'Recover Sentences'),

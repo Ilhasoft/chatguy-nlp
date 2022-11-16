@@ -14,9 +14,9 @@ from tkinter import Y
 from datetime import datetime
 from functools import wraps
 from types import SimpleNamespace
-from fastapi import FastAPI
-from fastapi.testclient import TestClient
 sys.path.insert(1, '..')
+from fastapi.testclient import TestClient
+from fastapi import FastAPI
 from Chatguy.models.models import InputWords, InputSentences, InputCorrections
 from Chatguy.handlers.db import Base, Words, Suggestions, Corrections, create_db, create_word, create_suggestion, insert_corrections, query_corrections
 from Chatguy.handlers.text_generators import generate_sentences, generate_words
@@ -52,45 +52,43 @@ user_input_corrections = dotdict(test_config.user_input_corrections)
 #userInput = json.dumps(userInput)
 #userInput = json.loads(userInput, object_hook=lambda d: SimpleNamespace(**d))
 
-router = FastAPI()
-client = TestClient(router)
 
 def test_route_suggest_words():
     result_route_words = test_config.router.post(r'/suggest_words/')
     return result_route_words
 
-def test_route_suggest_words_request():
-    response_words = client.post('/suggest_words/')
-    print('RESPONSE WORDS -->',response_words)
-    assert response_words.status_code == 200
+@TestClient
+def test_route_suggest_words_request(client: TestClient):
+    response_words = client.post(r'/suggest_words/')
+    return response_words
 
 def test_route_suggets_sentence():
     result_route_sentence = test_config.router.post(r'/suggest_sentences/')
     return result_route_sentence
 
-def test_route_suggest_sentence_request():
-    response_sentence = client.post('/suggest_sentences/')
-    print('RESPONSE sentence -->',response_sentence)
-    assert response_sentence.status_code == 200
+@TestClient
+def test_route_suggest_sentence_request(client: TestClient):
+    response_sentence = client.post(r'/suggest_sentences/')
+    return response_sentence
 
 
 def test_route_store_corrections():
     result_route_store_correc = test_config.router.post(r'/store_corrections/')
     return result_route_store_correc
 
-def test_route_suggest_store_corrections_request():
-    response_store = client.post('/store_corrections/')
-    print('RESPONSE sentence -->',response_store)
-    assert response_store.status_code == 200
+@TestClient
+def test_route_suggest_store_corrections_request(client: TestClient):
+    response_store = client.post(r'/store_corrections/')
+    return response_store
 
 def test_route_recover_sentences():
     result_route_recover_sentenc = test_config.router.post(r'/recover_sentences/')
     return result_route_recover_sentenc 
 
-def test_route_suggest_recover_sentence_request():
-    response_recover = client.post('/recover_sentences/')
-    print('RESPONSE sentence -->',response_recover)
-    assert response_recover.status_code == 200
+@TestClient
+def test_route_suggest_recover_sentence_request(client: TestClient):
+    response_recover = client.post(r'/recover_sentences/')
+    return response_recover
 
 
 def test_word_generator_function():
