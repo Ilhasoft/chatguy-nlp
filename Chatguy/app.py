@@ -16,7 +16,7 @@ from Chatguy.models.models import InputCorrections, InputSentences, InputWords
 import csv
 from Chatguy.handlers import classifier, db, text_generators, try_except, try_except
 from tests import test_api_functions, test_config
-from tests.test_config import log_datetime, StoreCorrections, word_synonym_res, sentence_res
+from tests.test_config import measure_performance, log_datetime, StoreCorrections, word_synonym_res, sentence_res
 import logging
 import sqlalchemy
 import os, sys
@@ -87,6 +87,7 @@ def del_token(token):
 
 @router.post(r'/suggest_words/')
 @try_except.error_handling
+@measure_performance
 def suggest_words(userInput: InputWords):
     if userInput:
         session = db.create_db(DATABASE_URL)
@@ -98,6 +99,7 @@ def suggest_words(userInput: InputWords):
 
 @router.post(r'/suggest_sentences/')
 @try_except.error_handling
+@measure_performance
 def suggest_sentences(userInput: InputSentences, background_tasks: BackgroundTasks):
         if userInput.texts:            
             token = gen_token()
@@ -108,6 +110,7 @@ def suggest_sentences(userInput: InputSentences, background_tasks: BackgroundTas
 
 @router.post(r'/recover_sentences/')
 @try_except.error_handling
+@measure_performance
 def application_test(id: Recover, background_tasks: BackgroundTasks):
     if not r.get(id.token):
         return None
@@ -119,6 +122,7 @@ def application_test(id: Recover, background_tasks: BackgroundTasks):
 
 @router.post(r'/store_corrections/')
 @try_except.error_handling
+@measure_performance
 def suggest_words(userInput: InputCorrections):
         if userInput:
             session = db.create_db(DATABASE_URL)
@@ -133,18 +137,35 @@ def suggest_words(userInput: InputCorrections):
 @try_except.error_handling
 @log_datetime
 def test_application_route():
-    from time import perf_counter 
 
-    runtime_route_words = test_config.route_suggest_words()
-    runtime_route_sentence = test_config.route_suggets_sentence()
-    runtime_route_store_correc = test_config.route_store_corrections()
-    runtime_route_recover = test_config.route_recover_sentences()
-
+    @measure_performance
     
-    return({'Route Name -->': ('Suggest Words', 'Suggest Sentences', 'Store Corrections', 'Recover Sentences'),
-            'Runtime': (test_config.route_suggest_words(),
-                        test_config.route_suggets_sentence(), 
-                        test_config.route_store_corrections(),
-                        test_config.route_recover_sentences())})
+    def test_route_suggest_words_request():
+        response_words = client.post(r'/suggest_words/')
+        print('Request Status Code -->', response_words)
+        return response_words.status_code
 
-    
+    @measure_performance
+    def test_route_suggest_sentence_request():
+        response_sentence = client.post(r'/suggest_sentences/')
+        print('Request Status Code -->',response_sentence)
+        return response_sentence
+
+    @measure_performance
+    def test_route_suggest_store_corrections_request():
+        response_store = client.post(r'/store_corrections/')
+        print('Request Status Code -->',response_store)
+        return response_store
+
+    @measure_performance
+    def test_route_suggest_recover_sentence_request():
+        response_recover = client.post(r'/recover_sentences/')
+        print('Request Status Code -->',response_recover)
+        return response_recover
+
+
+    return{'Route Name -->': ('Suggest Words', 'Suggest Sentences', 'Store Corrections', 'Recover Sentences'),
+            'Runtime': (test_route_suggest_words_request(),
+                        test_route_suggest_sentence_request(), 
+                        test_route_suggest_store_corrections_request(),
+                        test_route_suggest_recover_sentence_request())}

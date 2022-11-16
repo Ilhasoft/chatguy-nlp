@@ -9,12 +9,9 @@ from datetime import datetime
 import tracemalloc
 from time import perf_counter 
 sys.path.insert(1, '..')
-
 import time
 from typing import Callable
-from fastapi.testclient import TestClient
-from fastapi import APIRouter, FastAPI, Request, Response
-from fastapi.routing import APIRoute
+
 
 '''
 Fixtures 
@@ -94,42 +91,6 @@ class MeasurePerformance:
     def showPerformance(self):
         print(self.message)
 '''
-
-router = FastAPI()
-
-client = TestClient(router)
-
-routes = [router.post(r'/suggest_words/'),
-            router.post(r'/suggest_sentences/'),
-            router.post(r'/suggest_sentences/'),
-            router.post(r'/recover_sentences/'),
-            router.post(r'/store_corrections/'),
-            ]
-
-
-def application_route(route):
-    for route in routes:
-        return route
-
-@measure_performance
-def route_suggest_words():
-    result_route_words = router.post(r'/suggest_words/')
-    return result_route_words
-
-@measure_performance
-def route_suggets_sentence():
-    result_route_sentence = router.post(r'/suggest_sentences/')
-    return result_route_sentence
-
-@measure_performance
-def route_store_corrections():
-    result_route_store_correc = router.post(r'/store_corrections/')
-    return result_route_store_correc        
-
-@measure_performance
-def route_recover_sentences():
-    result_route_recover_sentenc = router.post(r'/recover_sentences/')
-    return result_route_recover_sentenc 
 
 
 word = 'teste'
