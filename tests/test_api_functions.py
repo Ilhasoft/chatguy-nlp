@@ -53,29 +53,6 @@ user_input_corrections = dotdict(test_config.user_input_corrections)
 #userInput = json.loads(userInput, object_hook=lambda d: SimpleNamespace(**d))
 
 
-def test_route_suggest_words():
-    result_route_words = test_config.router.post(r'/suggest_words/')
-    return result_route_words
-
-
-def test_route_suggets_sentence():
-    result_route_sentence = test_config.router.post(r'/suggest_sentences/')
-    return result_route_sentence
-
-
-
-def test_route_store_corrections():
-    result_route_store_correc = test_config.router.post(r'/store_corrections/')
-    return result_route_store_correc
-
-
-
-def test_route_recover_sentences():
-    result_route_recover_sentenc = test_config.router.post(r'/recover_sentences/')
-    return result_route_recover_sentenc 
-
-
-
 def test_word_generator_function():
     '''
     Test to verify that the generation of synonyms for words is correct.
