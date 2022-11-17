@@ -57,38 +57,23 @@ def test_route_suggest_words():
     result_route_words = test_config.router.post(r'/suggest_words/')
     return result_route_words
 
-@TestClient
-def test_route_suggest_words_request(client: TestClient):
-    response_words = client.post(r'/suggest_words/')
-    return response_words
 
 def test_route_suggets_sentence():
     result_route_sentence = test_config.router.post(r'/suggest_sentences/')
     return result_route_sentence
 
-@TestClient
-def test_route_suggest_sentence_request(client: TestClient):
-    response_sentence = client.post(r'/suggest_sentences/')
-    return response_sentence
 
 
 def test_route_store_corrections():
     result_route_store_correc = test_config.router.post(r'/store_corrections/')
     return result_route_store_correc
 
-@TestClient
-def test_route_suggest_store_corrections_request(client: TestClient):
-    response_store = client.post(r'/store_corrections/')
-    return response_store
+
 
 def test_route_recover_sentences():
     result_route_recover_sentenc = test_config.router.post(r'/recover_sentences/')
     return result_route_recover_sentenc 
 
-@TestClient
-def test_route_suggest_recover_sentence_request(client: TestClient):
-    response_recover = client.post(r'/recover_sentences/')
-    return response_recover
 
 
 def test_word_generator_function():
@@ -243,4 +228,3 @@ def test_create_model():
     '''
     model_pipeline = create_model
     return model_pipeline
-  

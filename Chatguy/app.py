@@ -60,7 +60,7 @@ host = os.environ['POSTGRES_HOST']
 port = os.environ['POSTGRES_PORT']
 adapter = os.environ['POSTGRES_ADAPTER']
 
-client = TestClient(router)
+
 
 DATABASE_URL = f'postgresql://{user}:{password}@{host}:{port}'
 session = db.create_db(DATABASE_URL)
@@ -87,7 +87,6 @@ def del_token(token):
 
 @router.post(r'/suggest_words/')
 @try_except.error_handling
-@measure_performance
 def suggest_words(userInput: InputWords):
     if userInput:
         session = db.create_db(DATABASE_URL)
@@ -99,7 +98,6 @@ def suggest_words(userInput: InputWords):
 
 @router.post(r'/suggest_sentences/')
 @try_except.error_handling
-@measure_performance
 def suggest_sentences(userInput: InputSentences, background_tasks: BackgroundTasks):
         if userInput.texts:            
             token = gen_token()
@@ -110,7 +108,6 @@ def suggest_sentences(userInput: InputSentences, background_tasks: BackgroundTas
 
 @router.post(r'/recover_sentences/')
 @try_except.error_handling
-@measure_performance
 def application_test(id: Recover, background_tasks: BackgroundTasks):
     if not r.get(id.token):
         return None
@@ -122,7 +119,6 @@ def application_test(id: Recover, background_tasks: BackgroundTasks):
 
 @router.post(r'/store_corrections/')
 @try_except.error_handling
-@measure_performance
 def suggest_words(userInput: InputCorrections):
         if userInput:
             session = db.create_db(DATABASE_URL)
@@ -137,29 +133,30 @@ def suggest_words(userInput: InputCorrections):
 @try_except.error_handling
 @log_datetime
 def test_application_route():
+    client = TestClient(router)
 
     @measure_performance
     def test_route_suggest_words_request():
         response_words = client.post(r'/suggest_words/')
-        print('Request Status Code -->', response_words)
+        print('Request Status Code -->', response_words.status_code)
         return response_words.status_code
 
     @measure_performance
     def test_route_suggest_sentence_request():
         response_sentence = client.post(r'/suggest_sentences/')
-        print('Request Status Code -->',response_sentence)
+        print('Request Status Code -->',response_sentence.status_code)
         return response_sentence.status_code
 
     @measure_performance
     def test_route_suggest_store_corrections_request():
         response_store = client.post(r'/store_corrections/')
-        print('Request Status Code -->',response_store)
+        print('Request Status Code -->',response_store.status_code)
         return response_store.status_code
 
     @measure_performance
     def test_route_suggest_recover_sentence_request():
         response_recover = client.post(r'/recover_sentences/')
-        print('Request Status Code -->',response_recover)
+        print('Request Status Code -->',response_recover.status_code)
         return response_recover.status_code
 
 

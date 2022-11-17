@@ -26,7 +26,6 @@ def setup_database():
 	session = db.create_db(DATABASE_URL)
 	session.close()
 
-'''
 router = FastAPI()
 
 @pytest.fixture(scope='function')
@@ -34,10 +33,9 @@ def client() -> Generator:
     with TestClient(router):
         yield TestClient
 
-'''
+
 Decorators
 ----------
-
 '''
 
 def log_datetime(func):
@@ -81,18 +79,14 @@ class StoreCorrections:
 
 '''
 class MeasurePerformance:
-
     def __init__(self, func):
         self.func = func
-
-
     def _call__(self, func, *args, **kwargs):
         tracemalloc.start()
         self.start_time = perf_counter()
         self.func = func(*args, **kwargs)
         self.current, self.peak = tracemalloc.get_traced_memory()
         self.finish_time = perf_counter()
-
         self.message = (f'Function: {self.func.__name__}',
                         f'\nMethod: {self.func.__doc__}',
                         f'\nMemory usage:\t\t {self.current / 10**6:.6f} MB \n'
@@ -104,7 +98,7 @@ class MeasurePerformance:
         print(self.message)
 '''
 
-
+router = FastAPI()
 
 routes = [router.post(r'/suggest_words/'),
             router.post(r'/suggest_sentences/'),
