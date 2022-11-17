@@ -15,7 +15,6 @@ from fastapi.testclient import TestClient
 from Chatguy.models.models import InputCorrections, InputSentences, InputWords
 import csv
 from Chatguy.handlers import classifier, db, text_generators, try_except, try_except
-from tests import test_api_functions, test_config
 from tests.test_config import measure_performance, log_datetime, StoreCorrections, word_synonym_res, sentence_res
 import logging
 import sqlalchemy
