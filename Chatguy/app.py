@@ -1,36 +1,34 @@
+import sys
+import os
+
+from models.models import Recover
+sys.path.insert(1, '..')
+
+import json
+import csv
+import logging
+import sqlalchemy
+import urllib.request
+import redis
+import base64
+import time
 from codecs import backslashreplace_errors
 from http.cookies import SimpleCookie
 from imghdr import tests
 from signal import Handlers
-import sys
-
-from models.models import Recover
-
-sys.path.insert(1, '..')
-
-import json
 from fastapi import FastAPI, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.testclient import TestClient
 from Chatguy.models.models import InputCorrections, InputSentences, InputWords
-import csv
 from Chatguy.handlers import classifier, db, text_generators, try_except, try_except
-from tests.test_config import measure_performance, log_datetime, StoreCorrections, word_synonym_res, sentence_res
-import logging
-import sqlalchemy
-import os, sys
-import urllib.request
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, Integer, MetaData, String, ForeignKey, Boolean, DateTime, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects.postgresql import UUID
 from uuid import uuid4
-from sqlalchemy.orm import sessionmaker
 from functools import wraps
-import json
-import redis
-import base64
 from hashlib import blake2b
-import time
+
 
 r = redis.StrictRedis(host='127.0.0.1', port=6379, db=0)
 
@@ -130,37 +128,38 @@ def suggest_words(userInput: InputCorrections):
 
 @router.post(r'/tests/')
 @try_except.error_handling
-@log_datetime
 def test_application_route():
+    
     client = TestClient(router)
 
-    @measure_performance
+
     def test_route_suggest_words_request():
-        response_words = client.post(r'/suggest_words/')
+        response_words = client.post('/suggest_words/')
         print('Request Status Code -->', response_words.status_code)
         return response_words.status_code
 
-    @measure_performance
+
     def test_route_suggest_sentence_request():
         response_sentence = client.post(r'/suggest_sentences/')
         print('Request Status Code -->',response_sentence.status_code)
         return response_sentence.status_code
 
-    @measure_performance
+
     def test_route_suggest_store_corrections_request():
         response_store = client.post(r'/store_corrections/')
         print('Request Status Code -->',response_store.status_code)
         return response_store.status_code
 
-    @measure_performance
+
     def test_route_suggest_recover_sentence_request():
         response_recover = client.post(r'/recover_sentences/')
         print('Request Status Code -->',response_recover.status_code)
         return response_recover.status_code
 
 
-    return{'Route Name -->': ('Suggest Words', 'Suggest Sentences', 'Store Corrections', 'Recover Sentences'),
-            'Runtime': (test_route_suggest_words_request(),
+    return{'Route Name': ('Suggest Words', 'Suggest Sentences', 'Store Corrections', 'Recover Sentences'),
+            'Status code': (test_route_suggest_words_request(),
                         test_route_suggest_sentence_request(), 
                         test_route_suggest_store_corrections_request(),
-                        test_route_suggest_recover_sentence_request())}
+                        test_route_suggest_recover_sentence_request()),
+            'Runtime': ()}
