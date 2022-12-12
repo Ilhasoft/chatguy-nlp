@@ -127,7 +127,6 @@ def suggest_words(userInput: InputCorrections):
 @router.post(r'/tests/')
 @try_except.error_handling
 def test_application_route():
-    from tests.test_config import MeasurePerformance
     client = TestClient(router)
 
     import time
