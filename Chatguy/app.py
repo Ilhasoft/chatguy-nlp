@@ -127,37 +127,74 @@ def suggest_words(userInput: InputCorrections):
 @router.post(r'/tests/')
 @try_except.error_handling
 def test_application_route():
-    
+    from tests.test_config import MeasurePerformance
     client = TestClient(router)
 
+    import time
+
+
+    '''class Performance:
+        def __init__(self, func, *args):
+            self.start = time.monotonic()
+            self.running = func(*args)
+            self.end = time.monotonic()
+            self.run_time_route = self.end - self.start
+            self.report = (f'Function: {self.func.__name__}',
+                            f'\nTime elapsed is seconds: {self.end- self.start:.6f}',
+                            f'{"-"*40}' )
+    '''
+                          
 
     def test_route_suggest_words_request():
+        start_words = time.monotonic()
         response_words = client.post('/suggest_words/')
-        print('Request Status Code -->', response_words.status_code)
-        return response_words.status_code
+        end_words = time.monotonic()
+        run_time_words = end_words - start_words
+        word_report = ['Route: Suggest Words',
+                            f'Function: {test_route_suggest_words_request.__name__}',
+                            f'Request Status Code: {response_words.status_code}',
+                            f'Time elapsed is seconds: {run_time_words:.6f}']
+        return word_report
 
 
     def test_route_suggest_sentence_request():
-        response_sentence = client.post(r'/suggest_sentences/')
-        print('Request Status Code -->',response_sentence.status_code)
-        return response_sentence.status_code
+        start_sent = time.monotonic()
+        response_sent = client.post(r'/suggest_sentences/')
+        end_sent = time.monotonic()
+        run_time_sent = end_sent - start_sent
+        sent_report = ['Route: Suggest Words',
+                            f'Function: {test_route_suggest_sentence_request.__name__}',
+                            f'Request Status Code: {response_sent.status_code}',
+                            f'Time elapsed is seconds: {run_time_sent:.6f}']
+        return sent_report
 
 
     def test_route_suggest_store_corrections_request():
+        start_store = time.monotonic()
         response_store = client.post(r'/store_corrections/')
-        print('Request Status Code -->',response_store.status_code)
-        return response_store.status_code
+        end_store = time.monotonic()
+        run_time_store = end_store - start_store
+        store_report = ['Route: Suggest Words',
+                            f'Function: {test_route_suggest_sentence_request.__name__}',
+                            f'Request Status Code: {response_store.status_code}',
+                            f'Time elapsed is seconds: {run_time_store:.6f}']
+        return store_report
 
 
     def test_route_suggest_recover_sentence_request():
+        start_recover = time.monotonic()
         response_recover = client.post(r'/recover_sentences/')
-        print('Request Status Code -->',response_recover.status_code)
-        return response_recover.status_code
+        end_recover = time.monotonic()
+        run_time_recover = end_recover - start_recover
+        recover_report = ['Route: Suggest Words',
+                            f'Function: {test_route_suggest_sentence_request.__name__}',
+                            f'Request Status Code: {response_recover.status_code}',
+                            f'Time elapsed is seconds: {run_time_recover:.6f}']
+        return recover_report
 
 
-    return{'Route Name': ('Suggest Words', 'Suggest Sentences', 'Store Corrections', 'Recover Sentences'),
-            'Status code': (test_route_suggest_words_request(),
-                        test_route_suggest_sentence_request(), 
-                        test_route_suggest_store_corrections_request(),
-                        test_route_suggest_recover_sentence_request()),
-            'Runtime': ()}
+    return ({'Routes Report':([test_route_suggest_words_request()],
+                            [test_route_suggest_sentence_request()],
+                            [test_route_suggest_store_corrections_request()], 
+                            [test_route_suggest_recover_sentence_request()]),
+                            })

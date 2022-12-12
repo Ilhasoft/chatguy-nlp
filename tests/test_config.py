@@ -32,24 +32,26 @@ def log_datetime(func):
     return wrapper   
 
 
-def measure_performance(func):
-    '''Measure performance of a function'''
-
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
+class MeasurePerformance:
+    def __init__(self, func):
+        self.func = func
+        
+    def __call__(self, func, *args, **kwargs):
         tracemalloc.start()
-        start_time = perf_counter()
-        func(*args, **kwargs)
-        current, peak = tracemalloc.get_traced_memory()
-        finish_time = perf_counter()
-        print(f'Function: {func.__name__}')
-        print(f'Method: {func.__doc__}')
-        print(f'Memory usage:\t\t {current / 10**6:.6f} MB \n'
-              f'Peak memory usage:\t {peak / 10**6:.6f} MB ')
-        print(f'Time elapsed is seconds: {finish_time - start_time:.6f}')
-        print(f'{"-"*40}')
+        self.start_time = perf_counter()
+        self.func = func(*args, **kwargs)
+        self.current, self.peak = tracemalloc.get_traced_memory()
+        self.finish_time = perf_counter()
+        self.message = (f'Function: {self.func.__name__}',
+                        f'\nMethod: {self.func.__doc__}',
+                        f'\nMemory usage:\t\t {self.current / 10**6:.6f} MB \n'
+                        f'\nPeak memory usage:\t {self.peak / 10**6:.6f} MB ',
+                        f'\nTime elapsed is seconds: {self.finish_time - self.start_time:.6f}',
+                        f'{"-"*40}' )
         tracemalloc.stop()
-    return wrapper
+    def showPerformance(self):
+        self.show = MeasurePerformance()
+        print(MeasurePerformance)
 
 
 class StoreCorrections:
