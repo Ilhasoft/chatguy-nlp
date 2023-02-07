@@ -9,6 +9,7 @@ RUN apt update
 RUN apt-get install -y libpq-dev
 RUN apt-get install -y redis-server
 
+RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt --no-cache-dir
 
 WORKDIR /home/Chatguy
