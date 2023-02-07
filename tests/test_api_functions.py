@@ -23,7 +23,6 @@ from Chatguy.handlers.text_generators import generate_sentences, generate_words
 from Chatguy.handlers.classifier import join_tuple_string, list_suggesting, get_synonyms, create_model_gec, create_model, phrase_aug, phrase_gec
 from types import SimpleNamespace
 from tests.test_config import StoreCorrections, log_datetime, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
-from pysinonimos.sinonimos import Search, historic
 from datetime import datetime
 import tracemalloc
 from time import perf_counter 
@@ -61,6 +60,8 @@ def test_word_generator_function():
     session = create_db(DATABASE_URL)
     keys = user_input_word.texts
     result_word = generate_words(keys, session)
+    print('\n RESULT WORD - {}'.format(result_word))
+    print('\n CONFIG SYNOMYM RES {}'.format(test_config.word_synonym_res))
     session.close()
 
     assert result_word == test_config.word_synonym_res

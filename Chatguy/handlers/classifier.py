@@ -1,8 +1,12 @@
-from pysinonimos.sinonimos import Search, historic
+
 import json
 import itertools
 from simplet5 import SimpleT5
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
+import requests
+import sys
+from scrapy.selector import Selector 
+from unicodedata import normalize
 
 ## CÓDIGO PARA ESTAR NO INIT
 
@@ -48,6 +52,27 @@ def phrase_aug(suggest_list, pten_pipeline, enpt_pipeline):
     enpt = enpt_pipeline(enpt)
     aug_list.append(enpt[0]['generated_text'])
   return aug_list
+
+
+class Search(object):
+	"""docstring for Search"""
+	def __init__(self, palavra):
+		super(Search, self).__init__()
+		self.word = palavra.split(" ")
+
+	def synonyms(self, verbose=True):
+		param = "-".join(self.word)
+		param = normalize('NFKD', param).encode('ASCII','ignore').decode('ASCII')
+		if verbose == True:
+			print("Carregando sinônimos para '{}'...".format(param))
+
+			r = requests.get('https://www.sinonimos.com.br/{}/'.format(param))
+			print(r)
+			conteudo = r.content.decode('iso8859-1')
+			palavra = Selector(text=conteudo).xpath('//h1[@class="h-palavra"]/text()').get()
+			sinonimos = Selector(text=conteudo).xpath('//a[@class="sinonimo"]/text()').getall()
+			return sinonimos[:12]
+
 
 def get_synonyms(word):
   suggested = Search(word)

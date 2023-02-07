@@ -87,6 +87,7 @@ def suggest_words(userInput: InputWords):
         session = db.create_db(DATABASE_URL)
         keys = userInput.texts
         result_word = text_generators.generate_words(keys, session)
+        print(result_word)
         session.close()
     return result_word
 

@@ -5,7 +5,7 @@
 
 [![CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml)
 [![Docker Image CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml)
-[![](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Tests.yml/badge.svg)]()
+[![Tests](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Tests.yml/badge.svg)]()
 [![Code Coverage](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/code-coverage-badge.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/code-coverage-badge.yml)
 [![](https://img.shields.io/github/last-commit/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/contributors/Ilhasoft/chatguy-nlp)]()
@@ -13,8 +13,7 @@
 [![](https://img.shields.io/github/v/tag/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/v/release/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/languages/top/Ilhasoft/chatguy-nlp)]()
-[![](https://img.shields.io/badge/python-3.8-informational)]()
-![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/Mel-iza/4e3721eede9c6f0753da666369967529/raw/code-coverage.json)
+
 
 </div>
 
@@ -22,11 +21,11 @@
 Chatguy is a Brazilian Portuguese dataset generator. Through natural language processing techniques it is possible to generate sentences from synonymous words and entity recognition. Its main functions can be divided between generating synonymous words and generating phrases or sentences.
 
 ### Requirements: <br>
-- Python 3.8 <br>
-- Docker <br>
-- Docker-compose <br>
-- Docker swarm <br>
-- Git <br>
+
+[![](https://img.shields.io/badge/python-3.8.13-9cf)]()
+[![](https://img.shields.io/badge/git-2.34.1-9cf)]()
+[![](https://img.shields.io/badge/conda-4.5.11-9cf)]()
+[![](https://img.shields.io/badge/docker-23.0.0-9cf)]()
 
 ## Get Started
 
@@ -42,6 +41,10 @@ Chatguy is a Brazilian Portuguese dataset generator. Through natural language pr
 3. Activate env <br>
 ```conda activate chatguy  ``` 
 
+4. Install requirements <br>
+*you can use the ```ls``` command to check if the requirmenets.txt file is showing* <br>
+```pip install requirements.txt ```
+
 4. Run Docker file 'docker-compose.yml' <br>
 ```sudo docker compose up -d ``` 
 
@@ -50,15 +53,8 @@ Chatguy is a Brazilian Portuguese dataset generator. Through natural language pr
 The docker compose file image will install all requirements and dependencies within the environment, as well as initialize the local postgres database.
 
 ## Environment Variables
-|Variables|Keys|
-|------------|------------|
-|POSTGRES_USER|postgres|
-|POSTGRES_PASSWORD|docker|
-|POSTGRES_HOST|127.0.0.1|
-|POSTGRES_PORT|5432|
-|POSTGRES_ADAPTER|postgresql|
-
 After the creation of images by docker is finished, export the database credentials so that docker can connect to the application. <br>
+
 6. Export database credentials in terminal <br>
 ``` 
 export POSTGRES_USER=postgres
@@ -68,26 +64,37 @@ export POSTGRES_PORT=5432
 export POSTGRES_ADAPTER=postgresql
 ``` 
 
+7. Run Redis image server <br>
+``` docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:latest ```
+
+
 ## API Reference <br>
 After installing and configuring the environment and dependencies, the application is ready to run. <br>
+*Make sure you are in the correct dir: ```chatguy-nlp/Chatguy```* <br>
+
 The connection to the application is made by the FAST API by the following command: <br>
 ```
 uvicorn --host=0.0.0.0 app:router --reload
 ``` 
 
-Chatguy has 3 main endpoints: <br>
+Chatguy has 4 main endpoints: <br>
 - /suggest_word <br>
 - /suggest_sentences <br>
 - /store_corrections <br>
+- /recover_sentences <br>
 
 > All of them receive textual content in json format as input. <br>
 
 To perform and manage requests, the [![](https://img.shields.io/badge/Insomnia-5849be?style=for-the-badge&logo=Insomnia&logoColor=white)]() was used, but other platforms such as [![]( https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white )]() and similar can be used.
 
-##
-**POST /suggest_word** <br>
-Takes an input word and returns a list of synonymous words <br>
-**json request**:
+## Requests and expected responses/outputs <br>
+
+<details> <summary> POST/suggest_words  </summary><br>
+0.0.0.0:8000/suggest_words  | Description: Takes an input word and returns a list of synonymous words
+<p>
+
+![Suggest_words](https://user-images.githubusercontent.com/72058182/217322385-6d863c17-768f-43b5-9f04-a5df962628ca.png)
+
 ``` 
 {
 	"texts": [
@@ -123,11 +130,20 @@ Takes an input word and returns a list of synonymous words <br>
 		}
 	]
 }
-``` 
+```
 
-**POST /suggest_sentence** <br>
-Takes an input phrase and generates synonymous phrases based on tagged entities. <br>
-**json request**:
+
+</p>
+</details>
+
+
+<details> <summary> POST/suggest_sentences </summary><br>
+0.0.0.0:8000/suggest_sentences | Description: Takes an input phrase and generates synonymous phrases based on tagged entities. It returns a str token.
+
+<p>
+
+![Suggest_sentences](https://user-images.githubusercontent.com/72058182/217324443-5b869415-fc76-40f2-9867-11db02ec511a.png)
+
 ``` 
 {
 	"isquestion": true,
@@ -178,10 +194,36 @@ Takes an input phrase and generates synonymous phrases based on tagged entities.
 		}
 	]
 }
+
 ```
-**POST /store_corrections** <br>
-Performs a sentence correction in the database <br>
-**json request**:
+
+</p>
+</details>
+
+
+<details> <summary> POST/recover_sentences </summary><br>
+0.0.0.0:8000/recover_sentences | Description: Receives the token generated by the 'generate_sentences' route and returns the generated phrases.
+<p>
+
+
+![Recover_sentences](https://user-images.githubusercontent.com/72058182/217324656-e928bf71-308f-4dba-8a64-234a32ae087b.png)
+
+```
+{"token":"generated_token"}
+```
+
+</p>
+</details>
+
+
+
+<details> <summary> POST/store_corrections </summary><br>
+0.0.0.0:8000/store_corrections | Description: Performs a sentence correction in the database.
+<p>
+
+![Store_corrections](https://user-images.githubusercontent.com/72058182/217324933-9585f9a3-078f-49a2-b630-2b3658b529e8.png)
+
+
 ```
 {
 	"texts": [
@@ -198,6 +240,11 @@ Performs a sentence correction in the database <br>
 	]
 }
 ```
+
+</p>
+</details>
+
+
 
 ## Contributing
 1. Fork the Project
