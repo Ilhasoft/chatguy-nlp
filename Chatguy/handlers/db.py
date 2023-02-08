@@ -6,8 +6,11 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 def create_db(DATABASE_URL):
+    print('DB')
     engine = create_engine(DATABASE_URL)
+    print('DB engine', engine)
     Session = sessionmaker(bind=engine)
+    print('DB session', Session)
     return Session()
 
 class Words(Base):

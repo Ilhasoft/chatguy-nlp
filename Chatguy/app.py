@@ -84,9 +84,13 @@ def del_token(token):
 @try_except.error_handling
 def suggest_words(userInput: InputWords):
     if userInput:
+        print('A')
         session = db.create_db(DATABASE_URL)
+        print('B')
         keys = userInput.texts
+        print('C')
         result_word = text_generators.generate_words(keys, session)
+        print('I')
         session.close()
     return result_word
 
@@ -94,9 +98,12 @@ def suggest_words(userInput: InputWords):
 @router.post(r'/suggest_sentences/')
 @try_except.error_handling
 def suggest_sentences(userInput: InputSentences, background_tasks: BackgroundTasks):
-        if userInput.texts:            
+        if userInput.texts:
+            print('J')            
             token = gen_token()
-            background_tasks.add_task(gen_sentences, userInput, token) 
+            print('K')   
+            background_tasks.add_task(gen_sentences, userInput, token)
+            print('L')    
         return token
 
 
@@ -105,9 +112,12 @@ def suggest_sentences(userInput: InputSentences, background_tasks: BackgroundTas
 @try_except.error_handling
 def application_test(id: Recover, background_tasks: BackgroundTasks):
     if not r.get(id.token):
+        print('M')   
         return None
     msg_bytes = base64.b64decode(r.get(id.token))
+    print('N', msg_bytes)   
     msg_bytes = msg_bytes.decode('ascii')
+    print('O')   
     background_tasks.add_task(del_token, id.token)   
     return json.loads(msg_bytes)
 
@@ -116,9 +126,13 @@ def application_test(id: Recover, background_tasks: BackgroundTasks):
 @try_except.error_handling
 def suggest_words(userInput: InputCorrections):
         if userInput:
+            print('P')   
             session = db.create_db(DATABASE_URL)
+            print('Q')   
             data = userInput.texts
+            print('R', data)   
             db.insert_corrections(session, data[0], data[1])
+            print('S')   
             session.close()
             return {200: 'Inserted!'}
 

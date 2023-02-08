@@ -6,7 +6,6 @@
 [![CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/ci-tests.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/ci-tests.yml)
 [![Docker Image CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml)
 [![Tests](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Tests.yml/badge.svg)]()
-[![Code Coverage](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/code-coverage-badge.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/code-coverage-badge.yml)
 [![](https://img.shields.io/github/last-commit/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/contributors/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/issues-pr/Ilhasoft/chatguy-nlp)]()
@@ -14,7 +13,7 @@
 [![](https://img.shields.io/github/v/release/Ilhasoft/chatguy-nlp)]()
 [![](https://img.shields.io/github/languages/top/Ilhasoft/chatguy-nlp)]()
 
-
+  
 </div>
 
 ## Overview
@@ -45,6 +44,7 @@ Chatguy is a Brazilian Portuguese dataset generator. Through natural language pr
 *you can use the ```ls``` command to check if the requirmenets.txt file is showing* <br>
 ```pip install requirements.txt ```
 
+
 4. Run Docker file 'docker-compose.yml' <br>
 ```sudo docker compose up -d ``` 
 
@@ -54,6 +54,7 @@ The docker compose file image will install all requirements and dependencies wit
 
 ## Environment Variables
 After the creation of images by docker is finished, export the database credentials so that docker can connect to the application. <br>
+
 
 6. Export database credentials in terminal <br>
 ``` 
@@ -68,7 +69,7 @@ export POSTGRES_ADAPTER=postgresql
 ``` docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:latest ```
 
 
-## API Reference <br>
+## API Reference  <br>
 After installing and configuring the environment and dependencies, the application is ready to run. <br>
 *Make sure you are in the correct dir: ```chatguy-nlp/Chatguy```* <br>
 

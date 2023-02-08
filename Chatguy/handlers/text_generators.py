@@ -14,11 +14,14 @@ def generate_words(keys, session):
     '''
     for i in range(len(keys)):
         if keys[i]['generate']:
+            print('D')
             idx = db.get_word_index(session, keys[i]['word'])
             if idx:
+                print('E')
                 synonyms = db.get_suggest_words(session, idx[0][0])
                 keys[i]['suggestions'] = [i[0] for i in synonyms]
             else:
+                print('F')
                 synonyms = classifier.get_synonyms(keys[i]['word'])
                 keys[i]['suggestions'] = synonyms
                 db.create_word(session, keys[i]['word'])
@@ -26,8 +29,10 @@ def generate_words(keys, session):
                 db.create_suggestion(session, idx[0][0], synonyms)
 
         elif isinstance(keys[i]['word'], list):
+            print('G')
             keys[i]['suggestions'] = keys[i]['word']
         else:
+            print('H')
             keys[i]['suggestions'] = [keys[i]['word']]
 
     return keys
@@ -42,6 +47,7 @@ def generate_sentences(userInput):
     lista_entities_words = []
     for i in range(len(key)):
         if key[i]['entity']:
+            print('K0')
             lista_entities.append([key[i]['entity']])
             lista_entities_words.append([key[i]['suggestions']])
 
@@ -57,24 +63,28 @@ def generate_sentences(userInput):
         texts = list(dict.fromkeys(result))
 
         if userInput.isquestion:
+            print('K1')   
             texts = [w + ' ?' for w in texts]
-
+            print('K2')  
         for phrase in texts:
             entities = []
             values = []
             main_dict = []
+            print('K3')  
             for i, entity in enumerate(lista_entities):
                 lista_words_entity = lista_entities_words[i][0]
                 values = []
+                print('K4')  
                 for word in lista_words_entity:
                     idx = phrase.find(word)
                     if idx > -1:
+                        print('K5')  
                         values.extend(
                         [idx, idx + len(word), word, entity[0]])
                 entities.append(dict(zip(entity_keys, values)))
             main_dict.extend([phrase, intent, entities])
             obj_dict.append(dict(zip(main_keys, main_dict)))
-
+        print('K6')  
         json_file = {"rasa_nlu_data": {"regex_features": [],
                                        "entity_synonyms": [], "common_examples": []}}
         json_file['rasa_nlu_data']['common_examples'] = obj_dict
