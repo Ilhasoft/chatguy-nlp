@@ -3,7 +3,7 @@
 # Chatguy <img src="https://user-images.githubusercontent.com/72058182/198705259-1aa1824b-f09b-4d4c-a697-65281856f0f5.png" width="auto" height="40px">
 ### The powerful NLP's dataset creator.  <br><br>
 
-[![CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/tests.yml)
+[![CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/ci-tests.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/ci-tests.yml)
 [![Docker Image CI](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/docker-image.yml)
 [![Tests](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/Tests.yml/badge.svg)]()
 [![Code Coverage](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/code-coverage-badge.yml/badge.svg)](https://github.com/Ilhasoft/chatguy-nlp/actions/workflows/code-coverage-badge.yml)
