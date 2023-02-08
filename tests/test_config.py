@@ -122,12 +122,7 @@ word_synonym_res = [
                     "cônjuge",
                     "consorte",
                     "patroa",
-                    "dama",
-                    "madame",
-                    "companheira",
-                    "namorada",
-                    "caso",
-                    "amante"
+                    "dama"
                 ]
     },
     {
@@ -186,19 +181,7 @@ word_synonym_res = [
                     "mercar",
                     "negociar",
                     "transacionar",
-                    "delatar",
-                    "acusar",
-                    "denunciar",
-                    "entregar",
-                    "malsinar",
-                    "sacrificar",
-                    "trair",
-                    "esbanjar",
-                    "exibir",
-                    "ostentar",
-                    "ter",
-                    "corromper-se",
-                    "prostituir-se"
+                    "delatar"
                 ]
     }
 ]
@@ -375,14 +358,32 @@ user_input_corrections = {
 
 result_corrections_res = StoreCorrections()
 
-synonyms_teste = ['avaliação', 'exame', 'prova',
-                  'provação', 'verificação', 'constatação', 'ensaio',
-                  'experiência', 'experimentação', 'experimento',
-                  'investida', 'tentativa', 'mostragem']
+synonyms_teste = [
+                'avaliação',
+                'exame',
+                'prova',
+                'provação',
+                'verificação',
+                'constatação',
+                'ensaio',
+                'experiência',
+                'experimentação',
+                'experimento',
+                'investida',
+                'tentativa']
 
-synonyms_caderno = ['caderneta', 'livrete', 'seção',
-                    'suplemento', 'brochura', 'fascículo', 'folheto',
-                    'livro', 'bloco', 'agenda']
+synonyms_caderno = ['caderno',
+                    'caderneta',
+                    'livrete',
+                    'seção',
+                    'suplemento',
+                    'brochura',
+                    'fascículo',
+                    'folheto',
+                    'livro',
+                    'registro',
+                    'bloco',
+                    'agenda']
 
 res_suggested_list = ['há diversas homens no planeta', 'há diversas mulheres no planeta',
 'há diversas crianças no planeta', 'existem diversas homens no planeta',

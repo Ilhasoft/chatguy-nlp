@@ -71,7 +71,7 @@ class Search(object):
 			conteudo = r.content.decode('iso8859-1')
 			palavra = Selector(text=conteudo).xpath('//h1[@class="h-palavra"]/text()').get()
 			sinonimos = Selector(text=conteudo).xpath('//a[@class="sinonimo"]/text()').getall()
-			return sinonimos[:12]
+			return sinonimos[0:12]
 
 
 def get_synonyms(word):

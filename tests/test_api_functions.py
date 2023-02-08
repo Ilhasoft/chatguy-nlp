@@ -20,7 +20,7 @@ from fastapi import FastAPI
 from Chatguy.models.models import InputWords, InputSentences, InputCorrections
 from Chatguy.handlers.db import Base, Words, Suggestions, Corrections, create_db, create_word, create_suggestion, insert_corrections, query_corrections
 from Chatguy.handlers.text_generators import generate_sentences, generate_words
-from Chatguy.handlers.classifier import join_tuple_string, list_suggesting, get_synonyms, create_model_gec, create_model, phrase_aug, phrase_gec
+from Chatguy.handlers.classifier import join_tuple_string, list_suggesting, get_synonyms, create_model_gec, create_model, phrase_aug, phrase_gec, Search
 from types import SimpleNamespace
 from tests.test_config import StoreCorrections, log_datetime, user_input_corrections, user_input_sentence, user_input_word, word_synonym_res, sentence_res, synonyms_caderno, synonyms_teste, res_suggested_list
 from datetime import datetime
@@ -131,6 +131,8 @@ def test_get_word_equals_suggested_synonyms():
     suggested_1 = suggested_word_1.synonyms()
     suggested_2 = suggested_word_2.synonyms()
     
+    print('PRINT --> {} \n {}'.format(suggested_1, suggested_2))
+
     assert suggested_1 == test_config.synonyms_teste
     assert suggested_2 == test_config.synonyms_caderno
 
