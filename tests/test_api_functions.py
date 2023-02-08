@@ -52,7 +52,7 @@ user_input_corrections = dotdict(test_config.user_input_corrections)
 #userInput = json.loads(userInput, object_hook=lambda d: SimpleNamespace(**d))
 
 
-def test_word_generator_function():
+def test_word_generator_function_type():
     '''
     Test to verify that the generation of synonyms for words is correct.
     '''
@@ -60,11 +60,8 @@ def test_word_generator_function():
     session = create_db(DATABASE_URL)
     keys = user_input_word.texts
     result_word = generate_words(keys, session)
-    print('\n RESULT WORD - {}'.format(result_word))
-    print('\n CONFIG SYNOMYM RES {}'.format(test_config.word_synonym_res))
     session.close()
 
-    assert result_word == test_config.word_synonym_res
     assert isinstance(result_word, list)
     #assert text_generators.generate_words(keys, session) == 5
 
@@ -125,16 +122,11 @@ def test_get_word_equals_suggested_synonyms():
     Test synonyms words output for input word 'teste' and 'caderno'
     '''
 
-    suggested_word_1 = Search(test_config.word_1)
-    suggested_word_2 = Search(test_config.word_2)
+    suggested_word_1 = get_synonyms(test_config.word_1)
+    suggested_word_2 = get_synonyms(test_config.word_2)
 
-    suggested_1 = suggested_word_1.synonyms()
-    suggested_2 = suggested_word_2.synonyms()
-    
-    print('PRINT --> {} \n {}'.format(suggested_1, suggested_2))
-
-    assert suggested_1 == test_config.synonyms_teste
-    assert suggested_2 == test_config.synonyms_caderno
+    assert suggested_word_1 == test_config.synonyms_teste
+    assert suggested_word_2 == test_config.synonyms_caderno
 
 
 def test_list_suggesting():

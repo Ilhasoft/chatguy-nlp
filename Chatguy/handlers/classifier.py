@@ -85,5 +85,4 @@ def get_synonyms(word):
       suggested.insert(0, word)
     except Exception as e:
       return [word]
-
   return suggested

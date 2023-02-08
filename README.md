@@ -93,38 +93,40 @@ To perform and manage requests, the [![](https://img.shields.io/badge/Insomnia-5
 0.0.0.0:8000/suggest_words  | Description: Takes an input word and returns a list of synonymous words
 <p>
 
-![Suggest_words](https://user-images.githubusercontent.com/72058182/217322385-6d863c17-768f-43b5-9f04-a5df962628ca.png)
+![Suggest_words](https://user-images.githubusercontent.com/72058182/217551555-a29775c2-03a9-4cd2-bf82-41cc5f338667.png)
+
+Request code:
 
 ``` 
 {
 	"texts": [
 		{
-			"word": "qual",
+			"word": "formiga",
 			"generate": true,
 			"entity": false,
 			"local": true
 		},
 		{
-			"word": "o",
+			"word": "qual",
 			"generate": true,
 			"entity": false,
 			"local": false
 		},
 		{
-			"word": "limite",
-			"generate": true,
+			"word": "café",
+			"generate": false,
 			"entity": true,
 			"local": false
 		},
 		{
-			"word": "de",
+			"word": "árvore",
 			"generate": false,
 			"entity": false,
 			"local": false
 		},
 		{
-			"word": "frases",
-			"generate": true,
+			"word": "pessoa",
+			"generate": false,
 			"entity": false,
 			"local": true
 		}
@@ -143,6 +145,8 @@ To perform and manage requests, the [![](https://img.shields.io/badge/Insomnia-5
 <p>
 
 ![Suggest_sentences](https://user-images.githubusercontent.com/72058182/217324443-5b869415-fc76-40f2-9867-11db02ec511a.png)
+
+Request code:
 
 ``` 
 {
@@ -208,6 +212,8 @@ To perform and manage requests, the [![](https://img.shields.io/badge/Insomnia-5
 
 ![Recover_sentences](https://user-images.githubusercontent.com/72058182/217324656-e928bf71-308f-4dba-8a64-234a32ae087b.png)
 
+Request code:
+
 ```
 {"token":"generated_token"}
 ```
@@ -223,6 +229,7 @@ To perform and manage requests, the [![](https://img.shields.io/badge/Insomnia-5
 
 ![Store_corrections](https://user-images.githubusercontent.com/72058182/217324933-9585f9a3-078f-49a2-b630-2b3658b529e8.png)
 
+Request code:
 
 ```
 {

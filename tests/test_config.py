@@ -58,8 +58,7 @@ class StoreCorrections:
     def __init__(self):
         self.id = 1
         self.source_text = 'olá tudo bem como você vai?1'
-        self.target_text = 'tchau, to vazando, saindo fora meu chegado, até mais!1'
-
+        self.target_text = 'valeu demais, até!1'
 
 
 word = 'teste'
@@ -104,87 +103,100 @@ user_input_word = {
 }
 
 word_synonym_res = [
-    {
-        "word": "mulher",
-        "generate": True,
-                "entity": False,
-                "local": True,
-                "suggestions": [
-                    "mulher",
-                    "fêmea",
-                    "senhora",
-                    "dona",
-                    "adulta",
-                    "maior",
-                    "moça",
-                    "mocinha",
-                    "esposa",
-                    "cônjuge",
-                    "consorte",
-                    "patroa",
-                    "dama"
-                ]
-    },
-    {
-        "word": "sapato",
-        "generate": True,
-                "entity": False,
-                "local": False,
-                "suggestions": [
-                    "sapato",
-                    "calçado"
-                ]
-    },
-    {
-        "word": "compra",
-        "generate": True,
-                "entity": True,
-                "local": False,
-                "suggestions": [
-                    "compra",
-                    "merca",
-                    "obtenção",
-                    "aquisição",
-                    "artigo",
-                    "mercadoria",
-                    "produto",
-                    "mercancia",
-                    "corrupção",
-                    "peita",
-                    "suborno"
-                ]
-    },
-    {
-        "word": "no",
-        "generate": False,
-                "entity": False,
-                "local": False,
-                "suggestions": [
-                    "no"
-                ]
-    },
-    {
-        "word": "vender",
-        "generate": True,
-                "entity": False,
-                "local": True,
-                "suggestions": [
-                    "vender",
-                    "alienar",
-                    "ceder",
-                    "transferir",
-                    "comercializar",
-                    "comerciar",
-                    "mercadejar",
-                    "mercanciar",
-                    "mercantilizar",
-                    "mercar",
-                    "negociar",
-                    "transacionar",
-                    "delatar"
-                ]
-    }
+	{
+		"word": "mulher",
+		"generate": True,
+		"entity": False,
+		"local": True,
+		"suggestions": [
+            'mulher',
+            'fêmea',
+            'senhora',
+            'dona',
+            'adulta',
+            'maior',
+            'moça',
+            'mocinha',
+            'esposa',
+            'cônjuge',
+            'consorte',
+            'patroa',
+            'dama'
+		]
+	},
+	{
+		"word": "sapato",
+		"generate": True,
+		"entity": False,
+		"local": False,
+		"suggestions": [
+			"sapato",
+            "calçado"
+		]
+	},
+	{
+		"word": "compra",
+		"generate": True,
+		"entity": True,
+		"local": False,
+		"suggestions": [
+			'compra',
+            'merca',
+            'obtenção',
+            'aquisição',
+            'artigo',
+            'mercadoria',
+            'produto',
+            'mercancia',
+            'corrupção',
+            'peita',
+            'suborno'
+		]
+	},
+	{
+		"word": "no",
+		"generate": False,
+		"entity": False,
+		"local": False,
+		"suggestions": [
+			'no',
+            'entrelaçamento',
+            'laço',
+            'laçada',
+            'articulação',
+            'junta',
+            'juntura',
+            'união',
+            'aliança',
+            'pacto',
+            'ligação',
+            'elo',
+            'casamento'
+		]
+	},
+	{
+		"word": "vender",
+		"generate": True,
+		"entity": False,
+		"local": True,
+		"suggestions": [
+			'vender',
+            'alienar',
+            'ceder',
+            'transferir',
+            'comercializar',
+            'comerciar',
+            'mercadejar',
+            'mercanciar',
+            'mercantilizar',
+            'mercar',
+            'negociar',
+            'transacionar',
+            'delatar'
+		]
+	}
 ]
+
 
 
 user_input_sentence = {"isquestion": True,
@@ -352,25 +364,35 @@ sentence_res = {
 }
 
 user_input_corrections = {
-    "texts": [["olá tudo bem como você vai?1"],
-              ["tchau, to vazando, saindo fora meu chegado, até mais!1"]]
+	"texts": [
+		[
+			"olá tudo bem como você vai?1",
+			"olá tudo bem como você vai?2",
+			"olá tudo bem como você vai?3"
+		],
+		[
+			"valeu demais, até!1",
+			"valeu demais, até!2",
+			"valeu demais, até!3"
+		]
+	]
 }
 
 result_corrections_res = StoreCorrections()
 
-synonyms_teste = [
-                'avaliação',
-                'exame',
-                'prova',
-                'provação',
-                'verificação',
-                'constatação',
-                'ensaio',
-                'experiência',
-                'experimentação',
-                'experimento',
-                'investida',
-                'tentativa']
+synonyms_teste = ['teste',
+                    'avaliação',
+                    'exame',
+                    'prova',
+                    'provação',
+                    'verificação',
+                    'constatação',
+                    'ensaio',
+                    'experiência',
+                    'experimentação',
+                    'experimento',
+                    'investida',
+                    'tentativa']
 
 synonyms_caderno = ['caderno',
                     'caderneta',
